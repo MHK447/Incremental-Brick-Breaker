@@ -39,7 +39,6 @@ public class InGameSystem
     private void StartGame(GameType type, System.Action loadCallback = null, bool nextStage = false)
     {
         GameRoot.Instance.Loading.Show(true);
-        GameRoot.Instance.SceneSystem.ChangeScene(type, loadCallback);
     }
 
     public void ChangeMode(GameType type, System.Action _action = null)
@@ -58,10 +57,7 @@ public class InGameSystem
     public void InitPopups()
     {
         GameRoot.Instance.InitCurrencyTop();
-        GameRoot.Instance.UISystem.OpenUI<HUDTotal>(popup =>
-        {
-            GameRoot.Instance.ActionQueueSystem.OnFirstInitCall();
-        });
+      
     }
 
     public void NextStage()

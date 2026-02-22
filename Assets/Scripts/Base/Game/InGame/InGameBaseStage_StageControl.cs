@@ -9,11 +9,6 @@ public partial class InGameBaseStage : MonoBehaviour
 {
     public GameObject ChapterMapRoot;
 
-    public PlayerBlockGroup PlayerBlockGroup;
-
-    public EnemyUnitGroup EnemyUnitGroup;
-
-    public PlayerUnitGroup PlayerUnitGroup;
 
     private Coroutine currentWaveCoroutine = null;
 
@@ -29,56 +24,15 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void InitStage()
     {
-        PlayerBlockGroup.Init();
-        EnemyUnitGroup.Init();
-        PlayerUnitGroup.Init();
 
         EquipTutorialCheck();
 
-        EnemyUnitGroup.CheckEnemyBlockSpawner();
     }
 
     public void StartBattle()
     {
-        this.transform.position = GameRoot.Instance.ShopSystem.NoInterstitialAds.Value ? new Vector3( this.transform.position.x, 0f, this.transform.position.z) 
-        : new Vector3(this.transform.position.x, 1.5f, this.transform.position.z);
-
-        GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.TryStageClear, 1, GameRoot.Instance.UserData.Stageidx.Value);
-
-        ProjectUtility.SetActiveCheck(ChapterMapRoot, true);
-        GameRoot.Instance.UserData.Waveidx.Value = 1;
-        GameRoot.Instance.UserData.Ingamesilvercoin.Value = 0;
-        // 세트 버프: StartSilvercoinIncrease - 전투 시작 시 추가 은화
-        var startSilverCoin = GameRoot.Instance.HeroSystem.GetSetBuffValue(HeroItemSetType.StartSilvercoinIncrease);
-        if (startSilverCoin > 0)
-            GameRoot.Instance.UserData.Ingamesilvercoin.Value += startSilverCoin;
-        GameRoot.Instance.UserData.Playerdata.InGameExpProperty.Value = 0;
-        GameRoot.Instance.UserData.Playerdata.KillCountProperty.Value = 0;
-        SoundPlayer.Instance.SetBGMVolume(0f);
-        GameRoot.Instance.UISystem.GetUI<HUDTotal>()?.Hide();
-        GameRoot.Instance.UserData.Playerdata.IsGameStartProperty.Value = true;
-        GameRoot.Instance.UserData.Playerdata.IsWaveRestProperty.Value = true;
-        StageStartTime = 0;
-        resumeSnapshotDeltaTime = 0f;
-
-        var trainingvalue = GameRoot.Instance.TrainingSystem.GetBuffValue(TrainingSystem.TrainingType.CastleHpIncrease);
-
-        var unithp = GameRoot.Instance.HeroSystem.GetHeroStatusValue(HeroStatus.Hp);
-
-        var hpvalue = Tables.Instance.GetTable<Define>().GetData("base_hp").value + trainingvalue + unithp;
-
-        SetHp((int)hpvalue);
-
-        GameRoot.Instance.UISystem.OpenUI<PopupInGame>(x =>
-        {
-            x.Init();
-        });
-
-        GameRoot.Instance.UserData.Waveidx.Value = 1;
-
-        InitStage();
-        GameRoot.Instance.UserData.SaveInGameResumeSnapshot(true, true);
-
+      
+       
     }
 
     private float stagedeltatime = 0;
@@ -100,7 +54,6 @@ public partial class InGameBaseStage : MonoBehaviour
             if (!GameRoot.Instance.UserData.Playerdata.IsWaveRestProperty.Value && resumeSnapshotDeltaTime >= 10f)
             {
                 resumeSnapshotDeltaTime = 0f;
-                GameRoot.Instance.UserData.SaveInGameResumeSnapshot(false, true);
             }
 
         }
@@ -121,23 +74,12 @@ public partial class InGameBaseStage : MonoBehaviour
     public void StageClear()
     {
         GameRoot.Instance.UserData.Playerdata.StageClear();
-        PlayerUnitGroup.ClearData();
-        EnemyUnitGroup.ClearData();
-        PlayerBlockGroup.ClearData();
         GameRoot.Instance.UserData.Playerdata.IsGameStartProperty.Value = false;
         GameRoot.Instance.UserData.Ingamesilvercoin.Value = 0;
-        GameRoot.Instance.AlimentSystem.Clear();
-        GameRoot.Instance.InGameUpgradeSystem.ClearData();
 
         GameRoot.Instance.GameSpeedSystem.ResetGameSpeed();
-        GameRoot.Instance.InGameUpgradeSystem.Reset();
 
         // PopupInGame의 TileWeaponGroup 초기화
-        var popupInGame = GameRoot.Instance.UISystem.GetUI<PopupInGame>();
-        if (popupInGame != null && popupInGame.TileWeaponGroup != null)
-        {
-            popupInGame.TileWeaponGroup.ClearData();
-        }
     }
 
     public bool GameFinishSequenceStarted = false;
@@ -155,7 +97,7 @@ public partial class InGameBaseStage : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //not really dead
-        if (this != null && PlayerBlockGroup != null)
+        if (this != null)
         {
             GameFinishSequenceStarted = false;
             yield break;
@@ -182,16 +124,10 @@ public partial class InGameBaseStage : MonoBehaviour
     public void ReturnMainScreen(System.Action fadeaction = null)
     {
         GameRoot.Instance.GameSpeedSystem.StopGameSpeed(false, false);
-        GameRoot.Instance.PluginSystem.HideBanner();
 
         StageClear();
 
         fadeaction += StartMainUI;
-
-        GameRoot.Instance.UISystem.OpenUI<PageFade>(page =>
-        {
-            page.Set(fadeaction);
-        }, null, false);
     }
 
     public void StartMainUI()
@@ -201,16 +137,7 @@ public partial class InGameBaseStage : MonoBehaviour
         SoundPlayer.Instance.SetBGMVolume(0.125f);
         SoundPlayer.Instance.RestartBGM();
 
-        GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.Hide();
-        GameRoot.Instance.UISystem.OpenUI<PageLobbyBattle>(popup => popup.Init());
-
-        var hud = GameRoot.Instance.UISystem.GetUI<HUDTotal>();
-
-        GameRoot.Instance.UISystem.OpenUI<HUDTotal>();
-
-        hud.RegisterContentsOpen();
-        hud.EnqueueTutorialContentsOpen();
-        hud.OpenPage(HudBottomBtnType.BATTLE, forceOpen: true);
+     
         GameRoot.Instance.GameNotification.UpdateNotification(GameNotificationSystem.NotificationCategory.HeroUpgradeCheck);
 
 
@@ -250,7 +177,6 @@ public partial class InGameBaseStage : MonoBehaviour
             currentWaveCoroutine = null;
         }
 
-        EnemyUnitGroup.ClearData();
 
         // 웨이브 중지 시 휴식 상태로 전환하여 TileWeaponComponent 드래그 가능하도록 설정
     }
@@ -270,25 +196,14 @@ public partial class InGameBaseStage : MonoBehaviour
     public void StartRest()
     {
         GameRoot.Instance.UserData.Playerdata.IsWaveRestProperty.Value = true;
-        PlayerUnitGroup.IsWinAnimationPlaying = false;
 
         //logs
-        List<TpParameter> parameters = new List<TpParameter>();
-        parameters.Add(new TpParameter("stage", GameRoot.Instance.UserData.Stageidx.Value));
-        parameters.Add(new TpParameter("waveidx", GameRoot.Instance.UserData.Waveidx.Value));
-        GameRoot.Instance.PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None, "m_wave_clear", parameters);
-
-
-
         GameRoot.Instance.UserData.Waveidx.Value += 1;
-        
-        GameRoot.Instance.ShopSystem.ShowInterAd();
 
-        
 
         SoundPlayer.Instance.PlaySound("sfx_wave_win");
 
-        EnemyUnitGroup.CheckEnemyBlockSpawner();
+        //      EnemyUnitGroup.CheckEnemyBlockSpawner();
 
 
         //리롤 튜토리얼 체크
@@ -310,23 +225,6 @@ public partial class InGameBaseStage : MonoBehaviour
         bool isend = GameRoot.Instance.UserData.Waveidx.Value > wavecount;
 
 
-        if (isend)
-        {
-            GameRoot.Instance.UISystem.OpenUI<PopupStageResult>(popup => popup.Set(true));
-        }
-        else
-        {
-            var popupInGame = GameRoot.Instance.UISystem.GetUI<PopupInGame>();
-            if (popupInGame != null && popupInGame.TileWeaponGroup != null)
-            {
-                popupInGame.TileWeaponGroup.StartRandSelectBagAd();
-                popupInGame.TileWeaponGroup.SetStartBattleWeapon();
-
-                GameRoot.Instance.UISystem.GetUI<PopupInGame>()?.TileWeaponGroup.StartRandSelectBag();
-            }
-        }
-
-        GameRoot.Instance.UserData.SaveInGameResumeSnapshot(true, true);
     }
 
     private IEnumerator StartWaveCoroutine()
@@ -395,7 +293,7 @@ public partial class InGameBaseStage : MonoBehaviour
                     int unitHp = (td.unit_hp != null && td.unit_hp.Count > 0) ? (i < td.unit_hp.Count ? td.unit_hp[i] : td.unit_hp.Last()) : 1;
 
 
-                    EnemyUnitGroup.AddUnit(td.unit_idx[i], expForThisEnemy, unitDmg, unitHp);
+                    // EnemyUnitGroup.AddUnit(td.unit_idx[i], expForThisEnemy, unitDmg, unitHp);
 
                     enemyIndex++;
                 }
@@ -421,7 +319,7 @@ public partial class InGameBaseStage : MonoBehaviour
         currentWaveCoroutine = null;
 
         // 웨이브 스폰이 완료되었을 때, 적이 이미 모두 죽었는지 체크
-        EnemyUnitGroup.CheckAndStartRestIfAllDead();
+        // EnemyUnitGroup.CheckAndStartRestIfAllDead();
     }
 
 

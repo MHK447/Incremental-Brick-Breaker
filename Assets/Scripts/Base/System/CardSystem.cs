@@ -57,65 +57,7 @@ public class CardSystem
 
         switch (statusType)
         {
-            case UnitStatusType.Attack:
-                {
-                    var unitdamagevalue = GameRoot.Instance.TrainingSystem.GetBuffValue(TrainingSystem.TrainingType.UnitAttackDamage);
-
-                    var weapondamagevalue = GameRoot.Instance.TrainingSystem.GetBuffValue(TrainingSystem.TrainingType.BlockAttackDamage);
-
-                    var towerattackbuff = 0;
-                    // projection_type이 2 이상이면 타워로 간주 (원거리 공격 유닛)
-
-                    var damage = unitinfotd == null ? (weaponinfotd.base_dmg + cardplusvalue + weapondamagevalue) * grade : (unitinfotd.base_dmg + unitdamagevalue + cardplusvalue) * grade;
-
-                    if (unitinfotd != null && unitinfotd.projection_type >= 2)
-                    {
-                        towerattackbuff = GameRoot.Instance.HeroSystem.GetGradeBuffTypeValue(GradeBuffType.TowerAttackIncrease);
-
-                        towerattackbuff = (int)ProjectUtility.PercentCalc(damage, towerattackbuff);
-                        damage += towerattackbuff;
-                    }
-                    return damage;
-                }
-            case UnitStatusType.Hp:
-                {
-                    var traininghpvalue = GameRoot.Instance.TrainingSystem.GetBuffValue(TrainingSystem.TrainingType.UnitHpIncrease);
-                    return (unitinfotd.base_hp + traininghpvalue + cardplusvalue + traininghpvalue) * grade;
-                }
-            case UnitStatusType.AttackSpeed:
-                {
-                    if (unitinfotd == null)
-                    {
-                        var weaponcooltime = (float)weaponinfotd.cooltime / 100f;
-
-                        if (grade > 1)
-                        {
-                            weaponcooltime += ProjectUtility.PercentCalc(weaponcooltime, grade * 10f);
-                        }
-
-                        return weaponcooltime + cardplusvalue;
-                    }
-                    else
-                    {
-                        var baseattackspeed = (float)unitinfotd.base_atk_speed / 100f;
-
-                        if (grade > 1)
-                        {
-                            baseattackspeed += ProjectUtility.PercentCalc(baseattackspeed, grade * 10f);
-                        }
-
-                        var towerattackspeedbuff = 0f;
-                        // projection_type이 2 이상이면 타워로 간주 (원거리 공격 유닛)
-                        if (unitinfotd.projection_type >= 2)
-                        {
-                            towerattackspeedbuff = GameRoot.Instance.HeroSystem.GetGradeBuffTypeValue(GradeBuffType.TowerAttackSpeedIncrease);
-
-                            towerattackspeedbuff = (float)ProjectUtility.PercentCalc(baseattackspeed, towerattackspeedbuff);
-                        }
-
-                        return baseattackspeed + cardplusvalue + towerattackspeedbuff;
-                    }
-                }
+            
             case UnitStatusType.AttackRange:
                 return unitinfotd == null ? weaponinfotd.attack_range * 0.01f + cardplusvalue : unitinfotd.attack_range * 0.01f + cardplusvalue;
             case UnitStatusType.Shield:

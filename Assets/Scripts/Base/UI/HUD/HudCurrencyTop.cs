@@ -80,8 +80,8 @@ public class HudCurrencyTop : UIBase
         base.Awake();
         SetDataHook();
 
-        if (OptionBtn != null)
-            OptionBtn.onClick.AddListener(OnClickOption);
+        // if (OptionBtn != null)
+        //     OptionBtn.onClick.AddListener(OnClickOption);
 
         //if (BuyCoinBtn != null) BuyCoinBtn.onClick.AddListener(OnClickCoin);
 
@@ -225,10 +225,10 @@ public class HudCurrencyTop : UIBase
     }
 
 
-    private void OnClickOption()
-    {
-        GameRoot.Instance.UISystem.OpenUI<PopupOption>(popup => popup.Set(false));
-    }
+    // private void OnClickOption()
+    // {
+    //     GameRoot.Instance.UISystem.OpenUI<PopupOption>(popup => popup.Set(false));
+    // }
 
     private void OnClickCoin()
     {

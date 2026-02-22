@@ -178,8 +178,6 @@ public partial class UserDataSystem
         SaveData_HeroGroupData(builder);
         SaveData_CardData(builder);
         SaveData_PlayerData(builder);
-        SaveData_StageRewardBoxGroupData(builder);
-        SaveData_TrainingGroupData(builder);
         SaveData_UnitGroupData(builder);
         SaveData_InGameResumeData(builder);
         SaveData_RecordCount(builder);

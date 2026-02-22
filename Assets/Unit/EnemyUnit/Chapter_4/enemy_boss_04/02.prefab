@@ -800,7 +800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3166314010726301916}
   - component: {fileID: 3092327634284825193}
-  - component: {fileID: 6984614758431735545}
+  - component: {fileID: 1306362405571406824}
   m_Layer: 0
   m_Name: Face 01
   m_TagString: Untagged
@@ -878,7 +878,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6984614758431735545
+--- !u!114 &1306362405571406824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3185,17 +3185,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.2
         value: {x: 0, y: 0, z: 0.8044489, w: -0.59402186}
-        inSlope: {x: 0, y: 0, z: -0.61689126, w: -0.7138755}
-        outSlope: {x: 0, y: 0, z: -0.61689126, w: -0.7138755}
+        inSlope: {x: 0, y: 0, z: -0.61689126, w: -0.7138759}
+        outSlope: {x: 0, y: 0, z: -0.61689126, w: -0.7138759}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
       - serializedVersion: 3
         time: 0.275
-        value: {x: 0, y: 0, z: 0.70844126, w: -0.7057698}
-        inSlope: {x: 0, y: 0, z: -0.7003363, w: -0.80524164}
-        outSlope: {x: 0, y: 0, z: -0.7003363, w: -0.80524164}
+        value: {x: 0, y: 0, z: 0.70844126, w: -0.70576984}
+        inSlope: {x: 0, y: 0, z: -0.7003363, w: -0.80524087}
+        outSlope: {x: 0, y: 0, z: -0.7003363, w: -0.80524087}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}
@@ -3203,8 +3203,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.3
         value: {x: 0, y: 0, z: 0.705427, w: -0.70878255}
-        inSlope: {x: 0, y: 0, z: 0.18450919, w: 0.2015013}
-        outSlope: {x: 0, y: 0, z: 0.18450919, w: 0.2015013}
+        inSlope: {x: 0, y: 0, z: 0.18450919, w: 0.20150249}
+        outSlope: {x: 0, y: 0, z: 0.18450919, w: 0.20150249}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334, w: 0.33333334}

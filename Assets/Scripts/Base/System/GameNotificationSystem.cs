@@ -198,45 +198,7 @@ public class GameNotificationSystem
                     var data = GetData(category, -1, -1);
                     if (data != null)
                     {
-                        foreach (var equipheroitem in GameRoot.Instance.UserData.Herogroudata.Equipheroitems)
-                        {
-                            if (equipheroitem.Heroitemdata == null) continue;
-
-                            var td = Tables.Instance.GetTable<HeroItemInfo>().GetData(equipheroitem.Heroitemdata.Heroitemidx);
-
-                            if (td == null) continue;
-
-                            var finditemdata = GameRoot.Instance.ItemSystem.GetItemData((int)ItemSystem.ItemType.EquipUpgradeItem, td.item_equip_type);
-
-                            var allfinditemdata = GameRoot.Instance.ItemSystem.GetItemData((int)ItemSystem.ItemType.EquipUpgradeItem, 0);
-
-                            var UpgradeGoldCost = GameRoot.Instance.HeroSystem.equip_item_level_gold_cost * equipheroitem.Level.Value;
-                            var UpgradeMaterialCount = GameRoot.Instance.HeroSystem.equip_item_level_count * equipheroitem.Level.Value;
-
-                            var curupgradecountvalue = allfinditemdata.Itemcnt.Value + finditemdata.Itemcnt.Value;
-
-                            if (UpgradeGoldCost <= GameRoot.Instance.UserData.Money.Value && UpgradeMaterialCount <= curupgradecountvalue)
-                            {
-                                ison = true;
-                                break;
-                            }
-                        }
-
-                        // merge available with 3+ same idx/grade
-                        var heroItems = GameRoot.Instance.UserData.Herogroudata.Heroitemdatas;
-                        if (heroItems != null)
-                        {
-                            var canMerge = heroItems
-                                .GroupBy(item => new { item.Heroitemidx, item.Grade })
-                                .Any(group => group.Count() >= 3);
-
-                            if (canMerge)
-                            {
-                                ison = true;
-                            }
-                        }
-
-                        data.on.Value = ison;
+                      
                     }
                 }
                 break;

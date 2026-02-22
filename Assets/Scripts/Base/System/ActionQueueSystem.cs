@@ -222,89 +222,27 @@ public class ActionQueueSystem
 
     public void NewChapterCheck()
     {
-        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
-
-        var recordcount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.NewChapter, stageidx);
-
-        if (stageidx % 7 == 0 && recordcount == 0)
-        {
-            var stagetd = Tables.Instance.GetTable<StageInfo>().GetData(stageidx);
-            GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.NewChapter, 1, stageidx);
-            Append(() =>
-             {
-                 GameRoot.Instance.UISystem.OpenUI<PopupNewChapter>(x => x.Set(stagetd.ingame_map_idx), NextAction);
-             });
-
-        }
+      
     }
 
     public void NewAddKing()
     {
-        if (GameRoot.Instance.UserData.Herogroudata.Equipplayeridx == 0 && GameRoot.Instance.UserData.Stageidx.Value > 4)
-        {
-
-            if (IsTutorialonCheck)
-            {
-                MainLoobyAction = () =>
-                {
-                    GameRoot.Instance.UISystem.OpenUI<PageGetCharacterReward>(null, NextAction);
-                };
-            }
-            else
-            {
-                Append(() =>
-                {
-                    GameRoot.Instance.UISystem.OpenUI<PageGetCharacterReward>(null, NextAction);
-                });
-            }
-        }
+       
     }
 
     public void OpenRewardPackage()
     {
-        if (HasPendingLobbyUnlockTutorial())
-            return;
-
-        // 2개 조건: ShopOpen + 스타터 패키지 노출 횟수 3회 미만
-        bool condition1 = GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.ShopOpen);
-        bool condition2 = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.StarterPackage) < 3;
-        if (!condition1 || !condition2)
-            return;
-
-        // 50% 확률
-        // if (UnityEngine.Random.Range(0, 2) != 0)
-        //     return;
-
-        // 스타터 패키지 미구매 시 큐에 추가 (순서대로 실행)
-        if (!GameRoot.Instance.UserData.Starterpackdata.Isbuy.Value)
-            Append(() => GameRoot.Instance.UISystem.OpenUI<PopupPackageStarter>(popup => popup.Init(), NextAction));
-
-        // 노광고 패키지 미구매이고 InterAd 오픈 상태일 때 큐에 추가
-        if (!GameRoot.Instance.ShopSystem.NoInterstitialAds.Value &&
-            GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.InterAdOpen))
-            Append(() => GameRoot.Instance.UISystem.OpenUI<PopupNoAdsPackages>(null, NextAction));
+       
     }
 
     public void WelComeBackPopupCheck()
     {
-        if (GameRoot.Instance.UserData.HasInGameResumeData() && GameRoot.Instance.UserData.Stageidx.Value > 2)
-        {
-            Append(() =>
-            {
-                GameRoot.Instance.UISystem.OpenUI<PopupWelComeBack>(x => x.Init(), NextAction);
-            });
-        }
+
     }
 
     public void StarterPackageRewardOn()
     {
-        if (HasPendingLobbyUnlockTutorial())
-            return;
-
-        if (!GameRoot.Instance.DailyResetSystem.StarterPackageRewardCheck())
-            return;
-
-        Append(() => GameRoot.Instance.UISystem.OpenUI<PopupPackageStarter>(popup => popup.Init(), NextAction));
+      
     }
 
     private bool HasPendingLobbyUnlockTutorial()
@@ -335,15 +273,7 @@ public class ActionQueueSystem
 
     private void ReviewPopupCheck()
     {
-        if (GameRoot.Instance.ContentsOpenSystem.ContentsOpenCheck(ContentsOpenSystem.ContentsOpenType.ReviewPopup)
-        && GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.ReviewPopup) == 0)
-        {
-            Append(() =>
-             {
-                 GameRoot.Instance.UserData.AddRecordCount(Config.RecordCountKeys.ReviewPopup, 1);
-                 GameRoot.Instance.UISystem.OpenUI<PopupReview>(null, NextAction);
-             });
-        }
+       
     }
 
 

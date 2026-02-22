@@ -25,6 +25,7 @@ public class HudTop : MonoBehaviour
     private void Awake()
     {
         SyncData();
+
     }
 
 

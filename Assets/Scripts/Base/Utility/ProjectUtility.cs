@@ -419,22 +419,10 @@ public static class ProjectUtility
             // 각종 시스템 생성
             GameRoot.Instance.GameNotification.Create();
             GameRoot.Instance.ContentsOpenSystem.Create();
-            GameRoot.Instance.ShopSystem.Create();
-            GameRoot.Instance.LobbyBoxSystem.Create();
             GameRoot.Instance.CardSystem.Create();
             GameRoot.Instance.AttendanceSystem.Create();
-            GameRoot.Instance.HeroSystem.Create();
             GameRoot.Instance.ItemSystem.Create();
             GameRoot.Instance.DailyResetSystem.Create();
-            // 인앱 결제 초기화
-            if (GameRoot.Instance.InAppPurchaseManager != null)
-            {
-                GameRoot.Instance.InAppPurchaseManager.InitializePurchasing();
-            }
-
-            // 광고 표시
-            GameRoot.Instance.PluginSystem.ShowAppOpenAdIfAvailable();
-
             // BGM 재생
             GameRoot.Instance.BgmOn();
 
@@ -483,15 +471,11 @@ public static class ProjectUtility
             GameRoot.Instance.WaitTimeAndCallback(1f, () =>
             {
                 GameRoot.Instance.UserData.Load();
-                GameRoot.Instance.PluginSystem.ShowAppOpenAdIfAvailable();
 
                 GameRoot.Instance.GameNotification.Create();
                 GameRoot.Instance.ContentsOpenSystem.Create();
-                GameRoot.Instance.ShopSystem.Create();
-                GameRoot.Instance.LobbyBoxSystem.Create();
                 GameRoot.Instance.CardSystem.Create();
                 GameRoot.Instance.AttendanceSystem.Create();
-                GameRoot.Instance.HeroSystem.Create();
                 GameRoot.Instance.ItemSystem.Create();
                 GameRoot.Instance.DailyResetSystem.Create();
 
@@ -501,17 +485,7 @@ public static class ProjectUtility
                 GameRoot.Instance.Loading.Hide(true);
 
                 // 통화 HUD부터 다시 열어 참조를 재구성한 뒤 로비/HUD를 표시
-                GameRoot.Instance.InitCurrencyTop(() =>
-                {
-                    GameRoot.Instance.UISystem.OpenUI<PageLobbyBattle>(popup => popup.Init());
-
-                    // HUD는 캐시가 비워진 상태라 콜백에서 바로 초기화하도록 처리
-                    GameRoot.Instance.UISystem.OpenUI<HUDTotal>(hud =>
-                    {
-                        hud.RegisterContentsOpen();
-                        hud.EnqueueTutorialContentsOpen();
-                    });
-                });
+            
             });
         };
 
@@ -553,13 +527,6 @@ public static class ProjectUtility
                 break;
         }
 
-
-        SpriteThrowEffectParameters materialparameters = new()
-        {
-            sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, rewardstr),
-            scale = 1.5f,
-            duration = 1.2f,
-        };
 
 
         GameRoot.Instance.EffectSystem.MultiPlay<RewardEffect>(startpos, x =>

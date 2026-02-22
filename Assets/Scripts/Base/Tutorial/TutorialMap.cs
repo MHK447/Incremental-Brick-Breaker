@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,14 +44,9 @@ public class TutorialMap : MonoBehaviour
             {
                 --scenarioCurSize;
                 //logs
-                //logs
-                List<TpParameter> parameters = new List<TpParameter>();
-                parameters.Add(new TpParameter("idx", tutoNum));
-                parameters.Add(new TpParameter("sequence", scenarioSize - scenarioCurSize));
-                GameRoot.Instance.PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None,
-                        "m_tutorial", parameters);
+                
 
-
+                
                 if (scenario.Count > 0)
                 {
                     Destroy(curEntity.gameObject);

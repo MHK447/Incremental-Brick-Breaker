@@ -129,14 +129,7 @@ public class DailyResetSystem
 
         if (starterpackagetd != null)
         {
-            var rewardlist = new List<RewardData>();
-            for (int i = 0; i < starterpackagetd.reward_type.Count; i++)
-            {
-                var newrewarddata = new RewardData(starterpackagetd.reward_type[i], starterpackagetd.reward_idx[i], starterpackagetd.reward_value[i]);
-                rewardlist.Add(newrewarddata);
-            }
-
-            GameRoot.Instance.UISystem.OpenUI<PagePurchaseConfirm>(popup => popup.Set(rewardlist), nextaction);
+       
         }
     }
 

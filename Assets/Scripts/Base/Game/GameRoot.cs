@@ -32,54 +32,31 @@ public class GameRoot : Singleton<GameRoot>
 	public HudCurrencyTop CurrencyTop;
 
 
-	public InAppPurchaseManager InAppPurchaseManager;
-
-
 	public RectTransform GetMainCanvasTR { get { return MainCanvas.transform as RectTransform; } }
 	public UISystem UISystem { get; private set; } = new UISystem();
 	public UserDataSystem UserData { get; private set; } = new UserDataSystem();
 	public TutorialSystem TutorialSystem { get; private set; } = new TutorialSystem();
 	public PlayTimeSystem PlayTimeSystem { get; private set; } = new PlayTimeSystem();
 	public InGameSystem InGameSystem { get; private set; } = new InGameSystem();
-	public PluginSystem PluginSystem { get; private set; } = new PluginSystem();
 	public BoostSystem BoostSystem { get; private set; } = new BoostSystem();
 	public EffectSystem EffectSystem { get; private set; } = new EffectSystem();
 
-	public PlayerSystem PlayerSystem { get; private set; } = new PlayerSystem();
 
 	public GameNotificationSystem GameNotification { get; private set; } = new GameNotificationSystem();
 
 	public ContentsOpenSystem ContentsOpenSystem { get; private set; } = new ContentsOpenSystem();
 
-	public ShopSystem ShopSystem { get; private set; } = new ShopSystem();
-
-	public SceneSystem SceneSystem { get; private set; } = new SceneSystem();
 
 	public ActionQueueSystem ActionQueueSystem { get; private set; } = new ActionQueueSystem();
 
-	public StageRewardSystem StageRewardSystem { get; private set; } = new StageRewardSystem();
-
-	public InGameUpgradeSystem InGameUpgradeSystem { get; private set; } = new InGameUpgradeSystem();
 
 	public GameSpeedSystem GameSpeedSystem { get; private set; } = new GameSpeedSystem();
 
-	public AlimentSystem AlimentSystem { get; private set; } = new AlimentSystem();
-
-	public UnitSystem UnitSystem { get; private set; } = new UnitSystem();
-
-	public TrainingSystem TrainingSystem { get; private set; } = new TrainingSystem();
-
-	public LobbyBoxSystem LobbyBoxSystem { get; private set; } = new LobbyBoxSystem();
-
 	public DamageTextSystem DamageTextSystem { get; private set; } = new DamageTextSystem();
-
-	public TileSystem TileSystem { get; private set; } = new TileSystem();
 
 	public CardSystem CardSystem { get; private set; } = new CardSystem();
 
 	public AttendanceSystem AttendanceSystem { get; private set; } = new AttendanceSystem();
-
-	public HeroSystem HeroSystem { get; private set; } = new HeroSystem();
 
 	public ItemSystem ItemSystem { get; private set; } = new ItemSystem();
 
@@ -101,8 +78,7 @@ public class GameRoot : Singleton<GameRoot>
 	private int loadcount = 0;
 	public static bool IsInit()
 	{
-
-
+			
 		if (instance != null && !InitTry)
 			Load();
 
@@ -163,12 +139,8 @@ public class GameRoot : Singleton<GameRoot>
 		if (!LoadComplete)
 			return;
 
-		// Keep platform SDKs (e.g., Apple Sign-In) updated each frame
-		PluginSystem.Update();
-
 		UserData.Update();
 		PlayTimeSystem.Update();
-		AlimentSystem.Update();
 
 
 		logStageTime += Time.deltaTime;
@@ -176,9 +148,7 @@ public class GameRoot : Singleton<GameRoot>
 		if (deltaTime >= 1f) // one seconds updates;
 		{
 			deltaTime -= 1f;
-			ShopSystem.UpdateOneSecond();
-			ShopSystem.UpdateOneTimeSecond();
-			LobbyBoxSystem.UpdateOneSecond();
+
 			AttendanceSystem.UpdateOneSecond();
 			DailyResetSystem.UpdateOneSecond();
 		}
@@ -268,7 +238,6 @@ public class GameRoot : Singleton<GameRoot>
 
 		//TouchStartActions.Clear();
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
-		PluginSystem.Init();
 		//SnapshotCam = SnapshotCamera.MakeSnapshotCamera("SnapShot");
 		//SnapshotCam.transform.SetParent(this.transform);
 		//SnapshotCam.transform.position = new Vector3(0f, 0f, -1f);
@@ -301,7 +270,6 @@ public class GameRoot : Singleton<GameRoot>
 		yield return new WaitUntil(() => loadcount == 1);
 		UserData.Load();
 		yield return UnityServices.InitializeAsync().AsUniTask().ToCoroutine();
-		InAppPurchaseManager = GetComponent<InAppPurchaseManager>();
 
 		InitRequestAtlas();
 		yield return new WaitUntil(() => AtlasManager.Instance.IsLoadComplete());
@@ -313,27 +281,16 @@ public class GameRoot : Singleton<GameRoot>
 		InitSystem();
 
 		GameNotification.Create();
-		ShopSystem.Create();
-		LobbyBoxSystem.Create();
 		CardSystem.Create();
 		AttendanceSystem.Create();
-		HeroSystem.Create();
 		ItemSystem.Create();
 		DailyResetSystem.Create();
 
-		PluginSystem.LoginProp.InitPlatformLogin();
-
-		List<TpParameter> parameters = new List<TpParameter>();
-		parameters.Add(new TpParameter("stage", GameRoot.Instance.UserData.Stageidx.Value));
-		parameters.Add(new TpParameter("noads", GameRoot.Instance.ShopSystem.NoInterstitialAds.Value ? "1" : "0"));
-		PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None, "launch", parameters);
-		InAppPurchaseManager.Init();
-
-		yield return new WaitUntil(() =>
-		{
-			var page = UISystem.GetUI<PageLobbyBattle>();
-			return page != null && page.gameObject.activeSelf;
-		});
+		// yield return new WaitUntil(() =>
+		// {
+		// 	// var page = UISystem.GetUI<PageMain>();
+		// 	// return page != null && page.gameObject.activeSelf;
+		// });
 
 		Loading.Hide(true);
 		BgmOn();
@@ -405,27 +362,17 @@ public class GameRoot : Singleton<GameRoot>
 			GameRoot.instance.UserData.AddRecordCount(Config.RecordCountKeys.Init, 1);
 			SetNativeLanguage();
 
-			PluginSystem.InitMax(() =>
-			{
-				PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None, "install");
-			});
-
 		}
 		else
 		{
-
-			PluginSystem.InitMax();
 
 			Config.Instance.UpdateFallbackOrder(UserData.Language);
 		}
 
 
-		InGameUpgradeSystem.Init();
 		GameSpeedSystem.Create();
 		GameNotification.Create();
 		ContentsOpenSystem.Create();
-		UnitSystem.Create();
-		TrainingSystem.Create();
 		DamageTextSystem.Create();
 
 	}
@@ -532,7 +479,6 @@ public class GameRoot : Singleton<GameRoot>
 
 		if (pause)
 		{
-			PluginSystem.OnApplicationPause(true);
 
 			GameRoot.Instance.UserData.mainData.LastLoginTime = TimeSystem.GetCurTime();
 
@@ -541,11 +487,9 @@ public class GameRoot : Singleton<GameRoot>
 				var count = UserData.HeartBeatCount++;
 
 				//TpLog.LogError(time.ToString());
-				List<TpParameter> parameters = new List<TpParameter>();
-				parameters.Add(new TpParameter("stage", UserData.Stageidx.Value));
-				parameters.Add(new TpParameter("time", (int)logStageTime));
-				parameters.Add(new TpParameter("noads", GameRoot.Instance.ShopSystem.NoInterstitialAds.Value ? "1" : "0"));
-				GameRoot.Instance.PluginSystem.AnalyticsProp.AllEvent(IngameEventType.None, "heart_beat", parameters);
+				// List<TpParameter> parameters = new List<TpParameter>();
+				// parameters.Add(new TpParameter("stage", UserData.Stageidx.Value));
+				// parameters.Add(new TpParameter("time", (int)logStageTime));
 			}
 		}
 		else
@@ -589,7 +533,6 @@ public class GameRoot : Singleton<GameRoot>
 		TitleCloseActions.Clear();
 		PauseActions.Clear();
 		GameSpeedSystem?.Dispose();
-		PluginSystem?.Dispose();
 		DamageTextSystem?.Dispose();
 		TutorialSystem?.Dispose();
 
@@ -600,7 +543,6 @@ public class GameRoot : Singleton<GameRoot>
 #if UNITY_EDITOR
 	private void OnApplicationQuit()
 	{
-		PluginSystem.OnApplicationPause(true);
 
 		UnityEditor.AssetDatabase.SaveAssets();
 		UnityEditor.AssetDatabase.Refresh();
