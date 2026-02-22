@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b70b6aa6c188edd4588d3c7f8053eb42
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 23515
+  packageName: 100+ Magic Particle Effects
+  packageVersion: 1.2
+  assetPath: Assets/UETools/Magic_Particle_Effects/Scripts/CameraMovement.cs
+  uploadId: 50494

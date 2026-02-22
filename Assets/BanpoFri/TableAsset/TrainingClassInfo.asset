@@ -1,0 +1,311 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c740eba987c0841698778381522a1653, type: 3}
+  m_Name: TrainingClassInfo
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+  - 32
+  - 33
+  - 34
+  - 35
+  - 36
+  - 37
+  - 38
+  - 39
+  - 40
+  - 41
+  - 42
+  - 43
+  - 44
+  - 45
+  - 46
+  - 47
+  - 48
+  - 49
+  mSecondKey: []
+  mDataList:
+  - _order: 1
+    _name: str_name_class_0
+    _power_increase: 2
+    _health_increase: 2
+    _coin_increase: 10
+  - _order: 2
+    _name: str_name_class_1
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 3
+    _name: str_name_class_3
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 4
+    _name: str_name_class_4
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 5
+    _name: str_name_class_5
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 6
+    _name: str_name_class_6
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 7
+    _name: str_name_class_7
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 8
+    _name: str_name_class_8
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 9
+    _name: str_name_class_9
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 10
+    _name: str_name_class_10
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 11
+    _name: str_name_class_11
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 12
+    _name: str_name_class_12
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 13
+    _name: str_name_class_13
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 14
+    _name: str_name_class_14
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 15
+    _name: str_name_class_15
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 16
+    _name: str_name_class_16
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 17
+    _name: str_name_class_17
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 18
+    _name: str_name_class_18
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 19
+    _name: str_name_class_19
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 20
+    _name: str_name_class_20
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 21
+    _name: str_name_class_21
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 22
+    _name: str_name_class_22
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 23
+    _name: str_name_class_23
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 24
+    _name: str_name_class_24
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 25
+    _name: str_name_class_25
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 26
+    _name: str_name_class_26
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 27
+    _name: str_name_class_27
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 28
+    _name: str_name_class_28
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 29
+    _name: str_name_class_29
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 30
+    _name: str_name_class_30
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 31
+    _name: str_name_class_31
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 32
+    _name: str_name_class_32
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 33
+    _name: str_name_class_33
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 34
+    _name: str_name_class_34
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 35
+    _name: str_name_class_35
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 36
+    _name: str_name_class_36
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 37
+    _name: str_name_class_37
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 38
+    _name: str_name_class_38
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 39
+    _name: str_name_class_39
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 40
+    _name: str_name_class_40
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 41
+    _name: str_name_class_41
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 42
+    _name: str_name_class_42
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 43
+    _name: str_name_class_43
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 44
+    _name: str_name_class_44
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 45
+    _name: str_name_class_45
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 46
+    _name: str_name_class_46
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 47
+    _name: str_name_class_47
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 48
+    _name: str_name_class_48
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10
+  - _order: 49
+    _name: str_name_class_49
+    _power_increase: 2
+    _health_increase: 5
+    _coin_increase: 10

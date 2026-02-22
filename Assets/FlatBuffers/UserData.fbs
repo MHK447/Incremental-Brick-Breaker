@@ -1,0 +1,208 @@
+namespace BanpoFri.Data;
+
+
+///// 자동 클래스 생성 규칙 /////
+// @AutoCreate 주석 이후의 내용만 처리 (없으면 자동 처리 X)
+// @EndCreate 주석 이후의 내용은 자동 처리 X
+/* 예시)
+// @AutoCreate
+  data_1:int; // 자동 생성 O
+  data_2:int; // 자동 생성 O
+// @EndCreate
+  data_3:int; // 자동 생성 X
+  data_4:int; // 자동 생성 X
+// @AutoCreate
+  data_5:int; // 자동 생성 O
+*/
+// 기본 자료형의 경우 뒤에 // @ReactiveProperty 주석 값을 붙이면 ReactiveProperty 형으로 생성
+// ex) testdata:[int] = 0; // @ReactiveCollection
+// 뒤에 붙이는 자료형들
+// @ReactiveProperty : ReactiveProperty 형
+// @ReactiveCollection : ReactiveCollection 형
+// @Dictionary : Dictionary 형
+// [] 형태에서 뒤에 Dictionary 주석이 없으면 기본 List 형으로 생성됨
+////////////////////////////
+
+table UserData {
+// @AutoCreate
+  cash:int = 0;// @ReactiveProperty
+  buyinappids:string;
+  tutorial:[string];
+  lastlogintime:long = 0;
+  optiondata:OptionData;
+  recordcount:[RecordCount];
+  gamestarttime:long = 0;
+  uuid:long = 0;
+  recordvalue:[RecordCount];
+  stageidx:int = 1;// @ReactiveProperty
+  // @EndCreate
+  money:string;
+  // @AutoCreate
+  waveidx:int = 0; // @ReactiveProperty
+  vipticket:int =0; // @ReactiveProperty
+  traininggroupdata:TrainingGroupData;
+
+  // @EndCreate
+  stagerewardboxgroup:StageRewardBoxGroupData;
+  unitgroupdata:UnitGroupData;
+
+  // @AutoCreate
+  material:int = 0; // @ReactiveProperty
+  playerdata:PlayerData;
+  newtrainingdatabuyorder:int = 0; //@ReactiveProperty
+  carddatas:[CardData];
+  ingamesilvercoin:int = 0; // @ReactiveProperty
+  attendancetime:long = 0; //@DateTime
+  herogroudata:HeroGroupData;
+  itemdatas:[ItemData];
+  resetdaytime:long = 0; //@DateTime
+  starterpackdata:StarterPackageData;
+  ingameresumedata:InGameResumeData;
+
+}
+
+table OptionData {
+  language:string;
+  bgm:bool = false;
+  effect:bool = false;
+  slowgraphic:bool = false;
+  vibration:bool = true;
+  subscribeorder:bool = false;
+  autofelling:bool = false;
+}
+
+table RecordCount {
+  idx:string;
+  count:int = 0;
+}
+
+table UnitGroupData
+{
+   equipidxs:[int];
+   unitdatas:[UnitData];
+}
+
+
+table UnitData
+{
+   unitidx:int =0; 
+   unitlevel:int = 0;
+
+}
+
+table TrainingGroupData
+{
+   trainingdatas:[TrainingData];
+   classlevel:int = 0;
+}
+
+
+table TrainingData
+{
+   trainingorder:int = 1;
+   isupgradeproperty:bool = false; //@ReactiveProperty
+   specialisupgradeproperty:bool = false;  //@ReactiveProperty
+   traininglevel:int = 1;
+} 
+
+
+table StageRewardBoxData
+{
+   boxidx:int = 0;
+   boxtime:long = 0; //@DateTime
+   isopenstart:bool = false;
+   boxorder:int = 0;
+   boxgetstageidx:int = 0;
+}
+
+table StageRewardBoxGroupData
+{
+   stagerewardboxdatas:[StageRewardBoxData]; // @@ReactiveCollection
+   boxcount:int = 0;
+
+   equipitembox:[int];
+}
+
+
+table PlayerData
+{
+   playerlevel:int =1;
+   playerexp:int = 1;
+  playername:string;
+} 
+
+table CardData
+{
+   cardidx:int = 0;
+   cardlevel:int = 0;  // @ReactiveProperty
+   cardcount:int = 0; // @ReactiveProperty
+   isequip:bool = false; // @ReactiveProperty
+}
+
+table HeroGroupData
+{
+   equipplayeridx:int = 0;
+   equipheroitems:[HeroEquipItemData];
+   heroitemdatas:[HeroItemData];
+   herolevel:int = 0;
+}
+
+table HeroEquipItemData
+{
+   isequip:bool = false;   // @ReactiveProperty
+   level:int = 0; // @ReactiveProperty
+   heroitemtype:int = 0;
+}
+
+
+table HeroItemData
+{
+   heroitemidx:int = 0;
+   grade:int = 0;
+   isequip:bool = false;   // @ReactiveProperty
+}
+
+table ItemData
+{
+   itemtype:int = 0;
+   itemidx:int = 0; 
+   itemcnt:int = 0;   // @ReactiveProperty
+}
+
+ table StarterPackageData
+ {
+   isbuy:bool = false; // @ReactiveProperty
+   starterpackbuytime:long = 0; //@DateTime
+    
+ }
+
+table InGameResumeTileData
+{
+  equipidx:int = 0;
+  grade:int = 1;
+  tileorder:int = -1;
+  isad:bool = false;
+}
+
+table InGameResumeData
+{
+  isvalid:bool = false;
+  stageidx:int = 0;
+  waveidx:int = 0;
+  silvercoin:int = 0;
+  hp:int = 0;
+  tiles:[InGameResumeTileData];
+  starthp:int = 0;
+  shield:int = 0;
+  killcount:int = 0;
+  ingameexp:int = 0;
+  upgradecount:int = 1;
+  ingamemoney:int = 0;
+  rerollcount:int = 0;
+  unlockedtiles:[int];
+  upgradeindices:[int];
+}
+
+
+
+root_type UserData;

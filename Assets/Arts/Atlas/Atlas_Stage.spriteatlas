@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas_Stage
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 0
+      compressionQuality: 0
+      maxTextureSize: 0
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: iOS
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 4
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 51
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 4
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 0.5
+    packables:
+    - {fileID: 102900000, guid: ce1c963d6780a4fc09426c11e75f79ce, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - a944fc10dda3f4a24b2f86205edf42e3: 21300000
+    - cfe6f82011c484fcaaefa099ebf26a67: 21300000
+    - a7063e203fcaf4b408a863416ca878d9: 21300000
+    - 12e977a1cae0b4f2eac1a6ac7ea33f30: 21300000
+    - 080832f1da35645a38009c7a36ff76a8: 21300000
+    - 45ceff02df5964e7c883bd24161b7362: 21300000
+    - 24d78472fef074602884fe2e5e8f9046: 21300000
+    - 440b1bb345db9453ca0ca3f37172926f: 21300000
+    - a500a4d34b56d4bf6bb4c9532f88ac11: 21300000
+    - 1e37da34c7067ab4b961b6fcab1abe2b: 21300000
+    - 4f0eab06f86bf40eab657f72e479c3ff: 21300000
+    - 229a72368b28f4ce09cb8ee16809acb7: 21300000
+    - c7b3feb7cf0991c48b82478075df0720: 21300000
+    - be53a06823ff94bb785eb2325c31a691: 21300000
+    - 5defdee95c8474559811972059e8fb23: 21300000
+    - 19e87cba364a27d45beb007df912a3c5: 21300000
+    - 7fed64ca48ae74c24801c121d8bbb680: 21300000
+    - 10bb95da2ef3746738ac678381019d47: 21300000
+    - 10f96e0b8359e48c7b084ecdaa1b6a9e: 21300000
+    - 82eb250c05d824200808e2ad19bf87cb: 21300000
+    - 05740b6c63ffe4cd692a4e40cef7aaa6: 21300000
+    - ce6460cc4b6f84f63ba145000cb5b17d: 21300000
+    - 01a349bdc8d3b474da9eec8c630a72c6: 21300000
+    - da4ecf4e41d9d48e698fe1f6e4bb91c4: 21300000
+    - 270a52aefd3a349dcb84aba4fa6ccf87: 21300000
+    - aa6266ef3a683df4a998a71397765753: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a944fc10dda3f4a24b2f86205edf42e3, type: 3}
+  - {fileID: 21300000, guid: cfe6f82011c484fcaaefa099ebf26a67, type: 3}
+  - {fileID: 21300000, guid: a7063e203fcaf4b408a863416ca878d9, type: 3}
+  - {fileID: 21300000, guid: 12e977a1cae0b4f2eac1a6ac7ea33f30, type: 3}
+  - {fileID: 21300000, guid: 080832f1da35645a38009c7a36ff76a8, type: 3}
+  - {fileID: 21300000, guid: 45ceff02df5964e7c883bd24161b7362, type: 3}
+  - {fileID: 21300000, guid: 24d78472fef074602884fe2e5e8f9046, type: 3}
+  - {fileID: 21300000, guid: 440b1bb345db9453ca0ca3f37172926f, type: 3}
+  - {fileID: 21300000, guid: a500a4d34b56d4bf6bb4c9532f88ac11, type: 3}
+  - {fileID: 21300000, guid: 1e37da34c7067ab4b961b6fcab1abe2b, type: 3}
+  - {fileID: 21300000, guid: 4f0eab06f86bf40eab657f72e479c3ff, type: 3}
+  - {fileID: 21300000, guid: 229a72368b28f4ce09cb8ee16809acb7, type: 3}
+  - {fileID: 21300000, guid: c7b3feb7cf0991c48b82478075df0720, type: 3}
+  - {fileID: 21300000, guid: be53a06823ff94bb785eb2325c31a691, type: 3}
+  - {fileID: 21300000, guid: 5defdee95c8474559811972059e8fb23, type: 3}
+  - {fileID: 21300000, guid: 19e87cba364a27d45beb007df912a3c5, type: 3}
+  - {fileID: 21300000, guid: 7fed64ca48ae74c24801c121d8bbb680, type: 3}
+  - {fileID: 21300000, guid: 10bb95da2ef3746738ac678381019d47, type: 3}
+  - {fileID: 21300000, guid: 10f96e0b8359e48c7b084ecdaa1b6a9e, type: 3}
+  - {fileID: 21300000, guid: 82eb250c05d824200808e2ad19bf87cb, type: 3}
+  - {fileID: 21300000, guid: 05740b6c63ffe4cd692a4e40cef7aaa6, type: 3}
+  - {fileID: 21300000, guid: ce6460cc4b6f84f63ba145000cb5b17d, type: 3}
+  - {fileID: 21300000, guid: 01a349bdc8d3b474da9eec8c630a72c6, type: 3}
+  - {fileID: 21300000, guid: da4ecf4e41d9d48e698fe1f6e4bb91c4, type: 3}
+  - {fileID: 21300000, guid: 270a52aefd3a349dcb84aba4fa6ccf87, type: 3}
+  - {fileID: 21300000, guid: aa6266ef3a683df4a998a71397765753, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Ingame_FloorDeco_4
+  - Ingame_FloorDeco_1
+  - Road
+  - Ingame_FloorDeco_0422
+  - Ingame_FloorDeco_2
+  - Ingame_BulletEffect_1_3
+  - Ingame_FloorDeco_07
+  - Ingame_BulletEffect_1_1
+  - InGameBg_Devil
+  - IngameBg_03
+  - InGameMap_02
+  - IngameBg_05
+  - IngameBg_01
+  - IngameBg_02
+  - Ingame_Bullet_Fx_1
+  - IngameBg_012
+  - IngameBg_07
+  - Ingame_Frame_S0_R0
+  - Ingame_FloorDeco_09
+  - Ingame_FloorDeco_5
+  - Ingame_FloorDeco_0522
+  - IngameBg_015
+  - Ingame_BulletEffect_1_2
+  - Road_2
+  - Ingame_FloorDeco_3
+  - IngameBg_04
+  m_RenderDataMap: {}
+  m_Tag: Atlas_Stage
+  m_IsVariant: 0

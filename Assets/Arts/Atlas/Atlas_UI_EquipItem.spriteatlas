@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas_UI_EquipItem
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 0
+      compressionQuality: 0
+      maxTextureSize: 0
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 4
+      m_BuildTarget: iOS
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 4
+      m_BuildTarget: Android
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 51
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 4
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 0.5
+    packables:
+    - {fileID: 102900000, guid: 559e701decb384f19a71dee1e4fb63ff, type: 3}
+    bindAsDefault: 0
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - c06886f0004e9427fa5f311ada7d3601: 21300000
+    - 9c5e1731611104c708d4ab3f939710bb: 21300000
+    - 72a59541232d94485aeecac051ebf4e5: 21300000
+    - b645d7b13c34a43ff9685fb785f2579a: 21300000
+    - 8829c4d15c915402fa46a27fdfd993ff: 21300000
+    - 0a53a612f19014969b5fff068f58dc29: 21300000
+    - f1db9313f3ddd4507bd7655e14a3b9d0: 21300000
+    - 3558c23379b3349f4a8fe56adda71c6d: 21300000
+    - 10607db31b99f485ba17783ef5fd0cfa: 21300000
+    - a679db341c574400697bd23cde477804: 21300000
+    - 3994ae648a2b3426d97303912f4a8a05: 21300000
+    - 46f57d7512a4d478fbb6a21c4ac2de95: 21300000
+    - e9c88a48e5f764897ac2f4bb425e5595: 21300000
+    - 6fd0a7a83de85433ba3fc0f615a20642: 21300000
+    - 8e758889ded1844ccbf88ce134106391: 21300000
+    - 522b3c0a26ad44102be852aa851c3ecc: 21300000
+    - f17da22a2142c4172898f92e51ab0cfc: 21300000
+    - ea37242c30be44d42934b632daa2b622: 21300000
+    - 79eee84d62cbf421b87660bf2ebd05bc: 21300000
+    - 13c2656d8d6044b23b6d07c763b8fed5: 21300000
+    - 28adfc0ee827f4e6fa0002116033abfa: 21300000
+    - 78c63c7f7c35e48c783fd6be889d3df9: 21300000
+    - d2ef548f0ee3147c08b3fedc65f225ad: 21300000
+    - 83d6baff4f4044f3e8ef76d9d20a2537: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c06886f0004e9427fa5f311ada7d3601, type: 3}
+  - {fileID: 21300000, guid: 9c5e1731611104c708d4ab3f939710bb, type: 3}
+  - {fileID: 21300000, guid: 72a59541232d94485aeecac051ebf4e5, type: 3}
+  - {fileID: 21300000, guid: b645d7b13c34a43ff9685fb785f2579a, type: 3}
+  - {fileID: 21300000, guid: 8829c4d15c915402fa46a27fdfd993ff, type: 3}
+  - {fileID: 21300000, guid: 0a53a612f19014969b5fff068f58dc29, type: 3}
+  - {fileID: 21300000, guid: f1db9313f3ddd4507bd7655e14a3b9d0, type: 3}
+  - {fileID: 21300000, guid: 3558c23379b3349f4a8fe56adda71c6d, type: 3}
+  - {fileID: 21300000, guid: 10607db31b99f485ba17783ef5fd0cfa, type: 3}
+  - {fileID: 21300000, guid: a679db341c574400697bd23cde477804, type: 3}
+  - {fileID: 21300000, guid: 3994ae648a2b3426d97303912f4a8a05, type: 3}
+  - {fileID: 21300000, guid: 46f57d7512a4d478fbb6a21c4ac2de95, type: 3}
+  - {fileID: 21300000, guid: e9c88a48e5f764897ac2f4bb425e5595, type: 3}
+  - {fileID: 21300000, guid: 6fd0a7a83de85433ba3fc0f615a20642, type: 3}
+  - {fileID: 21300000, guid: 8e758889ded1844ccbf88ce134106391, type: 3}
+  - {fileID: 21300000, guid: 522b3c0a26ad44102be852aa851c3ecc, type: 3}
+  - {fileID: 21300000, guid: f17da22a2142c4172898f92e51ab0cfc, type: 3}
+  - {fileID: 21300000, guid: ea37242c30be44d42934b632daa2b622, type: 3}
+  - {fileID: 21300000, guid: 79eee84d62cbf421b87660bf2ebd05bc, type: 3}
+  - {fileID: 21300000, guid: 13c2656d8d6044b23b6d07c763b8fed5, type: 3}
+  - {fileID: 21300000, guid: 28adfc0ee827f4e6fa0002116033abfa, type: 3}
+  - {fileID: 21300000, guid: 78c63c7f7c35e48c783fd6be889d3df9, type: 3}
+  - {fileID: 21300000, guid: d2ef548f0ee3147c08b3fedc65f225ad, type: 3}
+  - {fileID: 21300000, guid: 83d6baff4f4044f3e8ef76d9d20a2537, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - EquipItem_13_4
+  - EquipItem_14_4
+  - EquipItem_10_3
+  - EquipItem_8_2
+  - Equip_Upgrade_Item_4
+  - EquipItem_1_1
+  - Equip_Upgrade_Item_2
+  - EquipItem_12_3
+  - Equip_Upgrade_Item_1
+  - EquipItem_3_1
+  - EquipItem_2_1
+  - EquipItem_15_4
+  - EquipItem_11_3
+  - Equip_Upgrade_Item_0
+  - Equip_Upgrade_Item_3
+  - EquipItem_9_3
+  - Common_Icon_Moru
+  - EquipItem_16_4
+  - EquipItem_6_2
+  - EquipItem_5_2
+  - Equip_Item_Hero_Unit_King
+  - EquipItem_4_1
+  - EquipItem_7_2
+  - Equip_Item_Hero_Unit_King_Prison
+  m_RenderDataMap: {}
+  m_Tag: Atlas_UI_EquipItem
+  m_IsVariant: 0

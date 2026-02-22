@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c791d52e4eb9849e4ba85da9e39e1cc5, type: 3}
+  m_Name: HeroItemInfo
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  mSecondKey: []
+  mDataList:
+  - _item_idx: 1
+    _set_group_type: 1
+    _item_equip_type: 1
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000003000000
+    _item_set_type: 1
+    _name: hero_item_desc_1
+    _item_img: EquipItem_1_1
+    _item_grade_ability_type: 01000000010000000100000001000000
+    _item_grade_ability_value: 0a000000140000001e0000003200000046000000
+  - _item_idx: 2
+    _set_group_type: 1
+    _item_equip_type: 2
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 1
+    _name: hero_item_desc_2
+    _item_img: EquipItem_2_1
+    _item_grade_ability_type: 02000000020000000200000002000000
+    _item_grade_ability_value: 140000001e00000028000000320000003c000000
+  - _item_idx: 3
+    _set_group_type: 1
+    _item_equip_type: 3
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 1
+    _name: hero_item_desc_3
+    _item_img: EquipItem_3_1
+    _item_grade_ability_type: 08000000080000000800000008000000
+    _item_grade_ability_value: 0a000000140000001e0000003200000046000000
+  - _item_idx: 4
+    _set_group_type: 1
+    _item_equip_type: 4
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 1
+    _name: hero_item_desc_4
+    _item_img: EquipItem_4_1
+    _item_grade_ability_type: 05000000050000000500000005000000
+    _item_grade_ability_value: 0a000000140000001e0000003200000046000000
+  - _item_idx: 5
+    _set_group_type: 2
+    _item_equip_type: 1
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 2
+    _name: hero_item_desc_5
+    _item_img: EquipItem_5_2
+    _item_grade_ability_type: 02000000020000000200000002000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 6
+    _set_group_type: 2
+    _item_equip_type: 2
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 2
+    _name: hero_item_desc_6
+    _item_img: EquipItem_6_2
+    _item_grade_ability_type: 07000000070000000700000007000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 7
+    _set_group_type: 2
+    _item_equip_type: 3
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 2
+    _name: hero_item_desc_7
+    _item_img: EquipItem_7_2
+    _item_grade_ability_type: 03000000030000000300000003000000
+    _item_grade_ability_value: 0a000000140000001e0000003200000046000000
+  - _item_idx: 8
+    _set_group_type: 2
+    _item_equip_type: 4
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 2
+    _name: hero_item_desc_8
+    _item_img: EquipItem_8_2
+    _item_grade_ability_type: 06000000060000000600000006000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 9
+    _set_group_type: 3
+    _item_equip_type: 1
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 3
+    _name: hero_item_desc_9
+    _item_img: EquipItem_9_3
+    _item_grade_ability_type: 04000000010000000300000002000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 10
+    _set_group_type: 3
+    _item_equip_type: 2
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 3
+    _name: hero_item_desc_10
+    _item_img: EquipItem_10_3
+    _item_grade_ability_type: 06000000020000000100000003000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 11
+    _set_group_type: 3
+    _item_equip_type: 3
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 3
+    _name: hero_item_desc_11
+    _item_img: EquipItem_11_3
+    _item_grade_ability_type: 05000000040000000300000002000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 12
+    _set_group_type: 3
+    _item_equip_type: 4
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 3
+    _name: hero_item_desc_12
+    _item_img: EquipItem_12_3
+    _item_grade_ability_type: 08000000010000000400000003000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 13
+    _set_group_type: 4
+    _item_equip_type: 1
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 4
+    _name: hero_item_desc_13
+    _item_img: EquipItem_13_4
+    _item_grade_ability_type: 05000000030000000200000006000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 14
+    _set_group_type: 4
+    _item_equip_type: 2
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 4
+    _name: hero_item_desc_14
+    _item_img: EquipItem_14_4
+    _item_grade_ability_type: 07000000080000000800000002000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 15
+    _set_group_type: 4
+    _item_equip_type: 3
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 4
+    _name: hero_item_desc_15
+    _item_img: EquipItem_15_4
+    _item_grade_ability_type: 08000000020000000400000003000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000
+  - _item_idx: 16
+    _set_group_type: 4
+    _item_equip_type: 4
+    _item_ability_type: 0100000002000000
+    _item_ability_value: 020000000a000000
+    _levelup_increase_value: 0100000005000000
+    _item_set_type: 4
+    _name: hero_item_desc_16
+    _item_img: EquipItem_15_4
+    _item_grade_ability_type: 07000000040000000300000005000000
+    _item_grade_ability_value: 050000000a000000140000001e00000032000000

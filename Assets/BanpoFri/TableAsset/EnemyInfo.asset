@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06a137bbc9384f87b53809aed0deb1a, type: 3}
+  m_Name: EnemyInfo
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  mSecondKey: []
+  mDataList:
+  - _enemy_idx: 1
+    _type: 1
+    _name: str_name_enemy_1
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Warrior_01
+    _boss_unit: -1
+  - _enemy_idx: 2
+    _type: 2
+    _name: str_name_enemy_2
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 300
+    _prefab: EnemyUnit_Arture_02
+    _boss_unit: -1
+  - _enemy_idx: 3
+    _type: 3
+    _name: str_name_enemy_3
+    _move_speed: 45
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Tanker_03
+    _boss_unit: -1
+  - _enemy_idx: 4
+    _type: 3
+    _name: str_name_enemy_4
+    _move_speed: 75
+    _attack_speed: 300
+    _atk_range_factor: 250
+    _prefab: EnemyUnit_Boss_04
+    _boss_unit: 1
+  - _enemy_idx: 5
+    _type: 1
+    _name: str_name_enemy_5
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Warrior_05
+    _boss_unit: -1
+  - _enemy_idx: 6
+    _type: 2
+    _name: str_name_enemy_6
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 300
+    _prefab: EnemyUnit_Arture_06
+    _boss_unit: -1
+  - _enemy_idx: 7
+    _type: 3
+    _name: str_name_enemy_7
+    _move_speed: 45
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Tanker_07
+    _boss_unit: -1
+  - _enemy_idx: 8
+    _type: 3
+    _name: str_name_enemy_8
+    _move_speed: 75
+    _attack_speed: 300
+    _atk_range_factor: 250
+    _prefab: EnemyUnit_Boss_08
+    _boss_unit: 1
+  - _enemy_idx: 9
+    _type: 1
+    _name: str_name_enemy_9
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Warrior_09
+    _boss_unit: -1
+  - _enemy_idx: 10
+    _type: 2
+    _name: str_name_enemy_10
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 300
+    _prefab: EnemyUnit_Arture_10
+    _boss_unit: -1
+  - _enemy_idx: 11
+    _type: 3
+    _name: str_name_enemy_11
+    _move_speed: 45
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Tanker_11
+    _boss_unit: -1
+  - _enemy_idx: 12
+    _type: 3
+    _name: str_name_enemy_12
+    _move_speed: 75
+    _attack_speed: 300
+    _atk_range_factor: 250
+    _prefab: EnemyUnit_Boss_12
+    _boss_unit: 1
+  - _enemy_idx: 13
+    _type: 1
+    _name: str_name_enemy_13
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Warrior_13
+    _boss_unit: -1
+  - _enemy_idx: 14
+    _type: 2
+    _name: str_name_enemy_14
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 300
+    _prefab: EnemyUnit_Arture_14
+    _boss_unit: -1
+  - _enemy_idx: 15
+    _type: 3
+    _name: str_name_enemy_15
+    _move_speed: 45
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Tanker_15
+    _boss_unit: -1
+  - _enemy_idx: 16
+    _type: 3
+    _name: str_name_enemy_16
+    _move_speed: 75
+    _attack_speed: 300
+    _atk_range_factor: 250
+    _prefab: EnemyUnit_Boss_16
+    _boss_unit: 1
+  - _enemy_idx: 17
+    _type: 1
+    _name: str_name_enemy_17
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Warrior_17
+    _boss_unit: -1
+  - _enemy_idx: 18
+    _type: 2
+    _name: str_name_enemy_18
+    _move_speed: 55
+    _attack_speed: 80
+    _atk_range_factor: 300
+    _prefab: EnemyUnit_Arture_18
+    _boss_unit: -1
+  - _enemy_idx: 19
+    _type: 3
+    _name: str_name_enemy_19
+    _move_speed: 45
+    _attack_speed: 80
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Tanker_19
+    _boss_unit: -1
+  - _enemy_idx: 20
+    _type: 3
+    _name: str_name_enemy_20
+    _move_speed: 75
+    _attack_speed: 300
+    _atk_range_factor: 250
+    _prefab: EnemyUnit_Boss_20
+    _boss_unit: 1
+  - _enemy_idx: 21
+    _type: 4
+    _name: str_name_enemy_21
+    _move_speed: 35
+    _attack_speed: 300
+    _atk_range_factor: 200
+    _prefab: EnemyUnit_Magic_21
+    _boss_unit: -1
+  - _enemy_idx: 22
+    _type: 4
+    _name: str_name_enemy_22
+    _move_speed: 35
+    _attack_speed: 350
+    _atk_range_factor: 200
+    _prefab: EnemyUnit_Magic_22
+    _boss_unit: -1

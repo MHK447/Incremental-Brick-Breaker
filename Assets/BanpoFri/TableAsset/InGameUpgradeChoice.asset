@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439717463ea5740498b14ecb68842da9, type: 3}
+  m_Name: InGameUpgradeChoice
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 101
+  - 102
+  - 103
+  - 104
+  - 105
+  - 106
+  - 108
+  - 109
+  - 110
+  - 111
+  - 1001
+  - 1002
+  mSecondKey: []
+  mDataList:
+  - _idx: 1
+    _choice_name: str_upgrade_choice_name_1
+    _desc_1: str_upgrade_choice_desc_1
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_1
+    _category: 3
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 050000000a0000000f000000
+    _upgrade_value_2: 320000003c00000046000000
+  - _idx: 2
+    _choice_name: str_upgrade_choice_name_2
+    _desc_1: str_upgrade_choice_desc_2
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_2
+    _category: 3
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 1e000000320000003c000000
+    _upgrade_value_2: 640000006400000064000000
+  - _idx: 3
+    _choice_name: str_upgrade_choice_name_3
+    _desc_1: str_upgrade_choice_desc_3
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_3
+    _category: 3
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 010000000200000003000000
+    _upgrade_value_2: 320000004600000050000000
+  - _idx: 4
+    _choice_name: str_upgrade_choice_name_4
+    _desc_1: str_upgrade_choice_desc_4
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_4
+    _category: 3
+    _weight: 100
+    _upgrade_count: 999
+    _upgrade_value_1: 1e0000003200000050000000
+    _upgrade_value_2: 640000006400000064000000
+  - _idx: 101
+    _choice_name: str_upgrade_choice_name_101
+    _desc_1: str_upgrade_choice_desc_101
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_101
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 280000003c0000005a000000
+    _upgrade_value_2: 320000003c00000046000000
+  - _idx: 102
+    _choice_name: str_upgrade_choice_name_102
+    _desc_1: str_upgrade_choice_desc_102
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_102
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 010000000200000002000000
+    _upgrade_value_2: 0a000000140000001e000000
+  - _idx: 103
+    _choice_name: str_upgrade_choice_name_103
+    _desc_1: str_upgrade_choice_desc_103
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_103
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 050000000a0000000f000000
+    _upgrade_value_2: 0a000000140000001e000000
+  - _idx: 104
+    _choice_name: str_upgrade_choice_name_104
+    _desc_1: str_upgrade_choice_desc_104
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_104
+    _category: 2
+    _weight: 100
+    _upgrade_count: 1
+    _upgrade_value_1: 010000000100000001000000
+    _upgrade_value_2: 0f0000001e0000002d000000
+  - _idx: 105
+    _choice_name: str_upgrade_choice_name_105
+    _desc_1: str_upgrade_choice_desc_105
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_105
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 14000000280000003c000000
+    _upgrade_value_2: 640000006400000064000000
+  - _idx: 106
+    _choice_name: str_upgrade_choice_name_106
+    _desc_1: str_upgrade_choice_desc_106
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_106
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 0a000000140000001e000000
+    _upgrade_value_2: 0a000000140000001e000000
+  - _idx: 108
+    _choice_name: str_upgrade_choice_name_108
+    _desc_1: str_upgrade_choice_desc_108
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_108
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 010000000100000001000000
+    _upgrade_value_2: 0f0000001e0000002d000000
+  - _idx: 109
+    _choice_name: str_upgrade_choice_name_109
+    _desc_1: str_upgrade_choice_desc_109
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_109
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 010000000200000003000000
+    _upgrade_value_2: 1e0000003200000046000000
+  - _idx: 110
+    _choice_name: str_upgrade_choice_name_110
+    _desc_1: str_upgrade_choice_desc_110
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_110
+    _category: 2
+    _weight: 100
+    _upgrade_count: -1
+    _upgrade_value_1: ffffffff
+    _upgrade_value_2: ffffffff
+  - _idx: 111
+    _choice_name: str_upgrade_choice_name_111
+    _desc_1: str_upgrade_choice_desc_111
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_111
+    _category: 2
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 010000000200000003000000
+    _upgrade_value_2: 1e0000002800000032000000
+  - _idx: 1001
+    _choice_name: str_upgrade_choice_name_1001
+    _desc_1: str_upgrade_choice_desc_1001
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_1001
+    _category: 1
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 190000002800000046000000
+    _upgrade_value_2: 410000004600000050000000
+  - _idx: 1002
+    _choice_name: str_upgrade_choice_name_1002
+    _desc_1: str_upgrade_choice_desc_1002
+    _front_img: Common_Upgrade_Front_1
+    _back_img: InGameUpgrade_Icon_1002
+    _category: 1
+    _weight: 100
+    _upgrade_count: 3
+    _upgrade_value_1: 010000000100000001000000
+    _upgrade_value_2: 0a000000140000001e000000

@@ -1,0 +1,173 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c1013dadbe8451bb262dd743e06ac2, type: 3}
+  m_Name: PlayerUpgradeInfo
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  mSecondKey: []
+  mDataList:
+  - _idx: 1
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000064000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 2
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 3
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000064000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 4
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 5
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 6
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 7
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 8
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 9
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 10
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 11
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 12
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
+  - _idx: 13
+    _increase_attack: 3
+    _increase_hp: 5
+    _increase_rot: 20
+    _base_material_cost: 10
+    _base_material_increase_cost: 10
+    _base_cash_cost: 25
+    _base_cash_increase_cost: 40
+    _unlock_skill_type: 010000000200000005000000
+    _unlock_skill_value: 0a0000001400000032000000
+    _unlock_skill_level: 050000000a0000000f000000
