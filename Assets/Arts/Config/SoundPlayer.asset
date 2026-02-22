@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bfa9e5110a14f4298b5295d67fb07e, type: 3}
+  m_Name: SoundPlayer
+  m_EditorClassIdentifier: 
+  soundDatas:
+  - soundKey: bgm
+    audioData: {fileID: 8300000, guid: 7c65dd0242c164e84a10e17974eafbff, type: 3}
+    Volume: 1
+  - soundKey: btn
+    audioData: {fileID: 8300000, guid: 1b46ba1353acc488cb505eb4a09dc589, type: 3}
+    Volume: 1
+  - soundKey: popup
+    audioData: {fileID: 8300000, guid: 633f6b303a7184423a00ba5d3c9ca13a, type: 3}
+    Volume: 1
+  - soundKey: toast
+    audioData: {fileID: 8300000, guid: c3bf2e77d0ac445a08fb4fd6dc6371b3, type: 3}
+    Volume: 1
+  - soundKey: item_get
+    audioData: {fileID: 8300000, guid: 1785b3fd9dd89405898c2d0d21e91529, type: 3}
+    Volume: 0.7
+  - soundKey: Win
+    audioData: {fileID: 8300000, guid: 0650e1c3728d44ad3a5e48821e3fa6c2, type: 3}
+    Volume: 1
+  - soundKey: get_coin
+    audioData: {fileID: 8300000, guid: a2921f4c2b3c642b793ddd940cbeea37, type: 3}
+    Volume: 1
+  - soundKey: damage
+    audioData: {fileID: 8300000, guid: 338d148a45c1443969f1c9ebe1b259c4, type: 3}
+    Volume: 0.1
+  - soundKey: bulletshoot
+    audioData: {fileID: 8300000, guid: 849e5c8094bb4490280f5be7076e0d34, type: 3}
+    Volume: 0.1
+  - soundKey: weapon_shoot
+    audioData: {fileID: 8300000, guid: 178d8baa089bc4296b6f2ca161cb0e18, type: 3}
+    Volume: 1
+  - soundKey: effect_damage
+    audioData: {fileID: 8300000, guid: 338d148a45c1443969f1c9ebe1b259c4, type: 3}
+    Volume: 0.5
+  - soundKey: effect_player_damage
+    audioData: {fileID: 8300000, guid: 32e3c974ab90a4c47904848cf50837e2, type: 3}
+    Volume: 0.7
+  - soundKey: sfx_wave_win
+    audioData: {fileID: 8300000, guid: c75f2512f58834667a14eaaa94dd056d, type: 3}
+    Volume: 0.3
+  - soundKey: effect_add_block
+    audioData: {fileID: 8300000, guid: d64643f3ca7bd4856a90cf2671807445, type: 3}
+    Volume: 0.7
+  - soundKey: sfx_wave_Start
+    audioData: {fileID: 8300000, guid: 4474096eb0707432e8e38f123a053e04, type: 3}
+    Volume: 0.3
+  - soundKey: effect_get_reward
+    audioData: {fileID: 8300000, guid: a2921f4c2b3c642b793ddd940cbeea37, type: 3}
+    Volume: 0.5
+  - soundKey: effect_bomb
+    audioData: {fileID: 8300000, guid: 9af24739b046946b5b32e7237228c6ee, type: 3}
+    Volume: 0.5
+  - soundKey: effect_contents_open
+    audioData: {fileID: 8300000, guid: 72e2ec536f0eb4b9f811a6d912f7eb3c, type: 3}
+    Volume: 1
+  - soundKey: effect_castle_heal
+    audioData: {fileID: 8300000, guid: a4f7de191f9f84967b59cb1f5ee607c5, type: 3}
+    Volume: 0.3
+  - soundKey: effect_item_shield
+    audioData: {fileID: 8300000, guid: 7314e75bc942749f49a6ef5efbf63def, type: 3}
+    Volume: 0.3
+  - soundKey: effect_card_draw
+    audioData: {fileID: 8300000, guid: cb0589e6e30ea430f9956af71bff2aa4, type: 3}
+    Volume: 1
+  - soundKey: effect_card_complete
+    audioData: {fileID: 8300000, guid: 0cd7b363b1fa84e90b18073aeaf129ac, type: 3}
+    Volume: 1
+  - soundKey: effect_training_upgrade
+    audioData: {fileID: 8300000, guid: 3818ed1274c0b44a9a2616a60b2e5e0b, type: 3}
+    Volume: 1
+  - soundKey: effect_card_choose
+    audioData: {fileID: 8300000, guid: 6047523c7d4644e6484d608eefffc564, type: 3}
+    Volume: 1
+  - soundKey: sfx_get_equip_weapon
+    audioData: {fileID: 8300000, guid: 83ad80753ae5346c2a41eaeb5323ccde, type: 3}
+    Volume: 1
+  - soundKey: effect_result_sparkle
+    audioData: {fileID: 8300000, guid: abab1933b21594e7fa265b4f0a7bfcc7, type: 3}
+    Volume: 1
+  - soundKey: popuplevelupshow
+    audioData: {fileID: 8300000, guid: 0f29ab8d25bd7400a8772605cddad5ef, type: 3}
+    Volume: 1
+  - soundKey: effect_game_over
+    audioData: {fileID: 8300000, guid: f0419098e48ae43b79eb22f01deac683, type: 3}
+    Volume: 1
+  - soundKey: effect_levelup_reward
+    audioData: {fileID: 8300000, guid: 0fc99d8447bc348d8877d53c510b9b25, type: 3}
+    Volume: 1
+  - soundKey: effect_rankup_draw
+    audioData: {fileID: 8300000, guid: aabdeb595ea914c2788f044ffb53779f, type: 3}
+    Volume: 1
+  - soundKey: effect_treasure_reward
+    audioData: {fileID: 8300000, guid: cf25172dad20d45dea38e90084c7250f, type: 3}
+    Volume: 1
+  TestAudioClip: {fileID: 0}
+  TestEditorVolume: 1

@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6470b1acb3b482c830d432f3c9fc74, type: 3}
+  m_Name: Config
+  m_EditorClassIdentifier: 
+  _textColorDefines:
+  - key_string: Black
+    color: {r: 0, g: 0, b: 0, a: 1}
+  - key_string: Brown
+    color: {r: 0.32156864, g: 0.22352941, b: 0.14509805, a: 1}
+  - key_string: Desc
+    color: {r: 0.5019608, g: 0.43137255, b: 0.38431373, a: 1}
+  - key_string: White
+    color: {r: 1, g: 0.9882353, b: 0.9607843, a: 1}
+  - key_string: DarkBlue
+    color: {r: 0.105882354, g: 0.34901962, b: 0.5568628, a: 1}
+  - key_string: Red
+    color: {r: 0.8584906, g: 0.2647946, b: 0.22272164, a: 1}
+  - key_string: BlueGreen
+    color: {r: 0, g: 0.4528302, b: 0.35555553, a: 1}
+  - key_string: Yellow
+    color: {r: 1, g: 0.9153609, b: 0, a: 1}
+  - key_string: Cyan
+    color: {r: 0, g: 1, b: 0.82920194, a: 1}
+  - key_string: Gray
+    color: {r: 0.3539961, g: 0.4056604, b: 0.3982798, a: 1}
+  - key_string: Green
+    color: {r: 0, g: 1, b: 0.33595228, a: 1}
+  - key_string: Purple
+    color: {r: 1, g: 0, b: 0.7748437, a: 1}
+  - key_string: Blue
+    color: {r: 0.061807156, g: 0, b: 1, a: 1}
+  _eventTextColorDefines: []
+  mainfont: {fileID: 12800000, guid: 823821a1683354e37b7b49f85dbe601d, type: 3}
+  _fontDefines: []
+  TextFontMaterialList: []
+  _imageColorDefines:
+  - key_string: Bg_Yellow
+    color: {r: 1, g: 0.84705883, b: 0.39215687, a: 1}
+  - key_string: Line_BasicBrowm
+    color: {r: 0.43529412, g: 0.30980393, b: 0.21960784, a: 1}
+  - key_string: Bg_Blue
+    color: {r: 0.36078432, g: 0.57254905, b: 0.8156863, a: 1}
+  - key_string: Line_Blue
+    color: {r: 0.21693665, g: 0.40526336, b: 0.6132076, a: 1}
+  - key_string: Bg_BlueGreen
+    color: {r: 0.10980392, g: 0.67058825, b: 0.5529412, a: 1}
+  - key_string: Line_BlueGreen
+    color: {r: 0, g: 0.5294118, b: 0.41568628, a: 1}
+  - key_string: Bg_Pink
+    color: {r: 0.9137255, g: 0.4117647, b: 0.5058824, a: 1}
+  - key_string: Line_Pink
+    color: {r: 0.72156864, g: 0.2627451, b: 0.36078432, a: 1}
+  - key_string: Btn_Green
+    color: {r: 0.42352942, g: 0.7647059, b: 0.22745098, a: 1}
+  - key_string: Btn_Orange
+    color: {r: 1, g: 0.64705884, b: 0.09019608, a: 1}
+  - key_string: Btn_Blue
+    color: {r: 0.2007832, g: 0.58494633, b: 0.9056604, a: 1}
+  - key_string: Bg_Gray
+    color: {r: 0.52156866, g: 0.52156866, b: 0.52156866, a: 1}
+  - key_string: Upgrade_Orange
+    color: {r: 0.85882354, g: 0.38039216, b: 0.14117648, a: 1}
+  - key_string: Upgrade_Green
+    color: {r: 0.3372549, g: 1, b: 0, a: 1}
+  - key_string: Upgrade_Blue
+    color: {r: 0, g: 0.5254902, b: 0.7372549, a: 1}
+  - key_string: unit_color_1
+    color: {r: 0.054901946, g: 0.58881056, b: 0.7921569, a: 1}
+  - key_string: unit_color_2
+    color: {r: 1, g: 0.13899964, b: 0, a: 1}
+  - key_string: unit_color_3
+    color: {r: 0.14320946, g: 0, b: 1, a: 1}
+  - key_string: unit_type_color_1
+    color: {r: 0.7019608, g: 0.99607843, b: 0.95686275, a: 1}
+  - key_string: unit_type_color_2
+    color: {r: 0.8666667, g: 0.5019608, b: 0.93333334, a: 1}
+  - key_string: unit_type_color_3
+    color: {r: 0.7764706, g: 0.79607844, b: 0.20784314, a: 1}
+  - key_string: unit_type_color_4
+    color: {r: 0.7647059, g: 0.99215686, b: 0.7137255, a: 1}
+  - key_string: box_grade_2
+    color: {r: 0, g: 0.8881693, b: 1, a: 1}
+  - key_string: box_grade_3
+    color: {r: 0.93333334, g: 0.10980392, b: 0.7372549, a: 1}
+  - key_string: box_grade_4
+    color: {r: 1, g: 0.9626852, b: 0, a: 1}
+  - key_string: unit_cyan
+    color: {r: 0, g: 0.9262848, b: 1, a: 1}
+  - key_string: unit_yellow
+    color: {r: 1, g: 0.9626852, b: 0, a: 1}
+  - key_string: unit_blue
+    color: {r: 0, g: 0.46712375, b: 1, a: 1}
+  - key_string: unit_orange
+    color: {r: 1, g: 0.586016, b: 0, a: 1}
+  - key_string: unit_purple
+    color: {r: 0.55464983, g: 0, b: 1, a: 1}
+  - key_string: unit_green
+    color: {r: 0, g: 1, b: 0.0029826164, a: 1}
+  - key_string: unit_brown
+    color: {r: 0.3207547, g: 0.05031027, b: 0, a: 1}
+  - key_string: unit_pink
+    color: {r: 1, g: 0, b: 0.48175287, a: 1}
+  - key_string: poison_purple
+    color: {r: 0.7178221, g: 0, b: 1, a: 1}
+  - key_string: TileBase_Color
+    color: {r: 0, g: 0, b: 0, a: 0.30980393}
+  - key_string: TileGreen_Color
+    color: {r: 0, g: 1, b: 0.011764706, a: 0.69803923}
+  - key_string: TileRed_Color
+    color: {r: 1, g: 0.019191347, b: 0, a: 0.69803923}
+  - key_string: AddTileEquip_Color
+    color: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 0.6}
+  - key_string: silvercoinblock_light_3
+    color: {r: 1, g: 0.8279877, b: 0, a: 1}
+  - key_string: silvercoinblock_light_2
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - key_string: silvercoinblock_light_1
+    color: {r: 1, g: 0.5764706, b: 0, a: 1}
+  - key_string: silvercoinblock_light_4
+    color: {r: 0.061807394, g: 1, b: 0, a: 0.7490196}
+  - key_string: StageColor_1_Top
+    color: {r: 0.1882353, g: 0.7764706, b: 0.88235295, a: 1}
+  - key_string: StageColor_1_Bottom
+    color: {r: 0.34509805, g: 0.7529412, b: 0.25490198, a: 1}
+  - key_string: StageColor_2_Top
+    color: {r: 0.64705884, g: 0.42745098, b: 0.9764706, a: 1}
+  - key_string: StageColor_2_Bottom
+    color: {r: 0.39607844, g: 0.22352941, b: 0.7176471, a: 1}
+  - key_string: StageColor_3_Bottom
+    color: {r: 0.9490196, g: 0.627451, b: 0.13725491, a: 1}
+  - key_string: StageColor_3_Top
+    color: {r: 0.4862745, g: 0.88235295, b: 0.99607843, a: 1}
+  - key_string: StageColor_4_Top
+    color: {r: 0.40392157, g: 0.84705883, b: 0.9490196, a: 1}
+  - key_string: StageColor_4_Bottom
+    color: {r: 0.6745098, g: 0.9019608, b: 0.9647059, a: 1}
+  - key_string: StageColor_5_Top
+    color: {r: 0.99607843, g: 0.69411767, b: 0.35686275, a: 1}
+  - key_string: StageColor_5_Bottom
+    color: {r: 0.32156864, g: 0.85882354, b: 0.89411765, a: 1}
+  - key_string: item_grade_color_1
+    color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+  - key_string: item_grade_color_2
+    color: {r: 0.56078434, g: 0.9137255, b: 0.5137255, a: 1}
+  - key_string: item_grade_color_3
+    color: {r: 0.51066095, g: 0.1702118, b: 0.7075472, a: 1}
+  - key_string: item_grade_color_4
+    color: {r: 0.8490566, g: 0.82085484, b: 0.17221431, a: 1}
+  - key_string: temp_unlock_color
+    color: {r: 1, g: 0.85490197, b: 0, a: 0.29803923}
+  - key_string: TextColor_Point
+    color: {r: 0.96862745, g: 0.9490196, b: 0.7058824, a: 1}
+  - key_string: StageColorDevil_Top
+    color: {r: 0.08627451, g: 0.11372549, b: 0.30980393, a: 1}
+  - key_string: currency_bg_color
+    color: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
+  _eventImgaeColorDefines: []
+  SkeletonGraphicMat: {fileID: 0}
+  DisableSpriteMat: {fileID: 0}
+  EnableSpriteMat: {fileID: 0}
+  ImgAddtiveMat: {fileID: 0}
+  SolidMat: {fileID: 2100000, guid: 8768748a4f01a4a88a72f23179435962, type: 2}
+  DefaultMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  TextMaterialList: []
