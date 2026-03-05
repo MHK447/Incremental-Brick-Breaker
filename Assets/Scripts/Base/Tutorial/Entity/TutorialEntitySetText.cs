@@ -14,7 +14,8 @@ public class TutorialEntitySetText : TutorialEntity
     {
         base.StartEntity();
 
-        Text.text = Tables.Instance.GetTable<Localize>().GetString(TextStr);
+        var localize = Tables.Instance?.GetTable<Localize>();
+        Text.text = localize != null ? localize.GetString(TextStr) : TextStr;
         Done();
     }
 }

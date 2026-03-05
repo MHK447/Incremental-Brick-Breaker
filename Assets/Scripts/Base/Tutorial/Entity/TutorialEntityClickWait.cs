@@ -176,7 +176,8 @@ public class TutorialEntityClickWait : TutorialEntity
             }
             if (textContext != null)
             {
-                textContext.text = Tables.Instance.GetTable<Localize>().GetString(textKey);
+                var localize = Tables.Instance?.GetTable<Localize>();
+                textContext.text = localize != null ? localize.GetString(textKey) : textKey;
                 var clickRect = clickobj.GetComponent<RectTransform>();
                 rectText.position = clickRect.position;
                 rectText.anchoredPosition = new Vector2(0f, rectText.anchoredPosition.y + textYAddPos);

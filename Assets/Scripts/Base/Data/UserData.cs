@@ -173,13 +173,6 @@ public partial class UserDataSystem
     {
         /* 아래 @주석 위치를 찾아서 함수가 자동 추가됩니다 SaveFile 함수에서 SetSaveDatas를 호출해주세요 */
         // @자동 저장 데이터 함수들
-        SaveData_StarterPackageData(builder);
-        SaveData_ItemData(builder);
-        SaveData_HeroGroupData(builder);
-        SaveData_CardData(builder);
-        SaveData_PlayerData(builder);
-        SaveData_UnitGroupData(builder);
-        SaveData_InGameResumeData(builder);
         SaveData_RecordCount(builder);
         SaveData_OptionData(builder);
     }
@@ -259,13 +252,6 @@ public partial class UserDataSystem
         BanpoFri.Data.UserData.AddTutorial(builder, tutorialVec);
         BanpoFri.Data.UserData.AddMoney(builder, money);
         BanpoFri.Data.UserData.AddStageidx(builder, Stageidx.Value);
-        BanpoFri.Data.UserData.AddWaveidx(builder, Waveidx.Value);
-        BanpoFri.Data.UserData.AddVipticket(builder, Vipticket.Value);
-        BanpoFri.Data.UserData.AddMaterial(builder, Material.Value);
-        BanpoFri.Data.UserData.AddNewtrainingdatabuyorder(builder, Newtrainingdatabuyorder.Value);
-        BanpoFri.Data.UserData.AddIngamesilvercoin(builder, Ingamesilvercoin.Value);
-        BanpoFri.Data.UserData.AddAttendancetime(builder, Attendancetime.Ticks);
-        BanpoFri.Data.UserData.AddResetdaytime(builder, Resetdaytime.Ticks);
         var orc = BanpoFri.Data.UserData.EndUserData(builder);
         builder.Finish(orc.Value);
 

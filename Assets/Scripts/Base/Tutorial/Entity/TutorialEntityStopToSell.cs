@@ -14,7 +14,8 @@ public class TutorialEntityStopToSell : TutorialEntity
     {
         base.StartEntity();
 
-        Text.text = Tables.Instance.GetTable<Localize>().GetString("str_tutorial_stop_desc");
+        var localize = Tables.Instance?.GetTable<Localize>();
+        Text.text = localize != null ? localize.GetString("str_tutorial_stop_desc") : "str_tutorial_stop_desc";
 
         GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 500);
 

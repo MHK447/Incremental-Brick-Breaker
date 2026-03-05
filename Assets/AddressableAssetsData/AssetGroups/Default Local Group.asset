@@ -65,6 +65,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b14adbb2e45c437a92bfe057eb81f7a
+    m_Address: UI/Popup/PopupInGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ceb8d2d30760ce48ab24b393b96c2cd
     m_Address: UI/Popup/PopupStageResult
     m_ReadOnly: 0
@@ -340,6 +345,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95889335f6689433eb2da7b2ffab3baa
+    m_Address: ChapterMap_Base
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 979c78eee95944032afebdc932a915ab
     m_Address: UI/Popup/NoAdsPackages
     m_ReadOnly: 0
@@ -482,11 +492,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e4e7294bc17034dc99297f4b764e4e85
     m_Address: Atlas_UI_Common
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e5143f4b5f94d42ac9f5cb0e420f62f6
-    m_Address: ChapterMap_Base
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

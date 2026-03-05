@@ -14,7 +14,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void Init()
     {
-        //InitStage();
+        InitStage();
     }
 
 

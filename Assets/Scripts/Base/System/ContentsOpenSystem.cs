@@ -103,30 +103,11 @@ public class ContentsOpenSystem
                     }
                 }
                 break;
-            case ContentsOpenType.HeroUpgradeOpen:
-                {
-                    if (GameRoot.Instance.UserData.Herogroudata.Equipplayeridx > 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+            
         }
 
         var failedcount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.StageFailedCount, GameRoot.Instance.UserData.Stageidx.Value);
 
-        var td = Tables.Instance.GetTable<ContentsOpenCheck>().GetData((int)opentype);
-
-        if (td != null)
-        {
-            var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
-
-
-            return stageidx > td.stage_idx || (stageidx == td.stage_idx && failedcount >= td.failed_count);
-        }
 
 
         return false;

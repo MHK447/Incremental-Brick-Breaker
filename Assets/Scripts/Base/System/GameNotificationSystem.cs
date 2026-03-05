@@ -91,13 +91,7 @@ public class GameNotificationSystem
            UpdateNotification(NotificationCategory.CardUpgrade);
        }).AddTo(disposables);
 
-        foreach (var herogroupdata in GameRoot.Instance.UserData.Herogroudata.Equipheroitems)
-        {
-            herogroupdata.Level.Subscribe(x =>
-            {
-                UpdateNotification(NotificationCategory.HeroUpgradeCheck);
-            }).AddTo(disposables);
-        }
+
 
 
         UpdateNotification(NotificationCategory.ShopAdCash);
@@ -111,84 +105,19 @@ public class GameNotificationSystem
         {
             case NotificationCategory.Training:
                 {
-                    bool ison = false;
-
-                    var data = GetData(category, -1, -1);
-                    if (data != null)
-                    {
-                        var NextBuyOrder = GameRoot.Instance.UserData.Newtrainingdatabuyorder.Value + 1;
-
-
-                        var td = Tables.Instance.GetTable<BlockTrainingInfo>().GetData(NextBuyOrder);
-
-                        var level = GameRoot.Instance.UserData.Stageidx.Value;
-
-                        if (td != null)
-                        {
-                            ison = GameRoot.Instance.UserData.Money.Value >= td.cost && level >= td.level;
-                        }
-
-
-                        data.on.Value = ison;
-                    }
+              
                 }
                 break;
             case NotificationCategory.CardUpgrade:
                 {
-                    bool ison = false;
-
-                    var data = GetData(category, -1, -1);
-                    if (data != null)
-                    {
-                        bool isupgradelevel = false;
-
-                        foreach (var carddata in GameRoot.Instance.UserData.Carddatas)
-                        {
-                            var cardupgradleveltd = Tables.Instance.GetTable<CardUpgradeLevel>().GetData(carddata.Cardlevel.Value);
-
-                            if (cardupgradleveltd == null) return;
-
-                            isupgradelevel = carddata.Cardcount.Value >= cardupgradleveltd.need_card;
-
-                            if (ison) break;
-
-                        }
-
-                        ison = GameRoot.Instance.UserData.Material.Value >= 20 || isupgradelevel;
-
-                        data.on.Value = ison;
-                    }
+                 
+                    
                 }
                 break;
             case NotificationCategory.CardBook:
                 {
-                    bool ison = false;
-
-                    var data = GetData(category, -1, -1);
-                    if (data != null)
-                    {
-
-                        var tdlist = Tables.Instance.GetTable<EquipInfo>().DataList.FindAll(x => x.item_type != 3).ToList();
-
-                        foreach (var td in tdlist)
-                        {
-                            for (int i = 0; i < 4; ++i)
-                            {
-                                var equipcheck = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.EQUIPWEAPONCOUNT, $"{td.idx}_{i + 1}");
-
-                                var rewardbookweaponcount = GameRoot.Instance.UserData.GetRecordCount(Config.RecordCountKeys.REWARDBOOKWEAPONCOUNT, $"{td.idx}_{i + 1}");
-
-                                if (equipcheck > 0 && rewardbookweaponcount == 0)
-                                {
-                                    ison = true;
-                                    break;
-                                }
-                            }
-                        }
-
-
-                        data.on.Value = ison;
-                    }
+                  
+                    
                 }
                 break;
             case NotificationCategory.HeroUpgradeCheck:

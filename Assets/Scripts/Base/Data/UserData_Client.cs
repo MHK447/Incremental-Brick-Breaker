@@ -98,84 +98,20 @@ public partial class UserDataSystem
     public long Gamestarttime { get; set; } = 0;
     public long Lastlogintime { get; set; } = 0;
     public string Buyinappids { get; set; } = "";
-    public InGameResumeData IngameResumeData { get { return Ingameresumedata; } }
 
-    private void ResetInGameResumeData()
-    {
-        
-        Ingameresumedata.Isvalid = false;
-        Ingameresumedata.Stageidx = 0;
-        Ingameresumedata.Waveidx = 0;
-        Ingameresumedata.Silvercoin = 0;
-        Ingameresumedata.Hp = 0;
-        Ingameresumedata.Starthp = 0;
-        Ingameresumedata.Shield = 0;
-        Ingameresumedata.Killcount = 0;
-        Ingameresumedata.Ingameexp = 0;
-        Ingameresumedata.Upgradecount = 1;
-        Ingameresumedata.Ingamemoney = 0;
-        Ingameresumedata.Rerollcount = 0;
-        Ingameresumedata.Tiles.Clear();
-        Ingameresumedata.Unlockedtiles.Clear();
-        Ingameresumedata.Upgradeindices.Clear();
-    }
-
-    public bool HasInGameResumeData()
-    {
-        return Ingameresumedata.Isvalid && Ingameresumedata.Stageidx > 0 && Ingameresumedata.Waveidx > 0 && Ingameresumedata.Tiles.Count > 0;
-    }
 
     public void ClearInGameResumeData(bool saveNow = true)
     {
-        ResetInGameResumeData();
         if (saveNow)
         {
             Save(true);
         }
     }
-    private InGameResumeData cachedResumeData = null;
 
-    public bool StartBattleWithInGameResumeData()
-    {
-        if (!HasInGameResumeData())
-        {
-            return false;
-        }
-
-        cachedResumeData = new InGameResumeData();
-        cachedResumeData.CopyFrom(Ingameresumedata);
-
-        Stageidx.Value = cachedResumeData.Stageidx;
-
-        var stage = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.Stage;
-        if (stage == null)
-        {
-            cachedResumeData = null;
-            return false;
-        }
-
-        stage.StartBattle();
-
-        Ingameresumedata.CopyFrom(cachedResumeData);
-        cachedResumeData = null;
-
-        return true;
-    }
 
 
     void SetLoadDatas()
     {
-        /* 아래 @주석 위치를 찾아서 함수가 자동 추가됩니다 ConnectReadOnlyDatas 함수에서 SetLoadDatas를 호출해주세요 */
-        // @자동 로드 데이터 함수들
-        LoadData_StarterPackageData();
-        LoadData_ItemData();
-        LoadData_HeroGroupData();
-        LoadData_CardData();
-        LoadData_PlayerData();
-        
-        LoadData_TrainingGroupData();
-        LoadData_UnitGroupData();
-        LoadData_InGameResumeData();
         LoadData_RecordCount();
         LoadData_OptionData();
     }
@@ -240,14 +176,6 @@ public partial class UserDataSystem
         SetLoadDatas();
 
 
-        Resetdaytime = new DateTime(flatBufferUserData.Resetdaytime);
-        Attendancetime = new DateTime(flatBufferUserData.Attendancetime);
-        Ingamesilvercoin.Value = flatBufferUserData.Ingamesilvercoin;
-        Newtrainingdatabuyorder.Value = flatBufferUserData.Newtrainingdatabuyorder;
-        Material.Value = flatBufferUserData.Material;
-        Waveidx.Value = flatBufferUserData.Waveidx;
-        Vipticket.Value = flatBufferUserData.Vipticket;
-        Waveidx.Value = flatBufferUserData.Waveidx;
         Money.Value = BigInteger.Parse(flatBufferUserData.Money);
         Stageidx.Value = flatBufferUserData.Stageidx;
         Cash.Value = flatBufferUserData.Cash;
@@ -445,34 +373,10 @@ public partial class UserDataSystem
                 break;
             case Config.RewardType.Item:
                 {
-                    var finddata = GameRoot.Instance.ItemSystem.GetItemData((int)ItemSystem.ItemType.EquipUpgradeItem, rewardIdx);
 
-                    if (finddata != null)
-                    {
-                        finddata.Itemcnt.Value += (int)rewardCnt;
-                    }
-                }
-                break;
-            case Config.RewardType.Card:
-                {
-                    GameRoot.Instance.CardSystem.AddCard(rewardIdx, (int)rewardCnt);
                 }
                 break;
             case Config.RewardType.HeroEquipment:
-                {
-                    GameRoot.Instance.UserData.Herogroudata.AddHeroItem(rewardIdx, (int)rewardCnt);
-                }
-                break;
-            case Config.RewardType.RandHeroItem:
-                {
-                    var tdlist = Tables.Instance.GetTable<HeroItemInfo>().DataList;
-
-                    var randtd = UnityEngine.Random.Range(0, tdlist.Count);
-
-                    var findtd = tdlist[randtd];
-
-                    GameRoot.Instance.UserData.Herogroudata.AddHeroItem(findtd.item_idx, rewardIdx);
-                }
                 break;
         }
 

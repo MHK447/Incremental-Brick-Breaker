@@ -40,30 +40,12 @@ public partial class InGameBaseStage : MonoBehaviour
 
     void Update()
     {
-        if(GameRoot.Instance.UserData.Playerdata.IsGameStartProperty.Value)
-        {
-            stagedeltatime += Time.deltaTime;
-            resumeSnapshotDeltaTime += Time.deltaTime;
-
-            if(stagedeltatime >= 1)
-            {
-                stagedeltatime = 0;
-                StageStartTime += 1;
-            }
-
-            if (!GameRoot.Instance.UserData.Playerdata.IsWaveRestProperty.Value && resumeSnapshotDeltaTime >= 10f)
-            {
-                resumeSnapshotDeltaTime = 0f;
-            }
-
-        }
+       
     }
 
 
     public void SetHp(int hp)
     {
-        GameRoot.Instance.UserData.Playerdata.StartHpProperty.Value = hp;
-        GameRoot.Instance.UserData.Playerdata.CurHpProperty.Value = hp;
     }
 
     public void TutorialCheck()
@@ -73,11 +55,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void StageClear()
     {
-        GameRoot.Instance.UserData.Playerdata.StageClear();
-        GameRoot.Instance.UserData.Playerdata.IsGameStartProperty.Value = false;
         GameRoot.Instance.UserData.Ingamesilvercoin.Value = 0;
-
-        GameRoot.Instance.GameSpeedSystem.ResetGameSpeed();
 
         // PopupInGame의 TileWeaponGroup 초기화
     }
@@ -90,9 +68,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
 
         //slow mo
-        GameRoot.Instance.GameSpeedSystem.CurGameSpeedValue.Value = 0.3f;
         yield return new WaitForSecondsRealtime(1f);
-        GameRoot.Instance.GameSpeedSystem.CurGameSpeedValue.Value = 1;
 
         yield return new WaitForSeconds(1f);
 
@@ -123,8 +99,6 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void ReturnMainScreen(System.Action fadeaction = null)
     {
-        GameRoot.Instance.GameSpeedSystem.StopGameSpeed(false, false);
-
         StageClear();
 
         fadeaction += StartMainUI;
@@ -190,12 +164,10 @@ public partial class InGameBaseStage : MonoBehaviour
             return;
         }
 
-        currentWaveCoroutine = StartCoroutine(StartWaveCoroutine());
     }
 
     public void StartRest()
     {
-        GameRoot.Instance.UserData.Playerdata.IsWaveRestProperty.Value = true;
 
         //logs
         GameRoot.Instance.UserData.Waveidx.Value += 1;
@@ -217,111 +189,7 @@ public partial class InGameBaseStage : MonoBehaviour
             GameRoot.Instance.TutorialSystem.StartTutorial(TutorialSystem.Tuto_1);
         }
 
-        // 웨이브 종료 시 쉴드 초기화
-        GameRoot.Instance.UserData.Playerdata.CurShiledProperty.Value = 0;
-
-        var wavecount = Tables.Instance.GetTable<WaveInfo>().DataList.FindAll(x => x.stage == GameRoot.Instance.UserData.Stageidx.Value).Count;
-
-        bool isend = GameRoot.Instance.UserData.Waveidx.Value > wavecount;
-
-
     }
-
-    private IEnumerator StartWaveCoroutine()
-    {
-        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
-
-        var Waveidx = GameRoot.Instance.UserData.Waveidx.Value;
-
-        var td = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(stageidx, Waveidx));
-
-        if (td != null)
-        {
-            int resultwave_silvercoin = td.add_silver_coin;
-            int resultwave_exp = td.add_exp_value;
-
-            // 전체 적의 수 계산
-            int totalEnemyCount = 0;
-            for (int i = 0; i < td.unit_idx.Count; i++)
-            {
-                int count = (td.unit_count != null && i < td.unit_count.Count) ? td.unit_count[i] : 1;
-                totalEnemyCount += count;
-            }
-
-
-            int baseExpPerEnemy = totalEnemyCount > 0 ? resultwave_exp / totalEnemyCount : 0;
-            int remainingExp = totalEnemyCount > 0 ? resultwave_exp % totalEnemyCount : 0;
-
-            int enemyIndex = 0; // 적 생성 순서 추적
-
-            for (int i = 0; i < td.unit_idx.Count; i++)
-            {
-                // 첫 번째 유닛 타입 스폰 전에도 unit_appear_time 적용
-                if (i == 0 && td.unit_appear_time != null && i < td.unit_appear_time.Count)
-                {
-                    float waitTime = td.unit_appear_time[i] / 100f;
-                    yield return new WaitForSeconds(waitTime);
-
-                    // 대기 후 게임 포기 체크
-                    if (!GameRoot.Instance.UserData.Playerdata.IsGameStartProperty.Value)
-                    {
-                        currentWaveCoroutine = null;
-                        yield break;
-                    }
-                }
-
-                int spawnCount = (td.unit_count != null && i < td.unit_count.Count) ? td.unit_count[i] : 1;
-                for (int j = 0; j < spawnCount; j++)
-                {
-                    // 게임 포기 체크
-                    if (!GameRoot.Instance.UserData.Playerdata.IsGameStartProperty.Value)
-                    {
-                        currentWaveCoroutine = null;
-                        yield break;
-                    }
-
-
-
-                    int expForThisEnemy = baseExpPerEnemy;
-                    if (enemyIndex < remainingExp)
-                    {
-                        expForThisEnemy += 1;
-                    }
-
-                    // WaveInfo에서 unit_dmg, unit_hp 가져오기
-                    int unitDmg = (td.unit_dmg != null && td.unit_dmg.Count > 0) ? (i < td.unit_dmg.Count ? td.unit_dmg[i] : td.unit_dmg.Last()) : 1;
-                    int unitHp = (td.unit_hp != null && td.unit_hp.Count > 0) ? (i < td.unit_hp.Count ? td.unit_hp[i] : td.unit_hp.Last()) : 1;
-
-
-                    // EnemyUnitGroup.AddUnit(td.unit_idx[i], expForThisEnemy, unitDmg, unitHp);
-
-                    enemyIndex++;
-                }
-
-                // unit_appear_time을 백분율로 적용 (100으로 나누어 초 단위로 변환)
-                // 마지막 유닛 타입이 아닐 때만 대기 (마지막 유닛 타입 생성 후에는 바로 스폰 완료 처리)
-                bool isLastUnitType = (i == td.unit_idx.Count - 1);
-                if (!isLastUnitType && td.unit_appear_time != null && i < td.unit_appear_time.Count)
-                {
-                    float waitTime = td.unit_appear_time[i] / 100f;
-                    yield return new WaitForSeconds(waitTime);
-
-                    // 대기 후 다시 게임 포기 체크
-                    if (!GameRoot.Instance.UserData.Playerdata.IsGameStartProperty.Value)
-                    {
-                        currentWaveCoroutine = null;
-                        yield break;
-                    }
-                }
-            }
-        }
-
-        currentWaveCoroutine = null;
-
-        // 웨이브 스폰이 완료되었을 때, 적이 이미 모두 죽었는지 체크
-        // EnemyUnitGroup.CheckAndStartRestIfAllDead();
-    }
-
 
 
 }

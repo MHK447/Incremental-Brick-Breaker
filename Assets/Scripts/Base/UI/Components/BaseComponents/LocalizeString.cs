@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BanpoFri;
@@ -21,13 +21,17 @@ public class LocalizeString : MonoBehaviour
         var tmp = GetComponent<TextMeshProUGUI>();
         if (tmp)
         {
-            tmp.text = Tables.Instance.GetTable<Localize>().GetString(keyLocalize);
+            var localize = Tables.Instance?.GetTable<Localize>();
+            tmp.text = localize != null ? localize.GetString(keyLocalize) : keyLocalize;
         }
         else
         {
             var label = GetComponent<Text>();
             if (label)
-                label.text = Tables.Instance.GetTable<Localize>().GetString(keyLocalize);
+            {
+                var localize = Tables.Instance?.GetTable<Localize>();
+                label.text = localize != null ? localize.GetString(keyLocalize) : keyLocalize;
+            }
         }
     }
   

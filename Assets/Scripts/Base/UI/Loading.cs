@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,7 +68,8 @@ public class Loading : UIBase
         ProjectUtility.SetActiveCheck(TipText.gameObject, true);
 
 
-        TipText.text = Tables.Instance.GetTable<Localize>().GetString(str);
+        var localize = Tables.Instance?.GetTable<Localize>();
+        TipText.text = localize != null ? localize.GetString(str) : str;
     }
 
     public void SetStageImage()

@@ -24,7 +24,8 @@ public class TutorialEntityConversation : TutorialEntity
 
         isNext = false;
 
-        contextOriginal = Tables.Instance.GetTable<Localize>().GetString(descKey);
+        var localize = Tables.Instance?.GetTable<Localize>();
+        contextOriginal = localize != null ? localize.GetString(descKey) : descKey;
 
         Anim.Play(AnimKey , 0 ,0f);
         

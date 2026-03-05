@@ -62,12 +62,6 @@ public class InGameSystem
 
     public void NextStage()
     {
-        var lastidx = Tables.Instance.GetTable<StageInfo>().DataList.Last().stage_idx;
-
-        if(GameRoot.Instance.UserData.Stageidx.Value >= lastidx) return;
-
-        GameRoot.Instance.UserData.Stageidx.Value += 1;
-
         GameRoot.Instance.UserData.Save();
     }
 }

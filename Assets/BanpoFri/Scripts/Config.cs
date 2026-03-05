@@ -460,12 +460,6 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
 
                     break;
                 }
-            case (int)RewardType.HeroEquipment:
-                {
-                    var td = Tables.Instance.GetTable<HeroItemInfo>().GetData(rewardidx);
-
-                    return AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_EquipItem, td.item_img);
-                }
             case (int)RewardType.RandHeroItem:
                 {
                     return AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_UI_Chest_{rewardidx}");

@@ -80,14 +80,7 @@ public class CheatWindow : MonoBehaviour
 
     public void AddAllCard()
     {
-        var tdlist = Tables.Instance.GetTable<CardInfo>().DataList.ToList();
-
-
-        foreach(var td in tdlist)
-        {
-            GameRoot.Instance.CardSystem.AddCard(td.card_idx);
-        }
-
+        // CardSystem removed
         GameRoot.Instance.UserData.Save();
     }
 
@@ -196,12 +189,6 @@ public class CheatWindow : MonoBehaviour
 
     public void AddAllUnit()
     {
-        var tdlist = Tables.Instance.GetTable<UnitInfo>().DataList.ToList();
-
-        foreach (var td in tdlist)
-        {
-            GameRoot.Instance.UserData.Unitgroupdata.AddUnit(td.idx);
-        }
     }
 
     public void SetStarAdd()

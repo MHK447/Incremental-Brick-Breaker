@@ -1,5 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AddressableAssets;
+using BanpoFri;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.UI;
 
 public class InGameBase : InGameMode
 {
@@ -24,30 +28,8 @@ public class InGameBase : InGameMode
 
         stageLoading = true;
         stageLoadCancelled = false;
-
-        Addressables.InstantiateAsync($"ChapterMap_Base").Completed += (handle) =>
-        {
-            stageLoading = false;
-
-            if (stageLoadCancelled)
-            {
-                if (handle.Result != null)
-                    Addressables.ReleaseInstance(handle.Result);
-                return;
-            }
-
-            var igls = handle.Result != null ? handle.Result.GetComponent<InGameBaseStage>() : null;
-            if (igls != null)
-            {
-                stage = igls;
-                igls.Init();
-            }
-            else if (handle.Result != null)
-            {
-                // Fallback: release unexpected instance to avoid leaks
-                Addressables.ReleaseInstance(handle.Result);
-            }
-        };
+        // ChapterMap_Base prefab removed - stage remains null
+        stageLoading = false;
     }
 
     public override void Load()
@@ -80,8 +62,7 @@ public class InGameBase : InGameMode
         stageLoading = false;
     }
 
-
-    private void OnDestroy()
+private void OnDestroy()
     {
         if (stage != null)
         {
@@ -90,3 +71,4 @@ public class InGameBase : InGameMode
         }
     }
 }
+

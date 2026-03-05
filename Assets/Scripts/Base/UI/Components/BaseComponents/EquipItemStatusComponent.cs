@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using BanpoFri;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,8 @@ public class EquipItemStatusComponent : MonoBehaviour
     {
         StatusImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, $"Common_Icon_Status_{abilitytype}");
 
-        StatusNameText.text = Tables.Instance.GetTable<Localize>().GetString($"str_equipment_ability_desc_{abilitytype}");
+        var localize = Tables.Instance?.GetTable<Localize>();
+        StatusNameText.text = localize != null ? localize.GetString($"str_equipment_ability_desc_{abilitytype}") : $"str_equipment_ability_desc_{abilitytype}";
 
         BaseValueText.text = basevalue.ToString();
         PlusDescText.text = $"+{plusvalue}";

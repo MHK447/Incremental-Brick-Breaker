@@ -38,7 +38,6 @@ public class GameRoot : Singleton<GameRoot>
 	public TutorialSystem TutorialSystem { get; private set; } = new TutorialSystem();
 	public PlayTimeSystem PlayTimeSystem { get; private set; } = new PlayTimeSystem();
 	public InGameSystem InGameSystem { get; private set; } = new InGameSystem();
-	public BoostSystem BoostSystem { get; private set; } = new BoostSystem();
 	public EffectSystem EffectSystem { get; private set; } = new EffectSystem();
 
 
@@ -50,18 +49,11 @@ public class GameRoot : Singleton<GameRoot>
 	public ActionQueueSystem ActionQueueSystem { get; private set; } = new ActionQueueSystem();
 
 
-	public GameSpeedSystem GameSpeedSystem { get; private set; } = new GameSpeedSystem();
-
 	public DamageTextSystem DamageTextSystem { get; private set; } = new DamageTextSystem();
-
-	public CardSystem CardSystem { get; private set; } = new CardSystem();
 
 	public AttendanceSystem AttendanceSystem { get; private set; } = new AttendanceSystem();
 
 	public ItemSystem ItemSystem { get; private set; } = new ItemSystem();
-
-	public DailyResetSystem DailyResetSystem { get; private set; } = new DailyResetSystem();
-
 
 	public UnityMainThreadDispatcher MainThreadDispatcher;
 
@@ -150,7 +142,6 @@ public class GameRoot : Singleton<GameRoot>
 			deltaTime -= 1f;
 
 			AttendanceSystem.UpdateOneSecond();
-			DailyResetSystem.UpdateOneSecond();
 		}
 		deltaTime += Time.deltaTime;
 
@@ -281,10 +272,8 @@ public class GameRoot : Singleton<GameRoot>
 		InitSystem();
 
 		GameNotification.Create();
-		CardSystem.Create();
 		AttendanceSystem.Create();
 		ItemSystem.Create();
-		DailyResetSystem.Create();
 
 		// yield return new WaitUntil(() =>
 		// {
@@ -370,7 +359,6 @@ public class GameRoot : Singleton<GameRoot>
 		}
 
 
-		GameSpeedSystem.Create();
 		GameNotification.Create();
 		ContentsOpenSystem.Create();
 		DamageTextSystem.Create();
@@ -532,7 +520,6 @@ public class GameRoot : Singleton<GameRoot>
 		TouchStartActions.Clear();
 		TitleCloseActions.Clear();
 		PauseActions.Clear();
-		GameSpeedSystem?.Dispose();
 		DamageTextSystem?.Dispose();
 		TutorialSystem?.Dispose();
 

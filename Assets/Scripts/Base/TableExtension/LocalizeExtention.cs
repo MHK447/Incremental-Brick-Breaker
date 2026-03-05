@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,8 @@ namespace BanpoFri
     {
         public static string GetString(this BanpoFri.Localize tableData, string key, bool IsEmptyReturn = false)
         {
+            if (tableData == null)
+                return IsEmptyReturn ? "" : key;
             var data = tableData.GetData(key);
             if (data == null && !IsEmptyReturn)
             {

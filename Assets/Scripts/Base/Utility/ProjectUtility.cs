@@ -419,10 +419,8 @@ public static class ProjectUtility
             // 각종 시스템 생성
             GameRoot.Instance.GameNotification.Create();
             GameRoot.Instance.ContentsOpenSystem.Create();
-            GameRoot.Instance.CardSystem.Create();
             GameRoot.Instance.AttendanceSystem.Create();
             GameRoot.Instance.ItemSystem.Create();
-            GameRoot.Instance.DailyResetSystem.Create();
             // BGM 재생
             GameRoot.Instance.BgmOn();
 
@@ -474,10 +472,8 @@ public static class ProjectUtility
 
                 GameRoot.Instance.GameNotification.Create();
                 GameRoot.Instance.ContentsOpenSystem.Create();
-                GameRoot.Instance.CardSystem.Create();
                 GameRoot.Instance.AttendanceSystem.Create();
                 GameRoot.Instance.ItemSystem.Create();
-                GameRoot.Instance.DailyResetSystem.Create();
 
                 // Reload stage instance so lobby can start battles after data download.
                 GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.EnsureStageLoaded();
@@ -624,10 +620,11 @@ public static class ProjectUtility
     }
     public static string GetTimeStringFormattingShort(int seconds)
     {
-        str_seconds = Tables.Instance.GetTable<Localize>().GetString("str_time_second");
-        str_minute = Tables.Instance.GetTable<Localize>().GetString("str_time_minute");
-        str_hour = Tables.Instance.GetTable<Localize>().GetString("str_time_hour");
-        str_day = Tables.Instance.GetTable<Localize>().GetString("str_time_day");
+        var localize = Tables.Instance?.GetTable<Localize>();
+        str_seconds = localize?.GetString("str_time_second") ?? "s";
+        str_minute = localize?.GetString("str_time_minute") ?? "m";
+        str_hour = localize?.GetString("str_time_hour") ?? "h";
+        str_day = localize?.GetString("str_time_day") ?? "d";
 
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
         var cnt = 0;
