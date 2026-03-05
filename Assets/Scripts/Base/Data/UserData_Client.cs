@@ -76,7 +76,7 @@ public partial class UserDataSystem
     public IReactiveProperty<int> Ingamesilvercoin { get; set; } = new ReactiveProperty<int>(0);
     public IReactiveProperty<int> Newtrainingdatabuyorder { get; set; } = new ReactiveProperty<int>(0);
     public IReactiveProperty<int> Material { get; set; } = new ReactiveProperty<int>(0);
-    public IReactiveProperty<int> Waveidx { get; set; } = new ReactiveProperty<int>(0);
+    public IReactiveProperty<int> Waveidx { get; set; } = new ReactiveProperty<int>(1);
     public IReactiveProperty<int> Vipticket { get; set; } = new ReactiveProperty<int>(0);
     public float Incomestartupgrade { get; set; } = 0.0f;
     public float Incomemultivalue { get; set; } = 0.0f;
@@ -112,11 +112,12 @@ public partial class UserDataSystem
 
 
 
-    void SetLoadDatas()
-    {
+    void SetLoadDatas(){
+        /* 아래 @주석 위치를 찾아서 함수가 자동 추가됩니다 ConnectReadOnlyDatas 함수에서 SetLoadDatas를 호출해주세요 */
+        // @자동 로드 데이터 함수들
         LoadData_RecordCount();
         LoadData_OptionData();
-    }
+    }    
     void ConnectReadOnlyDatas()
     {
         GameNotifications.Clear();
@@ -180,6 +181,7 @@ public partial class UserDataSystem
 
         Money.Value = BigInteger.Parse(flatBufferUserData.Money);
         Stageidx.Value = flatBufferUserData.Stageidx;
+        Waveidx.Value = flatBufferUserData.Waveidx;
         Cash.Value = flatBufferUserData.Cash;
 
 

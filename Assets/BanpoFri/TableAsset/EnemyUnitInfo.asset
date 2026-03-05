@@ -22,7 +22,7 @@ MonoBehaviour:
     _move_speed: 45
     _attack_speed: 100
     _atk_range_factor: 100
-    _prefab: EnemyUnit_Warrior_01
+    _prefab: EnemyUnit_01
   - _enemy_idx: 2
     _type: 2
     _move_speed: 45

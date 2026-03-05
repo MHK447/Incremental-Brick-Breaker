@@ -28,7 +28,9 @@ public partial class InGameBaseStage : MonoBehaviour
     {
         GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
 
-        EquipTutorialCheck();
+        EquipTutorialCheck();   
+
+        GameRoot.Instance.StartCoroutine(EnemySpawnStart());
     }
 
     public void StartBattle()
@@ -208,5 +210,64 @@ public partial class InGameBaseStage : MonoBehaviour
 
     }
 
+    public IEnumerator EnemySpawnStart()
+    {
+        // Move Truck
+
+        yield return new WaitForSeconds(2f);
+
+        var waveidx = GameRoot.Instance.UserData.Waveidx.Value;
+        var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+
+        var td = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(stageidx, waveidx));
+
+        if (td != null)
+        {
+           GameRoot.Instance.StartCoroutine(SpawnEnemiesSequentially(td));
+        }
+    }
+
+    private IEnumerator SpawnEnemiesSequentially(BanpoFri.WaveInfoData waveData)
+    {
+        for (int i = 0; i < waveData.unit_idx.Count; i++)
+        {
+            int enemyIdx = waveData.unit_idx[i];
+            int dmg = (i < waveData.unit_dmg.Count) ? waveData.unit_dmg[i] : 0;
+            int hp = (i < waveData.unit_hp.Count) ? waveData.unit_hp[i] : 0;
+            int count = (i < waveData.unit_count.Count) ? waveData.unit_count[i] : 1;
+            float appearTime = (i < waveData.unit_appear_time.Count) ? waveData.unit_appear_time[i] * 0.001f : 0f;
+
+            if (appearTime > 0f)
+            {
+                yield return new WaitForSeconds(appearTime);
+            }
+
+            for (int j = 0; j < count; j++)
+            {
+                EnemyUnitGroup.EnemySpawn(enemyIdx, dmg, hp);
+            }
+        }
+
+        // 스폰 완료 후 모든 적이 죽을 때까지 대기
+        yield return new WaitUntil(() => EnemyUnitGroup.IsAllDeadCheck);
+
+        // 다음 웨이브로 진행
+        GameRoot.Instance.UserData.Waveidx.Value += 1;  
+
+        int nextWaveIdx = GameRoot.Instance.UserData.Waveidx.Value;
+        int curStageIdx = GameRoot.Instance.UserData.Stageidx.Value;
+
+        var nextWaveData = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(curStageIdx, nextWaveIdx));
+
+        if (nextWaveData == null)
+        {
+            // 현재 스테이지의 웨이브가 없으면 다음 스테이지로
+            GameRoot.Instance.UserData.Stageidx.Value += 1;
+            GameRoot.Instance.UserData.Waveidx.Value = 1;
+        }
+
+        // 다음 웨이브 시작
+        GameRoot.Instance.StartCoroutine(EnemySpawnStart());
+    }
 
 }

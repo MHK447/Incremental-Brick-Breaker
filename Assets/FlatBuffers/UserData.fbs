@@ -38,6 +38,9 @@ table UserData {
   // @EndCreate
   money:string;
 
+  // @AutoCreate
+  waveidx:int = 1; //@ReactiveProperty
+
 }
 
 table OptionData {

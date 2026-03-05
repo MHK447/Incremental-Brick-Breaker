@@ -53,6 +53,8 @@ public struct UserData : IFlatbufferObject
   public ArraySegment<byte>? GetMoneyBytes() { return __p.__vector_as_arraysegment(24); }
 #endif
   public byte[] GetMoneyArray() { return __p.__vector_as_array<byte>(24); }
+  public int Waveidx { get { int o = __p.__offset(26); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)1; } }
+  public bool MutateWaveidx(int waveidx) { int o = __p.__offset(26); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, waveidx); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       int cash = 0,
@@ -65,11 +67,13 @@ public struct UserData : IFlatbufferObject
       long uuid = 0,
       VectorOffset recordvalueOffset = default(VectorOffset),
       int stageidx = 1,
-      StringOffset moneyOffset = default(StringOffset)) {
-    builder.StartTable(11);
+      StringOffset moneyOffset = default(StringOffset),
+      int waveidx = 1) {
+    builder.StartTable(12);
     UserData.AddUuid(builder, uuid);
     UserData.AddGamestarttime(builder, gamestarttime);
     UserData.AddLastlogintime(builder, lastlogintime);
+    UserData.AddWaveidx(builder, waveidx);
     UserData.AddMoney(builder, moneyOffset);
     UserData.AddStageidx(builder, stageidx);
     UserData.AddRecordvalue(builder, recordvalueOffset);
@@ -81,7 +85,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(11); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(12); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(0, cash, 0); }
   public static void AddBuyinappids(FlatBufferBuilder builder, StringOffset buyinappidsOffset) { builder.AddOffset(1, buyinappidsOffset.Value, 0); }
   public static void AddTutorial(FlatBufferBuilder builder, VectorOffset tutorialOffset) { builder.AddOffset(2, tutorialOffset.Value, 0); }
@@ -108,6 +112,7 @@ public struct UserData : IFlatbufferObject
   public static void StartRecordvalueVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddStageidx(FlatBufferBuilder builder, int stageidx) { builder.AddInt(9, stageidx, 1); }
   public static void AddMoney(FlatBufferBuilder builder, StringOffset moneyOffset) { builder.AddOffset(10, moneyOffset.Value, 0); }
+  public static void AddWaveidx(FlatBufferBuilder builder, int waveidx) { builder.AddInt(11, waveidx, 1); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);
@@ -134,6 +139,7 @@ public struct UserData : IFlatbufferObject
     for (var _j = 0; _j < this.RecordvalueLength; ++_j) {_o.Recordvalue.Add(this.Recordvalue(_j).HasValue ? this.Recordvalue(_j).Value.UnPack() : null);}
     _o.Stageidx = this.Stageidx;
     _o.Money = this.Money;
+    _o.Waveidx = this.Waveidx;
   }
   public static Offset<BanpoFri.Data.UserData> Pack(FlatBufferBuilder builder, UserDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UserData>);
@@ -170,7 +176,8 @@ public struct UserData : IFlatbufferObject
       _o.Uuid,
       _recordvalue,
       _o.Stageidx,
-      _money);
+      _money,
+      _o.Waveidx);
   }
 }
 
@@ -198,6 +205,8 @@ public class UserDataT
   public int Stageidx { get; set; }
   [Newtonsoft.Json.JsonProperty("money")]
   public string Money { get; set; }
+  [Newtonsoft.Json.JsonProperty("waveidx")]
+  public int Waveidx { get; set; }
 
   public UserDataT() {
     this.Cash = 0;
@@ -211,6 +220,7 @@ public class UserDataT
     this.Recordvalue = null;
     this.Stageidx = 1;
     this.Money = null;
+    this.Waveidx = 1;
   }
 
   public static UserDataT DeserializeFromJson(string jsonText) {
@@ -246,6 +256,7 @@ static public class UserDataVerify
       && verifier.VerifyVectorOfTables(tablePos, 20 /*Recordvalue*/, BanpoFri.Data.RecordCountVerify.Verify, false)
       && verifier.VerifyField(tablePos, 22 /*Stageidx*/, 4 /*int*/, 4, false)
       && verifier.VerifyString(tablePos, 24 /*Money*/, false)
+      && verifier.VerifyField(tablePos, 26 /*Waveidx*/, 4 /*int*/, 4, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }

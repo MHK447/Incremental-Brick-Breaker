@@ -110,57 +110,15 @@ public class EnemyUnitGroup : MonoBehaviour
                 var handle = Addressables.InstantiateAsync(td.prefab, transform);
                 var result = handle.WaitForCompletion();
                 instance = result.GetComponent<EnemyUnitBase>();
+                ProjectUtility.SetActiveCheck(instance.gameObject, false);
 
                 ActiveUnits.Add(instance);
             }
 
-            Vector3 spawnPos;
-            float landingY;
-
-            if (IsEnemyBlockSpawnerActive && EnemyBlockSpawner != null)
-            {
-                // EnemyBlockSpawner가 활성화된 경우 GetUnitSpawnerPoint로 순차적으로 스폰 포인트 가져오기
-                Transform spawnPoint = EnemyBlockSpawner.transform;
-                if (spawnPoint == null)
-                {
-                    spawnPoint = transform;
-                }
-                var randx = Random.Range(-0.3f, 0.3f);
-                var randy = Random.Range(-0.3f, 0.3f);
-                spawnPos = new Vector3(spawnPoint.position.x + randx, spawnPoint.position.y + randy, spawnPoint.position.z);
-                landingY = spawnPos.y;
-            }
-            else
-            {
-                // UnitSpawnList에 바로 소환 (랜딩 없음)
-                if (UnitSpawnList != null && UnitSpawnList.Count > 0)
-                {
-                    spawnPos = UnitSpawnList[SpawnOrder].position;
-                    spawnPos.x += SpawnOrder * 1.0f; // x축으로 간격 추가
-                }
-                else
-                {
-                    spawnPos = transform.position;
-                }
-                landingY = spawnPos.y;
-            }
-
-            instance.transform.position = spawnPos;
-
-            // Set 호출 시 SpawnOrder와 y값, WaveInfo의 dmg, hp 전달 (활성화 전에 초기화)
+            var randcount = Random.Range(0, UnitSpawnList.Count);
             instance.Set(enemydata);
-
-
-            // 초기화 완료 후 활성화
+            instance.transform.position = UnitSpawnList[randcount].position;
             ProjectUtility.SetActiveCheck(instance.gameObject, true);
-
-            OneTimeRewardCount++;
-            SpawnOrder++;
-
-            if (UnitSpawnList != null && UnitSpawnList.Count > 0 && SpawnOrder >= UnitSpawnList.Count)
-            {
-                SpawnOrder = 0;
-            }
         }
     }
 
@@ -322,15 +280,16 @@ public class EnemyUnitGroup : MonoBehaviour
                 var handle = Addressables.InstantiateAsync(td.prefab, transform);
                 var result = handle.WaitForCompletion();
                 instance = result.GetComponent<EnemyUnitBase>();
+                ProjectUtility.SetActiveCheck(instance.gameObject, false);
 
                 ActiveUnits.Add(instance);
             }
 
-            Transform randspawntr = null;
-            randspawntr = transform;
+         
+            var randcount = Random.Range(0, UnitSpawnList.Count);
 
             // 스폰 위치 설정
-            instance.transform.position = randspawntr.position;
+            instance.transform.position = UnitSpawnList[randcount].position;
 
             // 초기화
             var enemydata = new EnemyUnitData();
