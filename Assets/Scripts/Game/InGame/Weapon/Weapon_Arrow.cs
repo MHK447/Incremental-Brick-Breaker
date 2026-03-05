@@ -4,13 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 
-
-public class PlayerUnit : MonoBehaviour
+public class Weapon_Arrow : Weapon_ProjectTile
 {
-    public void Damage(int damage)
-    {
-        
-    }
-    
+
 }
 

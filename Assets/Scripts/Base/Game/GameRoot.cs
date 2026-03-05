@@ -55,6 +55,10 @@ public class GameRoot : Singleton<GameRoot>
 
 	public ItemSystem ItemSystem { get; private set; } = new ItemSystem();
 
+	public SceneSystem SceneSystem { get; private set; } = new SceneSystem();
+
+	public WeaponSystem WeaponSystem { get; private set; } = new WeaponSystem();
+
 	public UnityMainThreadDispatcher MainThreadDispatcher;
 
 	private Queue<System.Action> PauseActions = new Queue<System.Action>();
@@ -274,6 +278,8 @@ public class GameRoot : Singleton<GameRoot>
 		GameNotification.Create();
 		AttendanceSystem.Create();
 		ItemSystem.Create();
+
+        GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.EnsureStageLoaded();
 
 		// yield return new WaitUntil(() =>
 		// {

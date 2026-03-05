@@ -27,6 +27,8 @@ public partial class UserDataSystem
     public IReactiveProperty<int> Cash { get; private set; } = new ReactiveProperty<int>(0);
     public int ABTestValue { get; set; } = -1;
 
+    public InGamePlayerData InGamePlayerData  = new InGamePlayerData();
+
     public IReactiveCollection<string> BuyInappIds { get; private set; } = new ReactiveCollection<string>();
     public Dictionary<string, int> RecordCount { get; private set; } = new Dictionary<string, int>();
     public Dictionary<string, int> RecordValue { get; private set; } = new Dictionary<string, int>();

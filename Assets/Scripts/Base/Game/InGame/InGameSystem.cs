@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UniRx;
 using BanpoFri;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using System.Linq;
 
 [System.Serializable]
@@ -36,9 +39,23 @@ public class InGameSystem
     }
 
 
+    public bool IsInGameLoaded { get; private set; } = false;
+
     private void StartGame(GameType type, System.Action loadCallback = null, bool nextStage = false)
     {
         GameRoot.Instance.Loading.Show(true);
+        GameRoot.Instance.SceneSystem.ChangeScene(type, loadCallback);
+    }
+
+    private string GetSceneName(GameType type)
+    {
+        switch (type)
+        {
+            case GameType.Main:
+                return "InGameTycoon";
+            default:
+                return "InGameTycoon";
+        }
     }
 
     public void ChangeMode(GameType type, System.Action _action = null)

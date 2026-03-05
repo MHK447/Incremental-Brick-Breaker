@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f06a290e92284d969f529b8401ed7be, type: 3}
+  m_Name: EnemyUnitInfo
+  m_EditorClassIdentifier: 
+  mFirstKey:
+  - 1
+  - 2
+  mSecondKey: []
+  mDataList:
+  - _enemy_idx: 1
+    _type: 1
+    _move_speed: 45
+    _attack_speed: 100
+    _atk_range_factor: 100
+    _prefab: EnemyUnit_Warrior_01
+  - _enemy_idx: 2
+    _type: 2
+    _move_speed: 45
+    _attack_speed: 100
+    _atk_range_factor: 300
+    _prefab: EnemyUnit_Arture_02

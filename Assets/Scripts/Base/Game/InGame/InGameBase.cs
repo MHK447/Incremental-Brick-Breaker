@@ -28,8 +28,31 @@ public class InGameBase : InGameMode
 
         stageLoading = true;
         stageLoadCancelled = false;
-        // ChapterMap_Base prefab removed - stage remains null
-        stageLoading = false;
+
+        Addressables.InstantiateAsync("ChapterMap_Base").Completed += (handle) =>
+        {
+            stageLoading = false;
+
+            if (stageLoadCancelled)
+            {
+                if (handle.Result != null)
+                    Addressables.ReleaseInstance(handle.Result);
+                return;
+            }
+
+            if (handle.Result != null)
+            {
+                stage = handle.Result.GetComponent<InGameBaseStage>();
+                if (stage != null)
+                {
+                    stage.Init();
+                }
+                else
+                {
+                    Addressables.ReleaseInstance(handle.Result);
+                }
+            }
+        };
     }
 
     public override void Load()

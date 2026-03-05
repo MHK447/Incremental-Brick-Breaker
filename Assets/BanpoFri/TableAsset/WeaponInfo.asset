@@ -13,82 +13,12 @@ MonoBehaviour:
   m_Name: WeaponInfo
   m_EditorClassIdentifier: 
   mFirstKey:
-  - 101
-  - 102
-  - 103
-  - 104
-  - 105
-  - 106
-  - 107
-  - 108
-  - 109
-  - 110
-  - 111
+  - 1
   mSecondKey: []
   mDataList:
-  - _idx: 101
+  - _idx: 1
+    _base_dmg: 1
     _projection_type: 1
-    _attack_range: 120
-    _bullet_image: weapon_img_1
-    _prefab: PlayerBlock_Axe
-    _effect_type: 0
-  - _idx: 102
-    _projection_type: 1
-    _attack_range: 120
-    _bullet_image: weapon_img_2
-    _prefab: PlayerBlock_Hammer
-    _effect_type: 0
-  - _idx: 103
-    _projection_type: 1
-    _attack_range: 120
-    _bullet_image: weapon_img_3
-    _prefab: PlayerBlock_Knife
-    _effect_type: 0
-  - _idx: 104
-    _projection_type: 1
-    _attack_range: 120
-    _bullet_image: weapon_img_4
-    _prefab: PlayerBlock_Wheel
-    _effect_type: 0
-  - _idx: 105
-    _projection_type: 1
-    _attack_range: 120
-    _bullet_image: weapon_img_8
-    _prefab: PlayerBlock_Dynamight
-    _effect_type: 0
-  - _idx: 106
-    _projection_type: 1
-    _attack_range: 120
-    _bullet_image: weapon_img_9
-    _prefab: PlayerBlock_Laser
-    _effect_type: 0
-  - _idx: 107
-    _projection_type: -1
-    _attack_range: 0
-    _bullet_image: weapon_img_10
-    _prefab: PlayerBlock_Shiled
-    _effect_type: 0
-  - _idx: 108
-    _projection_type: -1
-    _attack_range: 0
-    _bullet_image: weapon_img_11
-    _prefab: PlayerBlock_SilverCoin
-    _effect_type: 0
-  - _idx: 109
-    _projection_type: -1
-    _attack_range: 0
-    _bullet_image: weapon_img_11
-    _prefab: PlayerBlock_HpHeal
-    _effect_type: 0
-  - _idx: 110
-    _projection_type: -1
-    _attack_range: 0
-    _bullet_image: 
-    _prefab: PlayerBlock_Katana
-    _effect_type: 0
-  - _idx: 111
-    _projection_type: -1
-    _attack_range: 0
-    _bullet_image: 
-    _prefab: PlayerBlock_Pistal
+    _attack_range: 400
+    _prefab: bullet_arrow
     _effect_type: 0

@@ -435,61 +435,6 @@ public static class ProjectUtility
         });
     }
 
-    /// <summary>
-    /// 게임을 재로딩합니다.
-    /// </summary>
-    /// <param name="changeQuality">품질 설정 변경 여부</param>
-    public static void ReLoadGame(bool changeQuality = false)
-    {
-        GameRoot.Instance.UserData.Save(true);
-
-        if (GameRoot.Instance.InGameSystem.CurInGame != null)
-            GameRoot.Instance.InGameSystem.CurInGame.UnLoad();
-
-        if (changeQuality)
-        {
-            if (!Addressables.ReleaseInstance(GameRoot.Instance.Loading.gameObject))
-                GameObject.Destroy(GameRoot.Instance.Loading.gameObject);
-
-            GameRoot.Instance.Loading = null;
-        }
-        else
-        {
-            GameRoot.Instance.Loading.Show(true);
-        }
-
-        GameRoot.Instance.EffectSystem.Clear();
-        GameRoot.Instance.UISystem.UnLoadUIAll();
-        GameRoot.Instance.ContentsOpenSystem.UnLoad();
-        GameRoot.Instance.CurrencyTop = null; // 기존 참조는 파괴되므로 초기화
-
-        // 재로딩 수행
-        System.Action Load = () =>
-        {
-            GameRoot.Instance.WaitTimeAndCallback(1f, () =>
-            {
-                GameRoot.Instance.UserData.Load();
-
-                GameRoot.Instance.GameNotification.Create();
-                GameRoot.Instance.ContentsOpenSystem.Create();
-                GameRoot.Instance.AttendanceSystem.Create();
-                GameRoot.Instance.ItemSystem.Create();
-
-                // Reload stage instance so lobby can start battles after data download.
-                GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.EnsureStageLoaded();
-
-                GameRoot.Instance.Loading.Hide(true);
-
-                // 통화 HUD부터 다시 열어 참조를 재구성한 뒤 로비/HUD를 표시
-            
-            });
-        };
-
-        // Load 액션 실행
-        Load.Invoke();
-    }
-
-
     public static void RewardGoodsEffect(int rewardtype, int rewardidx, int rewardvalue, Vector3 startpos)
     {
         string rewardstr = "";

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 
-
-public class PlayerUnit : MonoBehaviour
+public class WeaponSystem 
 {
-    public void Damage(int damage)
+
+    public enum WeaponType
     {
+        BaseArrow = 1,
         
     }
-    
+
 }
 

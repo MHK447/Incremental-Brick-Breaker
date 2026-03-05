@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using System.Collections;
 using System.IO.Compression;
 using System.Linq;
+using UnityEngine.AddressableAssets;
 
 public partial class InGameBaseStage : MonoBehaviour
 {
     public GameObject ChapterMapRoot;
 
+    public EnemyUnitGroup EnemyUnitGroup;
 
     private Coroutine currentWaveCoroutine = null;
 
-    
+
 
     [HideInInspector]
     public int StageStartTime = 0;
@@ -24,15 +26,15 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void InitStage()
     {
+        GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
 
         EquipTutorialCheck();
-
     }
 
     public void StartBattle()
     {
-      
-       
+
+
     }
 
     private float stagedeltatime = 0;
@@ -40,7 +42,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
     void Update()
     {
-       
+
     }
 
 
@@ -111,7 +113,7 @@ public partial class InGameBaseStage : MonoBehaviour
         SoundPlayer.Instance.SetBGMVolume(0.125f);
         SoundPlayer.Instance.RestartBGM();
 
-     
+
         GameRoot.Instance.GameNotification.UpdateNotification(GameNotificationSystem.NotificationCategory.HeroUpgradeCheck);
 
 
@@ -164,6 +166,21 @@ public partial class InGameBaseStage : MonoBehaviour
             return;
         }
 
+        if (EnemyUnitGroup == null) return;
+
+        int stageIdx = GameRoot.Instance.UserData.Stageidx.Value;
+        int waveIdx = GameRoot.Instance.UserData.Waveidx.Value;
+
+        currentWaveCoroutine = StartCoroutine(RunWave(stageIdx, waveIdx));
+    }
+
+    private IEnumerator RunWave(int stageIdx, int waveIdx)
+    {
+        yield return StartCoroutine(EnemyUnitGroup.SpawnWave(stageIdx, waveIdx));
+        currentWaveCoroutine = null;
+
+        // 스폰 완료 후 이미 모든 적이 죽었는지 체크
+        EnemyUnitGroup.CheckAndStartRestIfAllDead();
     }
 
     public void StartRest()
