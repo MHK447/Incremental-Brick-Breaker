@@ -6,6 +6,6 @@ using UnityEngine.UI;
 
 public class Weapon_Arrow : Weapon_ProjectTile
 {
-
+    
 }
 

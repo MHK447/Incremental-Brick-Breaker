@@ -12,6 +12,9 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public EnemyUnitGroup EnemyUnitGroup;
 
+    [SerializeField]
+    private PlayerUnit PlayerUnit;
+
     private Coroutine currentWaveCoroutine = null;
 
 
@@ -27,6 +30,8 @@ public partial class InGameBaseStage : MonoBehaviour
     public void InitStage()
     {
         GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
+
+        PlayerUnit.Init();
 
         EquipTutorialCheck();   
 
@@ -235,7 +240,7 @@ public partial class InGameBaseStage : MonoBehaviour
             int dmg = (i < waveData.unit_dmg.Count) ? waveData.unit_dmg[i] : 0;
             int hp = (i < waveData.unit_hp.Count) ? waveData.unit_hp[i] : 0;
             int count = (i < waveData.unit_count.Count) ? waveData.unit_count[i] : 1;
-            float appearTime = (i < waveData.unit_appear_time.Count) ? waveData.unit_appear_time[i] * 0.001f : 0f;
+            float appearTime = (i < waveData.unit_appear_time.Count) ? waveData.unit_appear_time[i] * 0.01f : 0f;
 
             if (appearTime > 0f)
             {

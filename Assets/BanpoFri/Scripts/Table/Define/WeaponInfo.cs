@@ -28,6 +28,13 @@ namespace BanpoFri
 			set { _projection_type = value;}
 		}
 		[SerializeField]
+		private int _attack_cooltime;
+		public int attack_cooltime
+		{
+			get { return _attack_cooltime;}
+			set { _attack_cooltime = value;}
+		}
+		[SerializeField]
 		private int _attack_range;
 		public int attack_range
 		{

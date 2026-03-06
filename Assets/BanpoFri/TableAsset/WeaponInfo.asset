@@ -19,6 +19,7 @@ MonoBehaviour:
   - _idx: 1
     _base_dmg: 1
     _projection_type: 1
+    _attack_cooltime: 100
     _attack_range: 400
-    _prefab: bullet_arrow
+    _prefab: Shooter_Arrow_1
     _effect_type: 0

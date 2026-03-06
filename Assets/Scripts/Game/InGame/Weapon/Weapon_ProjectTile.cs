@@ -24,13 +24,22 @@ public class Weapon_ProjectTile : Weapon_Base
     private EnemyUnitBase Target = null;
     protected List<BulletBase> ActiveBullets = new List<BulletBase>();
 
-
+    private EnemyUnitGroup EnemyUnitGroup;
 
     public override void Set(WeaponData weaponData)
     {
         base.Set(weaponData);
 
         WeaponData = weaponData;
+
+        EnemyUnitGroup = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.EnemyUnitGroup;
+
+        // 풀 초기화: Init이 호출되지 않으면 Get() 시 큐가 비어 있어 예외 발생
+        if (BulletPrefab != null && BulletPool != null)
+        {
+            const int initialPoolSize = 20;
+            BulletPool.Init(BulletPrefab, transform, initialPoolSize);
+        }
     }
 
 
@@ -100,8 +109,14 @@ public class Weapon_ProjectTile : Weapon_Base
 
     public EnemyUnitBase FindTarget()
     {
-        Target = null;
-        return null;
+        if (EnemyUnitGroup == null || barrelTransform == null)
+        {
+            Target = null;
+            return null;
+        }
+
+        Target = EnemyUnitGroup.FindTargetEnemy(barrelTransform);
+        return Target;
     }
 
     protected bool IsValidTarget() => GetTargetTransform() != null;
@@ -128,6 +143,7 @@ public class Weapon_ProjectTile : Weapon_Base
 
     public virtual void BulletInfoInit()
     {
+        
     }
 
 
@@ -137,8 +153,6 @@ public class Weapon_ProjectTile : Weapon_Base
         if (WeaponData == null) return;
 
         if (GameRoot.Instance == null) return;
-
-        if (GameRoot.Instance.UserData.InGamePlayerData.IsDeadProperty.Value) return;
 
         if (GameRoot.Instance.UserData.InGamePlayerData.IsDeadProperty.Value) return;
 

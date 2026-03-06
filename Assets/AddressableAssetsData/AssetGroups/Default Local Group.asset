@@ -220,6 +220,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 70430b2d65c61485c9407275917ef3d3
+    m_Address: Shooter_Arrow_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 72cd5606eedc4284197f2e938e0bd168
     m_Address: Effect/DoubleShotEffect
     m_ReadOnly: 0

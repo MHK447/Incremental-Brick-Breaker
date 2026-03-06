@@ -36,6 +36,10 @@ public class EnemyUnitBase : MonoBehaviour
 
     protected EnemyUnitData EnemyUnitData { get; private set; } = null;
 
+    [SerializeField]
+    private List<SpriteRenderer> UnitSpriteList = new List<SpriteRenderer>();
+
+    
     private EnemyUnitData.EnemyUnitState currentState = EnemyUnitData.EnemyUnitState.Idle;
     private float attackTimer = 0f;
     private PlayerUnit targetPlayer = null;
@@ -117,11 +121,70 @@ public class EnemyUnitBase : MonoBehaviour
 
         EnemyUnitData.CurHp -= damage;
 
+        DamageColorEffect();
+
+        GameRoot.Instance.DamageTextSystem.ShowDamage(damage, transform.position, Color.red);
+
         if (EnemyUnitData.CurHp <= 0)
         {
             EnemyUnitData.CurHp = 0;
             currentState = EnemyUnitData.EnemyUnitState.Dead;
             if (Anim != null) Anim.SetTrigger("Dead");
+
+            ProjectUtility.SetActiveCheck(this.gameObject , false);
         }
     }
+
+    private bool IsDamageDirect = false;
+
+    public virtual void DamageColorEffect()
+    {
+        if (!IsDamageDirect)
+        {
+            IsDamageDirect = true;
+
+            // 피격 효과 적용
+            foreach (var sprite in UnitSpriteList)
+            {
+                if (sprite != null)
+                {
+                    sprite.EnableHitEffect();
+                }
+            }
+
+            GameRoot.Instance.WaitTimeAndCallback(0.15f, () =>
+            {
+                if (this != null)
+                {
+                    // 효과 종료 후 원래 머티리얼로 복귀
+                    foreach (var sprite in UnitSpriteList)
+                    {
+                        if (sprite != null)
+                        {
+                            sprite.DisableHitEffect();
+                        }
+                    }
+
+                    IsDamageDirect = false;
+                }
+            });
+        }
+    }
+
+    // protected virtual IEnumerator FadeOutAndDelete()
+    // {
+    //     // DOTween을 사용하여 0.3초간 스케일을 0으로 만들기
+    //     transform.DOScale(Vector3.zero, 0.3f)
+    //         .SetEase(Ease.InOutQuad)
+    //         .OnComplete(() =>
+    //         {
+    //             DeleteUnit();
+    //             fadeOutCoroutine = null;
+    //         });
+
+    //     yield return null;
+    // }
+
+
+
 }

@@ -119,6 +119,9 @@ public class PrefabPool<T> : IPool<T> where T : Component
             Create(1);
         }
 
+        if (poolQueue.Count < 1)
+            return null;
+
         var obj = poolQueue.Dequeue();
         obj.gameObject.SetActive(true);
         return obj;
