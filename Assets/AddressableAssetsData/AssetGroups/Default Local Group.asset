@@ -125,11 +125,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3c8e62fc5caf0e74da25b6972eb96619
-    m_Address: UI/Popup/PopupOption
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e7022f4f5a1147f2ac641b801bec555
     m_Address: Effect/DoubleSpawnEffect
     m_ReadOnly: 0
