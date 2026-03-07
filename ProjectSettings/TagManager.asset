@@ -31,7 +31,7 @@ TagManager:
   - PlayerWall
   - Ground
   - EnemyBlockSpawner
-  - Enemy
+  - Currency
   - 
   - 
   - 

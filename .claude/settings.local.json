@@ -10,7 +10,10 @@
       "mcp__ai-game-developer__script-update-or-create",
       "mcp__ai-game-developer__script-execute",
       "mcp__ai-game-developer__assets-prefab-close",
-      "mcp__ai-game-developer__editor-application-get-state"
+      "mcp__ai-game-developer__editor-application-get-state",
+      "Bash(git checkout -- \"Assets/Arts/Prefabs/Popup/PopupInGame.prefab\")",
+      "Bash(grep -rn \"15f12ed8225e248f6afb1b1a3bc77654\" /Users/minhwankwak/Incremental-Brick-Breaker/Assets/ --include=\"*.meta\" 2>/dev/null | head -5)",
+      "Bash(for guid in 71e763c24d0dc4fa689d8ba3ff4a14ca 5e8460514e26c4df682a0e42cde21884 b59f9501d61e643bfbfe128a92e4166a 3f40a51dae53e434ba28f10129641776; do echo \"=== $guid ===\"; grep -rn \"$guid\" /Users/minhwankwak/Incremental-Brick-Breaker/Assets/ --include=\"*.meta\" 2>/dev/null; done)"
     ]
   },
   "enableAllProjectMcpServers": true,

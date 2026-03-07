@@ -435,6 +435,26 @@ public static class ProjectUtility
         });
     }
 
+
+    public static Transform GetRewardEndTr(int rewardtype, int rewardidx)
+    {
+        switch (rewardtype)
+        {
+            case (int)Config.RewardType.Currency:
+                {
+                    switch (rewardidx)
+                    {
+                        case (int)Config.CurrencyID.Money:
+                            return GameRoot.Instance.UISystem.GetUI<HudCurrencyTop>().GetMoneyRoot;
+                        case (int)Config.CurrencyID.Material:
+                            return GameRoot.Instance.UISystem.GetUI<HudCurrencyTop>().GetMaterialRoot;
+                    }
+                }
+                break;
+        }
+        return null;
+    }
+
     public static void RewardGoodsEffect(int rewardtype, int rewardidx, int rewardvalue, Vector3 startpos)
     {
         string rewardstr = "";

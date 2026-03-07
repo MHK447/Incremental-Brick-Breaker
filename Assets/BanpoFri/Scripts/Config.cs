@@ -425,6 +425,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
         }
     }
 
+
     public Sprite GetRewardImage(int rewardtype, int rewardidx)
     {
         switch (rewardtype)

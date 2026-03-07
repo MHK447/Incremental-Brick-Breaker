@@ -70,6 +70,7 @@ public partial class UserDataSystem
     public IReactiveProperty<double> HUDArtifactStone = new ReactiveProperty<double>(0);
 
     // @변수 자동 등록 위치
+    public IReactiveProperty<int> Playerlevel { get; set; } = new ReactiveProperty<int>(1);
     public List<int> Equipcarddatas = new List<int>();
     public DateTime Resetdaytime { get; set; } = new DateTime();
     public DateTime Attendancetime { get; set; } = new DateTime();

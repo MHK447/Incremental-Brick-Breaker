@@ -6,6 +6,21 @@ using UnityEngine.UI;
 
 public class EnemyUnitData
 {
+
+    public int EnemyIdx { get; set; } = 0;
+    public int StartHp { get; set; } = 0;
+    public int CurHp { get; set; } = 0;
+    public int Dmg { get; set; } = 0;
+    public float AtkSpeed { get; set; } = 0f;
+    public int AtkRange { get; set; } = 0;
+    public int MoveSpeed { get; set; } = 0;
+
+    public float Attackdeltime = 0f;
+}
+
+public class EnemyUnitBase : MonoBehaviour
+{
+
     public enum EnemyUnitState
     {
         Idle,
@@ -13,18 +28,7 @@ public class EnemyUnitData
         Dead,
         Move,
     }
-
-    public int EnemyIdx { get; set; } = 0;
-    public int StartHp { get; set; } = 0;
-    public int CurHp { get; set; } = 0;
-    public int Dmg { get; set; } = 0;
-    public int AtkSpeed { get; set; } = 0;
-    public int AtkRange { get; set; } = 0;
-    public int MoveSpeed { get; set; } = 0;
-}
-
-public class EnemyUnitBase : MonoBehaviour
-{
+    public EnemyUnitState CurrentState { get; private set; } = EnemyUnitState.Idle;
     [SerializeField]
     private Animator Anim;
 
@@ -39,18 +43,21 @@ public class EnemyUnitBase : MonoBehaviour
     [SerializeField]
     private List<SpriteRenderer> UnitSpriteList = new List<SpriteRenderer>();
 
-    
-    private EnemyUnitData.EnemyUnitState currentState = EnemyUnitData.EnemyUnitState.Idle;
+
+    private EnemyUnitState currentState = EnemyUnitState.Idle;
     private float attackTimer = 0f;
     private PlayerUnit targetPlayer = null;
+
+    private EnemyUnitGroup EnemyUnitGroup = null;
 
     public virtual void Set(EnemyUnitData enemydata)
     {
         EnemyUnitData = enemydata;
         EnemyIdx = enemydata.EnemyIdx;
-        currentState = EnemyUnitData.EnemyUnitState.Move;
+        currentState = EnemyUnitState.Move;
         attackTimer = 0f;
-        targetPlayer = null;
+        targetPlayer = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.Player;
+        EnemyUnitGroup = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.EnemyUnitGroup;
     }
 
     protected virtual void Update()
@@ -59,7 +66,7 @@ public class EnemyUnitBase : MonoBehaviour
 
         if (targetPlayer == null || !targetPlayer.gameObject.activeInHierarchy)
         {
-            targetPlayer = FindObjectOfType<PlayerUnit>();
+            targetPlayer = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.Player;
             if (targetPlayer == null) return;
         }
 
@@ -68,11 +75,14 @@ public class EnemyUnitBase : MonoBehaviour
 
         switch (currentState)
         {
-            case EnemyUnitData.EnemyUnitState.Move:
+            case EnemyUnitState.Move:
                 MoveToPlayer(distance, atkRange);
                 break;
-            case EnemyUnitData.EnemyUnitState.Attack:
+            case EnemyUnitState.Attack:
                 AttackPlayer(distance, atkRange);
+                break;
+            case EnemyUnitState.Idle:
+                IdleAfterAttack(distance, atkRange);
                 break;
         }
     }
@@ -81,9 +91,8 @@ public class EnemyUnitBase : MonoBehaviour
     {
         if (distance <= atkRange)
         {
-            currentState = EnemyUnitData.EnemyUnitState.Attack;
+            currentState = EnemyUnitState.Attack;
             attackTimer = 0f;
-            if (Anim != null) Anim.SetTrigger("Attack");
             return;
         }
 
@@ -91,7 +100,7 @@ public class EnemyUnitBase : MonoBehaviour
         Vector3 direction = (targetPlayer.transform.position - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
 
-        if (Anim != null) Anim.SetBool("IsMove", true);
+        if (Anim != null) Anim.Play("Move");
     }
 
     private void AttackPlayer(float distance, float atkRange)
@@ -99,19 +108,51 @@ public class EnemyUnitBase : MonoBehaviour
         // 사거리 밖으로 나가면 다시 이동
         if (distance > atkRange * 1.1f)
         {
-            currentState = EnemyUnitData.EnemyUnitState.Move;
-            if (Anim != null) Anim.SetBool("IsMove", true);
+            currentState = EnemyUnitState.Move;
+            if (Anim != null) Anim.Play("Walk");
             return;
         }
+
+        attackTimer += Time.deltaTime;
+
+        if (attackTimer >= EnemyUnitData.AtkSpeed)
+        {
+            attackTimer = 0f;
+            ChangeState(EnemyUnitState.Attack);
+        }
+    }
+
+    public void AttackAfter()
+    {
+        attackTimer = EnemyUnitData.AtkSpeed;
+        targetPlayer.Damage(EnemyUnitData.Dmg);
+
+        ChangeState(EnemyUnitState.Move);
+    }
+
+    public void DeadAfter()
+    {
+        ProjectUtility.SetActiveCheck(this.gameObject, false);
+    }
+
+    private void IdleAfterAttack(float distance, float atkRange)
+    {
+        // 사거리 밖이면 다시 이동
+        if (distance > atkRange * 1.1f)
+        {
+            ChangeState(EnemyUnitState.Move);
+            return;
+        }
+
+        ChangeState(EnemyUnitState.Move);
 
         float atkCoolTime = EnemyUnitData.AtkSpeed > 0 ? 1f / (EnemyUnitData.AtkSpeed * 0.01f) : 1f;
         attackTimer += Time.deltaTime;
 
         if (attackTimer >= atkCoolTime)
         {
-            attackTimer = 0f;
-            targetPlayer.Damage(EnemyUnitData.Dmg);
-            if (Anim != null) Anim.SetTrigger("Attack");
+            attackTimer = atkCoolTime; // 다음 프레임에 바로 공격
+            ChangeState(EnemyUnitState.Attack);
         }
     }
 
@@ -128,10 +169,16 @@ public class EnemyUnitBase : MonoBehaviour
         if (EnemyUnitData.CurHp <= 0)
         {
             EnemyUnitData.CurHp = 0;
-            currentState = EnemyUnitData.EnemyUnitState.Dead;
-            if (Anim != null) Anim.SetTrigger("Dead");
+            ChangeState(EnemyUnitState.Dead);
 
-            ProjectUtility.SetActiveCheck(this.gameObject , false);
+            GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
+            {
+                x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, EnemyUnitData.Dmg);
+            });
+
+            // ActiveUnits에서 제거해 IsAllDeadCheck가 true가 되도록 함 → 다음 웨이브 진행
+            if (EnemyUnitGroup != null)
+                EnemyUnitGroup.DeleteUnit(this);
         }
     }
 
@@ -171,20 +218,28 @@ public class EnemyUnitBase : MonoBehaviour
         }
     }
 
-    // protected virtual IEnumerator FadeOutAndDelete()
-    // {
-    //     // DOTween을 사용하여 0.3초간 스케일을 0으로 만들기
-    //     transform.DOScale(Vector3.zero, 0.3f)
-    //         .SetEase(Ease.InOutQuad)
-    //         .OnComplete(() =>
-    //         {
-    //             DeleteUnit();
-    //             fadeOutCoroutine = null;
-    //         });
 
-    //     yield return null;
-    // }
-
-
+    public void ChangeState(EnemyUnitState state)
+    {
+        currentState = state;
+        if (Anim != null)
+        {
+            switch (state)
+            {
+                case EnemyUnitState.Idle:
+                    Anim.Play("Idle");
+                    break;
+                case EnemyUnitState.Attack:
+                    Anim.Play("Attack");
+                    break;
+                case EnemyUnitState.Dead:
+                    Anim.Play("Dead");
+                    break;
+                case EnemyUnitState.Move:
+                    Anim.Play("Walk");
+                    break;
+            }
+        }
+    }
 
 }

@@ -15,9 +15,21 @@ public partial class InGameBaseStage : MonoBehaviour
     [SerializeField]
     private PlayerUnit PlayerUnit;
 
+    public PlayerUnit Player { get { return PlayerUnit; } }
+
     private Coroutine currentWaveCoroutine = null;
 
+    [SerializeField]
+    private Transform MoveMapRoot;
 
+    // MoveMapComponent 통합 관리
+    private List<MoveMapComponent> MoveMapComponents = new List<MoveMapComponent>();
+
+    /// <summary> 웨이브 전환 시 플레이어 Run + 맵 이동 연출 시간(초). 웨이브 진행 바 채우기 시간과 동기화됨. </summary>
+    public const float WaveMoveDuration = 4f;
+
+    /// <summary> 첫 웨이브 이동 연출을 이미 했으면 true (다음 웨이브부터는 이동 생략) </summary>
+    private bool _firstWaveMoveDone = false;
 
     [HideInInspector]
     public int StageStartTime = 0;
@@ -29,13 +41,17 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void InitStage()
     {
-        GameRoot.Instance.UISystem.OpenUI<PopupInGame>();
+        _firstWaveMoveDone = false;
+
+        GameRoot.Instance.UISystem.OpenUI<PopupInGame>(popup => popup.Init());
 
         PlayerUnit.Init();
 
-        EquipTutorialCheck();   
+        EquipTutorialCheck();
 
-        GameRoot.Instance.StartCoroutine(EnemySpawnStart());
+        InitMoveMapComponents();
+
+        StartCoroutine(EnemySpawnStart());
     }
 
     public void StartBattle()
@@ -192,15 +208,12 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void StartRest()
     {
-
         //logs
         GameRoot.Instance.UserData.Waveidx.Value += 1;
-
 
         SoundPlayer.Instance.PlaySound("sfx_wave_win");
 
         //      EnemyUnitGroup.CheckEnemyBlockSpawner();
-
 
         //리롤 튜토리얼 체크
         if (GameRoot.Instance.UserData.Waveidx.Value == 2 && GameRoot.Instance.UserData.Stageidx.Value == 1)
@@ -213,22 +226,55 @@ public partial class InGameBaseStage : MonoBehaviour
             GameRoot.Instance.TutorialSystem.StartTutorial(TutorialSystem.Tuto_1);
         }
 
+        // 다음 웨이브: 승리 연출(PlayWinActionAndStartRest) 후 휴식 처리 끝났으므로 이동 연출 → 스폰
+        StartCoroutine(EnemySpawnStart());
     }
 
     public IEnumerator EnemySpawnStart()
     {
-        // Move Truck
+        // 매 웨이브마다 이동 연출: 플레이어 Run + 맵(바퀴) 무한 이동 4초 후 스폰
+        PlayerUnit.ChangeState(PlayerUnit.PlayerState.Run);
 
-        yield return new WaitForSeconds(2f);
+        foreach (var movemap in MoveMapComponents)
+        {
+            movemap.StartInfiniteMove();
+        }
+
+        yield return new WaitForSeconds(WaveMoveDuration);
+
+        // 이동 연출 완전히 종료
+        foreach (var movemap in MoveMapComponents)
+        {
+            movemap.PauseMove();
+        }
+        PlayerUnit.ChangeState(PlayerUnit.PlayerState.Idle);
+        yield return null; // 한 프레임 대기해 이동 종료 상태 반영 후 진행
+
+
+        if (!_firstWaveMoveDone)
+            _firstWaveMoveDone = true;
 
         var waveidx = GameRoot.Instance.UserData.Waveidx.Value;
         var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
-
         var td = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(stageidx, waveidx));
 
         if (td != null)
         {
-           GameRoot.Instance.StartCoroutine(SpawnEnemiesSequentially(td));
+            currentWaveCoroutine = StartCoroutine(SpawnEnemiesSequentially(td)); // 이동 다 끝난 뒤 적 소환
+        }
+        else
+        {
+            // 해당 스테이지/웨이브 데이터가 없으면 다음 구간으로 진행 후 재시도
+            GameRoot.Instance.UserData.Waveidx.Value += 1;
+            int nextStage = GameRoot.Instance.UserData.Stageidx.Value;
+            int nextWave = GameRoot.Instance.UserData.Waveidx.Value;
+            var nextTd = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(nextStage, nextWave));
+            if (nextTd == null)
+            {
+                GameRoot.Instance.UserData.Stageidx.Value += 1;
+                GameRoot.Instance.UserData.Waveidx.Value = 1;
+            }
+            StartCoroutine(EnemySpawnStart());
         }
     }
 
@@ -253,26 +299,23 @@ public partial class InGameBaseStage : MonoBehaviour
             }
         }
 
-        // 스폰 완료 후 모든 적이 죽을 때까지 대기
+        // 스폰 완료 → 웨이브 진행 플래그 해제 (승리 연출 시 IsWaveSpawnComplete true)
+        currentWaveCoroutine = null;
+
         yield return new WaitUntil(() => EnemyUnitGroup.IsAllDeadCheck);
+    }
 
-        // 다음 웨이브로 진행
-        GameRoot.Instance.UserData.Waveidx.Value += 1;  
 
-        int nextWaveIdx = GameRoot.Instance.UserData.Waveidx.Value;
-        int curStageIdx = GameRoot.Instance.UserData.Stageidx.Value;
+    private void InitMoveMapComponents()
+    {
+        MoveMapComponents.Clear();
 
-        var nextWaveData = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(curStageIdx, nextWaveIdx));
-
-        if (nextWaveData == null)
+        if (MoveMapRoot != null)
         {
-            // 현재 스테이지의 웨이브가 없으면 다음 스테이지로
-            GameRoot.Instance.UserData.Stageidx.Value += 1;
-            GameRoot.Instance.UserData.Waveidx.Value = 1;
+            var components = MoveMapRoot.GetComponentsInChildren<MoveMapComponent>().ToList();
+            MoveMapComponents.AddRange(components);
         }
 
-        // 다음 웨이브 시작
-        GameRoot.Instance.StartCoroutine(EnemySpawnStart());
     }
 
 }

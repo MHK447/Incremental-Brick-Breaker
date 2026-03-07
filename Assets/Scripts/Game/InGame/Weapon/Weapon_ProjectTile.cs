@@ -83,8 +83,26 @@ public class Weapon_ProjectTile : Weapon_Base
 
         instance.Set(WeaponData, barrelTransform, targetTransform, OnBulletHit);
 
+        // 발사 시 0.2초 스케일 트윈 연출 (커졌다가 복귀)
+        PlayFireScaleTween();
+
         // 활성화된 bullet 리스트에 추가
         ActiveBullets.Add(instance);
+    }
+
+    private const float FireScaleTweenDuration = 0.2f;
+    private static readonly Vector3 FireScaleUp = new Vector3(1.2f, 1.2f, 1.2f);
+
+    private void PlayFireScaleTween()
+    {
+        if (transform == null) return;
+        transform.DOKill(complete: true);
+        Vector3 originalScale = transform.localScale;
+        float half = FireScaleTweenDuration * 0.5f;
+        DOTween.Sequence()
+            .Append(transform.DOScale(Vector3.Scale(originalScale, FireScaleUp), half).SetEase(Ease.OutQuad))
+            .Append(transform.DOScale(originalScale, half).SetEase(Ease.InQuad))
+            .SetTarget(transform);
     }
 
     protected virtual void OnBulletHit(BulletBase bullet)

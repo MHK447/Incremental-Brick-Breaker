@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7538465117047810843}
   - component: {fileID: 5453240712923602052}
   - component: {fileID: 7961349903795053578}
-  - component: {fileID: 7812409717885842952}
   - component: {fileID: 872466981820641045}
+  - component: {fileID: 8592326346110398529}
   m_Layer: 0
   m_Name: SpriteThrowEffect
   m_TagString: Untagged
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 145.42674, y: 505.57355}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5453240712923602052
 CanvasRenderer:
@@ -77,20 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7812409717885842952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4898781267030523507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 518b38d9acd424802a2f2bb28090354a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particles: []
-  Img: {fileID: 7961349903795053578}
 --- !u!223 &872466981820641045
 Canvas:
   m_ObjectHideFlags: 0
@@ -114,3 +100,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 32767
   m_TargetDisplay: 0
+--- !u!114 &8592326346110398529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898781267030523507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e155a7e24954d4db4dd35006ab1a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: []
+  Img: {fileID: 7961349903795053578}

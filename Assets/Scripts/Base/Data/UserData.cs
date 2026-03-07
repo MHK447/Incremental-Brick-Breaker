@@ -252,6 +252,7 @@ public partial class UserDataSystem
         BanpoFri.Data.UserData.AddTutorial(builder, tutorialVec);
         BanpoFri.Data.UserData.AddMoney(builder, money);
         BanpoFri.Data.UserData.AddStageidx(builder, Stageidx.Value);
+        BanpoFri.Data.UserData.AddPlayerlevel(builder, Playerlevel.Value);
         var orc = BanpoFri.Data.UserData.EndUserData(builder);
         builder.Finish(orc.Value);
 

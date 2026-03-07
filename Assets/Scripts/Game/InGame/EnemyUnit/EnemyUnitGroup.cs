@@ -298,7 +298,7 @@ public class EnemyUnitGroup : MonoBehaviour
             enemydata.CurHp = unithp;
             enemydata.Dmg = unitdmg;
             enemydata.MoveSpeed = td.move_speed;
-            enemydata.AtkSpeed = td.attack_speed;
+            enemydata.AtkSpeed = (float)td.attack_speed * 0.01f;
             enemydata.AtkRange = td.atk_range_factor;
 
             instance.Set(enemydata);
