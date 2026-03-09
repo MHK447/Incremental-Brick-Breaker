@@ -45,8 +45,13 @@ public class WeaponController : MonoBehaviour
                 weapon.transform.position = WeaponEquipTrList[weaponData.WeaponIdx - 1].position;
             };
         }
-
     }
+
+    protected virtual void OnBulletHit(BulletBase bullet)
+    {
+        ProjectUtility.SetActiveCheck(bullet.gameObject, false);
+    }
+
 
     public void RemoveWeapon(Weapon_Base weapon)
     {

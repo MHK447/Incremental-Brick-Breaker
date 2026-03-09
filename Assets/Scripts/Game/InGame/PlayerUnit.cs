@@ -17,6 +17,8 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField]
     private WeaponController WeaponController;
 
+    public WeaponController GetWeaponController { get { return WeaponController; } }
+
     [SerializeField]
     private List<SpriteRenderer> PlayerSpriteList = new List<SpriteRenderer>();
 
@@ -44,6 +46,7 @@ public class PlayerUnit : MonoBehaviour
         InGamePlayerData.CurHppProperty.Value = InGamePlayerData.StartHpProperty.Value = 50;
         InGamePlayerData.CriticalChanceProperty.Value = 30;
         InGamePlayerData.CriticalDamageProperty.Value = 10;
+        InGamePlayerData.FallWeaponIdxProperty.Value = 101;
 
     }
 

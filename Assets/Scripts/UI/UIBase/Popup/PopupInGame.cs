@@ -26,6 +26,20 @@ public class PopupInGame : UIBase
     [SerializeField]
     private List<Image> StageNodeList = new List<Image>();
 
+    [SerializeField]
+    private TextMeshProUGUI BombCountText;
+
+    [SerializeField]
+    private Image CoolTimeBgImg;
+
+    [SerializeField]
+    private UpgradeImgComponent UpgradeImgComponent;
+
+    [SerializeField]
+    private IncreaseUpgradeGroup InCreaseUpgradeGroup;
+
+
+
     private CompositeDisposable disposables = new CompositeDisposable();
     private float targetWaveProgress = 0f;
     private float waveProgressStartValue = 0f;
@@ -35,6 +49,18 @@ public class PopupInGame : UIBase
     {
         disposables.Clear();
 
+        GameRoot.Instance.UserData.InGamePlayerData.WeaponFallCountProperty.Subscribe(x =>
+        {
+            BombCountText.text = x.ToString();
+        }).AddTo(disposables);
+
+        // 낙하 무기 쿨타임: fillAmount 1 → 0 (쿨 진행에 따라 감소)
+        GameRoot.Instance.UserData.InGamePlayerData.WeaponFallCooldownProgressProperty.Subscribe(progress =>
+        {
+            if (CoolTimeBgImg != null)
+                CoolTimeBgImg.fillAmount = 1f - progress;
+        }).AddTo(disposables);
+
         GameRoot.Instance.UserData.InGamePlayerData.StartHpProperty.Subscribe(x => SetHpProgress(x)).AddTo(disposables);
         GameRoot.Instance.UserData.InGamePlayerData.CurHppProperty.Subscribe(x => SetHpProgress(x)).AddTo(disposables);
 
@@ -42,13 +68,19 @@ public class PopupInGame : UIBase
         if (WaveProgress != null)
             WaveProgress.value = targetWaveProgress;
 
-        GameRoot.Instance.UserData.Waveidx.Subscribe(x=> {
+        GameRoot.Instance.UserData.Waveidx.Subscribe(x =>
+        {
             StageNodeCheck();
         }).AddTo(disposables);
 
-        GameRoot.Instance.UserData.Playerlevel.Subscribe(x=> {
+        GameRoot.Instance.UserData.Playerlevel.Subscribe(x =>
+        {
             LevelText.text = $"Lv.{x}";
         }).AddTo(disposables);
+
+        InCreaseUpgradeGroup.Init();
+
+        ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, false);
     }
 
     public void SetHpProgress(int hp)
@@ -68,7 +100,7 @@ public class PopupInGame : UIBase
 
         for (int i = 0; i < tdlist.Count; i++)
         {
-            if(i >= StageNodeList.Count) break;
+            if (i >= StageNodeList.Count) break;
 
             StageNodeList[i].sprite = waveidx >= i + 1 ? AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, "Common_Icon_LevelupFill")
             : AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_Common, "Common_Icon_LevelupEmpty");
@@ -103,6 +135,19 @@ public class PopupInGame : UIBase
     void OnDisable()
     {
         disposables.Clear();
+    }
+
+
+    public void UpgradeImgHover(int upgradeidx , Vector3 pos)
+    {
+        ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, true);
+        UpgradeImgComponent.Set(upgradeidx);
+        UpgradeImgComponent.transform.position = new Vector3(pos.x, pos.y + 100, 0);
+    }
+
+    public void UpgradeImgHoverExit()
+    {
+        ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, false);
     }
 }
 

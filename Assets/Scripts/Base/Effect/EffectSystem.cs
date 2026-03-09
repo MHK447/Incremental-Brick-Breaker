@@ -102,6 +102,7 @@ public class EffectSystem
 
             if(effect != null)
             {
+                effect.ResetAutoRemoveState();
                 effect.Play(worldPos, followTrans);
                 ProjectUtility.SetActiveCheck(effect.gameObject, true);
                 OnLoad?.Invoke(effect as T);

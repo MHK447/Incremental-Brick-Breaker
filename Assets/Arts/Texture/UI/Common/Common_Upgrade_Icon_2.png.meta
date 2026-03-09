@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ac5e9f2d9fb0144098a8c44e0ad0e92d
+guid: 0394b764ea0bf4bef972ba1c9ba6730a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9135130492318465493
-    second: Common_Icon_Armor_0
+      213: 5367657376677538961
+    second: Common_Upgrade_Icon_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Common_Icon_Armor_0
+      name: Common_Upgrade_Icon_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
-        height: 50
+        width: 136
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b22c48c973f793180800000000000000
-      internalID: -9135130492318465493
+      spriteID: 19caedce1ffbd7a40800000000000000
+      internalID: 5367657376677538961
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Common_Icon_Armor_0: -9135130492318465493
+      Common_Upgrade_Icon_2_0: 5367657376677538961
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

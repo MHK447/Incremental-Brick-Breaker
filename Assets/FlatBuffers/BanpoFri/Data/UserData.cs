@@ -57,6 +57,8 @@ public struct UserData : IFlatbufferObject
   public bool MutateWaveidx(int waveidx) { int o = __p.__offset(26); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, waveidx); return true; } else { return false; } }
   public int Playerlevel { get { int o = __p.__offset(28); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)1; } }
   public bool MutatePlayerlevel(int playerlevel) { int o = __p.__offset(28); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, playerlevel); return true; } else { return false; } }
+  public BanpoFri.Data.InCreaseUpgradeData? Increaseugprades(int j) { int o = __p.__offset(30); return o != 0 ? (BanpoFri.Data.InCreaseUpgradeData?)(new BanpoFri.Data.InCreaseUpgradeData()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
+  public int IncreaseugpradesLength { get { int o = __p.__offset(30); return o != 0 ? __p.__vector_len(o) : 0; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       int cash = 0,
@@ -71,11 +73,13 @@ public struct UserData : IFlatbufferObject
       int stageidx = 1,
       StringOffset moneyOffset = default(StringOffset),
       int waveidx = 1,
-      int playerlevel = 1) {
-    builder.StartTable(13);
+      int playerlevel = 1,
+      VectorOffset increaseugpradesOffset = default(VectorOffset)) {
+    builder.StartTable(14);
     UserData.AddUuid(builder, uuid);
     UserData.AddGamestarttime(builder, gamestarttime);
     UserData.AddLastlogintime(builder, lastlogintime);
+    UserData.AddIncreaseugprades(builder, increaseugpradesOffset);
     UserData.AddPlayerlevel(builder, playerlevel);
     UserData.AddWaveidx(builder, waveidx);
     UserData.AddMoney(builder, moneyOffset);
@@ -89,7 +93,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(13); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(14); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(0, cash, 0); }
   public static void AddBuyinappids(FlatBufferBuilder builder, StringOffset buyinappidsOffset) { builder.AddOffset(1, buyinappidsOffset.Value, 0); }
   public static void AddTutorial(FlatBufferBuilder builder, VectorOffset tutorialOffset) { builder.AddOffset(2, tutorialOffset.Value, 0); }
@@ -118,6 +122,12 @@ public struct UserData : IFlatbufferObject
   public static void AddMoney(FlatBufferBuilder builder, StringOffset moneyOffset) { builder.AddOffset(10, moneyOffset.Value, 0); }
   public static void AddWaveidx(FlatBufferBuilder builder, int waveidx) { builder.AddInt(11, waveidx, 1); }
   public static void AddPlayerlevel(FlatBufferBuilder builder, int playerlevel) { builder.AddInt(12, playerlevel, 1); }
+  public static void AddIncreaseugprades(FlatBufferBuilder builder, VectorOffset increaseugpradesOffset) { builder.AddOffset(13, increaseugpradesOffset.Value, 0); }
+  public static VectorOffset CreateIncreaseugpradesVector(FlatBufferBuilder builder, Offset<BanpoFri.Data.InCreaseUpgradeData>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateIncreaseugpradesVectorBlock(FlatBufferBuilder builder, Offset<BanpoFri.Data.InCreaseUpgradeData>[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateIncreaseugpradesVectorBlock(FlatBufferBuilder builder, ArraySegment<Offset<BanpoFri.Data.InCreaseUpgradeData>> data) { builder.StartVector(4, data.Count, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateIncreaseugpradesVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<Offset<BanpoFri.Data.InCreaseUpgradeData>>(dataPtr, sizeInBytes); return builder.EndVector(); }
+  public static void StartIncreaseugpradesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);
@@ -146,6 +156,8 @@ public struct UserData : IFlatbufferObject
     _o.Money = this.Money;
     _o.Waveidx = this.Waveidx;
     _o.Playerlevel = this.Playerlevel;
+    _o.Increaseugprades = new List<BanpoFri.Data.InCreaseUpgradeDataT>();
+    for (var _j = 0; _j < this.IncreaseugpradesLength; ++_j) {_o.Increaseugprades.Add(this.Increaseugprades(_j).HasValue ? this.Increaseugprades(_j).Value.UnPack() : null);}
   }
   public static Offset<BanpoFri.Data.UserData> Pack(FlatBufferBuilder builder, UserDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UserData>);
@@ -170,6 +182,12 @@ public struct UserData : IFlatbufferObject
       _recordvalue = CreateRecordvalueVector(builder, __recordvalue);
     }
     var _money = _o.Money == null ? default(StringOffset) : builder.CreateString(_o.Money);
+    var _increaseugprades = default(VectorOffset);
+    if (_o.Increaseugprades != null) {
+      var __increaseugprades = new Offset<BanpoFri.Data.InCreaseUpgradeData>[_o.Increaseugprades.Count];
+      for (var _j = 0; _j < __increaseugprades.Length; ++_j) { __increaseugprades[_j] = BanpoFri.Data.InCreaseUpgradeData.Pack(builder, _o.Increaseugprades[_j]); }
+      _increaseugprades = CreateIncreaseugpradesVector(builder, __increaseugprades);
+    }
     return CreateUserData(
       builder,
       _o.Cash,
@@ -184,7 +202,8 @@ public struct UserData : IFlatbufferObject
       _o.Stageidx,
       _money,
       _o.Waveidx,
-      _o.Playerlevel);
+      _o.Playerlevel,
+      _increaseugprades);
   }
 }
 
@@ -216,6 +235,8 @@ public class UserDataT
   public int Waveidx { get; set; }
   [Newtonsoft.Json.JsonProperty("playerlevel")]
   public int Playerlevel { get; set; }
+  [Newtonsoft.Json.JsonProperty("increaseugprades")]
+  public List<BanpoFri.Data.InCreaseUpgradeDataT> Increaseugprades { get; set; }
 
   public UserDataT() {
     this.Cash = 0;
@@ -231,6 +252,7 @@ public class UserDataT
     this.Money = null;
     this.Waveidx = 1;
     this.Playerlevel = 1;
+    this.Increaseugprades = null;
   }
 
   public static UserDataT DeserializeFromJson(string jsonText) {
@@ -268,6 +290,7 @@ static public class UserDataVerify
       && verifier.VerifyString(tablePos, 24 /*Money*/, false)
       && verifier.VerifyField(tablePos, 26 /*Waveidx*/, 4 /*int*/, 4, false)
       && verifier.VerifyField(tablePos, 28 /*Playerlevel*/, 4 /*int*/, 4, false)
+      && verifier.VerifyVectorOfTables(tablePos, 30 /*Increaseugprades*/, BanpoFri.Data.InCreaseUpgradeDataVerify.Verify, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }

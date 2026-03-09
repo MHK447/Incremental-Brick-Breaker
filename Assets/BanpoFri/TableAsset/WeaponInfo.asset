@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mFirstKey:
   - 1
+  - 101
   mSecondKey: []
   mDataList:
   - _idx: 1
@@ -22,4 +23,11 @@ MonoBehaviour:
     _attack_cooltime: 100
     _attack_range: 400
     _prefab: Shooter_Arrow_1
+    _effect_type: 0
+  - _idx: 101
+    _base_dmg: 1
+    _projection_type: 1
+    _attack_cooltime: 0
+    _attack_range: 0
+    _prefab: WeaponFall_101
     _effect_type: 0

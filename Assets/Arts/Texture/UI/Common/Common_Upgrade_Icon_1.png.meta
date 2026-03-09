@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 38a4a484910b04bffb0a4183c4c9a0df
+guid: a0b279c4fa6064a92945c51ea953feb3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -802797652171315179
-    second: Common_Icon_Shoose_0
+      213: -5731531660056653582
+    second: Common_Upgrade_Icon_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Common_Icon_Shoose_0
+      name: Common_Upgrade_Icon_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
-        height: 50
+        width: 121
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 518afcbe9c3ebd4f0800000000000000
-      internalID: -802797652171315179
+      spriteID: 2f01b6772528570b0800000000000000
+      internalID: -5731531660056653582
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Common_Icon_Shoose_0: -802797652171315179
+      Common_Upgrade_Icon_1_0: -5731531660056653582
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

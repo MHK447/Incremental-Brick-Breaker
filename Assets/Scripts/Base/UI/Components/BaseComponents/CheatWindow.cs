@@ -233,7 +233,16 @@ public class CheatWindow : MonoBehaviour
     static void ShowCheat()
     {
         if (UnityEditor.EditorApplication.isPlaying)
-            GameRoot.Instance.SetCheatWindow(true);
+        {
+            if (GameRoot.Instance.GetCheatWindow.gameObject.activeSelf)
+            {
+                GameRoot.Instance.SetCheatWindow(false);
+            }
+            else
+            {
+                GameRoot.Instance.SetCheatWindow(true);
+            }
+        }
     }
 #endif
 }

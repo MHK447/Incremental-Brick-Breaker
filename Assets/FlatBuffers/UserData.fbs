@@ -41,6 +41,7 @@ table UserData {
   // @AutoCreate
   waveidx:int = 1; //@ReactiveProperty
   playerlevel:int = 1; //@ReactiveProperty
+  increaseugprades:[InCreaseUpgradeData]; // @@ReactiveCollection
 
 }
 
@@ -57,6 +58,11 @@ table OptionData {
 table RecordCount {
   idx:string;
   count:int = 0;
+}
+
+table InCreaseUpgradeData {
+  idx:int; 
+  level:int = 0;  //@ReactiveProperty
 }
 
 

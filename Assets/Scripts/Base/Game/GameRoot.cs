@@ -20,7 +20,7 @@ public class GameRoot : Singleton<GameRoot>
 	private Canvas WorldCanvas;
 	[SerializeField]
 	private GameObject CheatWindow;
-
+	public GameObject GetCheatWindow { get { return CheatWindow; } }
 	[SerializeField]
 	private GameObject DebugConsoleObj;
 
@@ -40,14 +40,13 @@ public class GameRoot : Singleton<GameRoot>
 	public InGameSystem InGameSystem { get; private set; } = new InGameSystem();
 	public EffectSystem EffectSystem { get; private set; } = new EffectSystem();
 
-
 	public GameNotificationSystem GameNotification { get; private set; } = new GameNotificationSystem();
 
 	public ContentsOpenSystem ContentsOpenSystem { get; private set; } = new ContentsOpenSystem();
 
+	public IncreaMentalSystem IncreaMentalSystem { get; private set; } = new IncreaMentalSystem();
 
 	public ActionQueueSystem ActionQueueSystem { get; private set; } = new ActionQueueSystem();
-
 
 	public DamageTextSystem DamageTextSystem { get; private set; } = new DamageTextSystem();
 
@@ -278,6 +277,7 @@ public class GameRoot : Singleton<GameRoot>
 		GameNotification.Create();
 		AttendanceSystem.Create();
 		ItemSystem.Create();
+		IncreaMentalSystem.Create();
 
         GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.EnsureStageLoaded();
 
@@ -368,7 +368,7 @@ public class GameRoot : Singleton<GameRoot>
 		GameNotification.Create();
 		ContentsOpenSystem.Create();
 		DamageTextSystem.Create();
-
+		IncreaMentalSystem.Create();
 	}
 
 	private void SetNativeLanguage()

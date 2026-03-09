@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 08a828bfbd41f48f29c62c948b8cf964
   m_SerializeEntries:
+  - m_GUID: 0425aea0db2dc524fa6347771885fa50
+    m_Address: Effect/WeaponFallEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 055ee5af5d3aaca45abf507622c5280e
     m_Address: UI/Page/LoadingBasic
     m_ReadOnly: 0
@@ -77,6 +82,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1ddce761f390f014aa94071f8c1c0812
     m_Address: UI/Popup/PopupToastmessage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23b182d24767a4916b76052b5db1c701
+    m_Address: Effect/WeaponEffect
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -202,6 +212,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5528c7d945c7a4b74b37895cdceea0a5
     m_Address: Tutorial_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58067a58dd6c344229852c43fce3074c
+    m_Address: WeaponFall_101
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

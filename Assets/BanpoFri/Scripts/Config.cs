@@ -266,7 +266,7 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
     [SerializeField]
     private List<FontDefine> _fontDefines = new List<FontDefine>();
 
-
+    public Material GrayScaleMat;
 
     public List<ColorDefine> TextColorDefines
     {

@@ -22,6 +22,11 @@ public partial class InGameBaseStage : MonoBehaviour
     [SerializeField]
     private Transform MoveMapRoot;
 
+    [SerializeField]
+    private WeaponFallControler WeaponFallControler;
+
+    public WeaponFallControler GetWeaponFallControler { get { return WeaponFallControler; } }
+
     // MoveMapComponent 통합 관리
     private List<MoveMapComponent> MoveMapComponents = new List<MoveMapComponent>();
 
@@ -52,6 +57,8 @@ public partial class InGameBaseStage : MonoBehaviour
         InitMoveMapComponents();
 
         StartCoroutine(EnemySpawnStart());
+
+        WeaponFallControler.Init();
     }
 
     public void StartBattle()

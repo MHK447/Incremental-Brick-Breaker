@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3424572121700259712}
   - component: {fileID: 4621032248279999295}
+  - component: {fileID: 6927140306410833575}
   m_Layer: 9
   m_Name: ChapterMap_Base
   m_TagString: Wall
@@ -261,8 +262,21 @@ MonoBehaviour:
   EnemyUnitGroup: {fileID: 2662959793413777983}
   PlayerUnit: {fileID: 2942942411249993478}
   MoveMapRoot: {fileID: 2789632148067178981}
+  WeaponFallControler: {fileID: 6927140306410833575}
   StageStartTime: 0
   GameFinishSequenceStarted: 0
+--- !u!114 &6927140306410833575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588749385983865732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da8304f3a1124d4b8b1b322541f1a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1445868973350762010
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +603,7 @@ GameObject:
   - component: {fileID: 1452491622656799690}
   - component: {fileID: 2983242842341523889}
   - component: {fileID: 8227334587735627829}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: road_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +708,7 @@ GameObject:
   - component: {fileID: 4726918457114683858}
   - component: {fileID: 6363563341229327762}
   - component: {fileID: 4310737814748377995}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: road_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2534,7 +2548,7 @@ GameObject:
   - component: {fileID: 1247790185691855802}
   - component: {fileID: 2543838813362769542}
   - component: {fileID: 2295551502308595289}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: road_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

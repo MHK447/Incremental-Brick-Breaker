@@ -29,6 +29,8 @@ public class BulletBase : MonoBehaviour
 
     protected WeaponData WeaponData = new WeaponData();
 
+    public WeaponData GetWeaponData => WeaponData;
+
     [HideInInspector]
     public Transform TargetTr = null;
 

@@ -60,6 +60,13 @@ public class Effect : MonoBehaviour
         targetTime = time;
     }
 
+    /// <summary>풀 재사용 시 자동 제거 상태 초기화 (재사용 직후 바로 꺼지는 현상 방지)</summary>
+    public void ResetAutoRemoveState()
+    {
+        autoRemove = false;
+        deltaTime = 0f;
+    }
+
     private void Update()
     {
         if(FollowTrans != null)
