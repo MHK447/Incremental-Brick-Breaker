@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -140,7 +140,8 @@ public class BulletBase : MonoBehaviour
             if (enemy != null)
             {
                 hitTargets.Add(collision);
-                enemy.Damage(WeaponData.WeaponDamage);
+                int finalDmg = Mathf.RoundToInt(WeaponData.WeaponDamage * GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageMultiplier);
+                enemy.Damage(finalDmg);
 
                 IsCollision = true;
                 OnHitCallback?.Invoke(this);
@@ -152,9 +153,9 @@ public class BulletBase : MonoBehaviour
             if (enemy != null)
             {
                 hitTargets.Add(collision);
-                enemy.Damage(WeaponData.WeaponDamage);
+                int finalDmg = Mathf.RoundToInt(WeaponData.WeaponDamage * GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageMultiplier);
+                enemy.Damage(finalDmg);
 
-                // 관통이 없으면 즉시 충돌 처리
                 IsCollision = true;
                 OnHitCallback?.Invoke(this);
 

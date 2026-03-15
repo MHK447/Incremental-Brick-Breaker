@@ -20,8 +20,10 @@ public class WeaponFallControler : MonoBehaviour
 
     public void Init()
     {
-        GameRoot.Instance.UserData.InGamePlayerData.WeaponFallStartCount
-        = GameRoot.Instance.UserData.InGamePlayerData.WeaponFallCountProperty.Value = StartFallCount;
+        GameRoot.Instance.UserData.InGamePlayerData.InitIncreaMentalBonuses();
+
+        var playerData = GameRoot.Instance.UserData.InGamePlayerData;
+        StartFallCount = playerData.WeaponFallStartCount;
 
         FallCoolTime = 2f;
     }
@@ -76,7 +78,7 @@ public class WeaponFallControler : MonoBehaviour
         }
     }
 
-        public void FallAddBullet(int weaponidx, Vector3 pos)
+    public void FallAddBullet(int weaponidx, Vector3 pos)
     {
         var td = Tables.Instance.GetTable<WeaponInfo>().GetData(weaponidx);
 
@@ -114,12 +116,7 @@ public class WeaponFallControler : MonoBehaviour
 
     public void OnBulletHit(FallWeaponBase bullet)
     {
-        // 트레일이 자연스럽게 사라질 때까지 기다린 뒤 비활성화 (즉시 꺼지면 트레일이 끊겨 보임)
-        float trailTime = bullet.GetTrailTime();
-        if (trailTime > 0.01f)
-            bullet.StartCoroutine(DisableAfterTrail(bullet, trailTime));
-        else
-            ProjectUtility.SetActiveCheck(bullet.gameObject, false);
+        ProjectUtility.SetActiveCheck(bullet.gameObject, false);
     }
 
     private IEnumerator DisableAfterTrail(FallWeaponBase bullet, float delay)

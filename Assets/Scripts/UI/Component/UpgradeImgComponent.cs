@@ -40,19 +40,27 @@ public class UpgradeImgComponent : MonoBehaviour
             var td = Tables.Instance.GetTable<IncreaseUpgradeOrder>().GetData(UpgradeIdx);
             var tdinfo = Tables.Instance.GetTable<IncreaseUpgradeInfo>().GetData(UpgradeIdx);
 
-            if (td != null && tdinfo != null)
+            if (td != null && tdinfo != null && td.cost != null && td.cost.Count > 0)
             {
-                UpgradeCountText.text = $"{finddata.Level.Value}/{td.increase_max_lv}";
-                UpgradeCostText.text = $"{td.cost}";
+                int level = finddata.Level.Value;
+                int costIdx = Mathf.Clamp(level, 0, td.cost.Count - 1);
+                int currentCost = td.cost[costIdx];
 
-                UpgradeDescText.text = Tables.Instance.GetTable<Localize>().GetString(tdinfo.upgrade_desc);
+                UpgradeCountText.text = $"{level}/{td.increase_max_lv}";
+                UpgradeCostText.text = $"{currentCost}";
+
+                var upgradevalue = td.upgrade_value[finddata.Level.Value];
+
+                UpgradeDescText.text =  upgradevalue == -1 ? 
+                 Tables.Instance.GetTable<Localize>().GetString(tdinfo.upgrade_name) : 
+                 Tables.Instance.GetTable<Localize>().GetFormat(tdinfo.upgrade_name, upgradevalue);
 
                 disposables.Clear();
 
                 GameRoot.Instance.UserData.Money.Subscribe(
                     x =>
                     {
-                        UpgradeCostText.color = x >= td.cost ? Color.white : Color.red;
+                        UpgradeCostText.color = x >= currentCost ? Color.white : Color.red;
                     }).AddTo(disposables);
             }
         }

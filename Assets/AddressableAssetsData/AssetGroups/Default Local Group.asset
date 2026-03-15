@@ -60,11 +60,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1840eb65bd4c54e9299938e0651895a0
-    m_Address: Atlas_UI_CommonWeapon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1b14adbb2e45c437a92bfe057eb81f7a
     m_Address: UI/Popup/PopupInGame
     m_ReadOnly: 0
@@ -117,16 +112,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 332460a2cd80e1845b356a507f424fca
     m_Address: UI/Popup/PopupWelComeBack
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 378f464b78d7b4a67823822975a6c4ab
-    m_Address: Atlas_UI_Map
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3821a0096d4144c82a8856055397d97e
-    m_Address: Atlas_UI_InGame
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -250,11 +235,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7572952faadb744dcb8357de3206835e
-    m_Address: Atlas_UI_EquipItem
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75d8cd281906a48cbb1460af5e58904d
     m_Address: Effect/HitEffect_01
     m_ReadOnly: 0
@@ -330,11 +310,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9f2f9e4aea950466b968d1c682b336e7
-    m_Address: Atlas_UI_Upgrade
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a009fb2ec470d4ca3a6859ab3c7c5d3d
     m_Address: UI/Popup/PopupMaterialInsufficent
     m_ReadOnly: 0
@@ -367,6 +342,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c3ac434fd15296347baefd290f83e2c8
     m_Address: Effect/MergeEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4d117e2c907c491d8b02bc8b5bd499b
+    m_Address: Atlas_UI_Increa
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

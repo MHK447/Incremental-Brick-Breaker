@@ -451,14 +451,6 @@ public class Config : BanpoFri.SingletonScriptableObject<Config>, BanpoFri.ILoad
                 }
             case (int)RewardType.Item:
                 {
-                    switch (rewardidx)
-                    {
-                        case (int)ItemInfoType.AllEquipmentItem:
-                            {
-                                return AtlasManager.Instance.GetSprite(Atlas.Atlas_UI_EquipItem, $"Equip_Upgrade_Item_{rewardidx}");
-                            }
-                    }
-
                     break;
                 }
             case (int)RewardType.RandHeroItem:

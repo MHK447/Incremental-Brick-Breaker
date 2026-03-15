@@ -35,8 +35,9 @@ public class FallWeaponBase : MonoBehaviour
 
     protected bool IsCollision = false;
 
-    protected HashSet<Collider2D> hitTargets = new HashSet<Collider2D>(); // 이미 맞춘 타겟들
+    protected HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
 
+    private int maxPenetration = 0;
 
     private const float FallSpeed = 15f;
 
@@ -59,8 +60,8 @@ public class FallWeaponBase : MonoBehaviour
 
         OnHitCallback = onhitcallback;
 
-        // 관통 횟수 초기화
         hitTargets.Clear();
+        maxPenetration = GameRoot.Instance.UserData.InGamePlayerData.FallPenetrationCount;
 
         ColliderAction.TriggerEnterAction = OnTriggerEnter2D;
 
@@ -102,16 +103,19 @@ public class FallWeaponBase : MonoBehaviour
         if (hitTargets.Contains(collision)) return;
 
 
+        int finalDmg = Mathf.RoundToInt(WeaponData.WeaponDamage * GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageMultiplier);
+
         if (collidedObj.layer == LayerMask.NameToLayer("Enemy"))
         {
             var enemy = collidedObj.GetComponent<EnemyUnitBase>();
             if (enemy != null)
             {
                 hitTargets.Add(collision);
-                enemy.Damage(WeaponData.WeaponDamage);
+                enemy.Damage(finalDmg);
 
                 IsCollision = true;
                 OnHitCallback?.Invoke(this);
+
             }
         }
         else if (collidedObj.layer == LayerMask.NameToLayer("EnemyBlockSpawner"))
@@ -120,12 +124,13 @@ public class FallWeaponBase : MonoBehaviour
             if (enemy != null)
             {
                 hitTargets.Add(collision);
-                enemy.Damage(WeaponData.WeaponDamage);
+                enemy.Damage(finalDmg);
 
-                // 관통이 없으면 즉시 충돌 처리
-                IsCollision = true;
-                OnHitCallback?.Invoke(this);
-
+                if (hitTargets.Count > maxPenetration)
+                {
+                    IsCollision = true;
+                    OnHitCallback?.Invoke(this);
+                }
             }
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))

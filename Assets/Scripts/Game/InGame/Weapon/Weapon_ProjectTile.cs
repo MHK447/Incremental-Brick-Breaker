@@ -176,8 +176,10 @@ public class Weapon_ProjectTile : Weapon_Base
 
         WeaponData.WeaponDeltime += Time.deltaTime;
 
+        float speedMult = GameRoot.Instance.UserData.InGamePlayerData.IncreaAttackSpeedMultiplier;
+        float adjustedCoolTime = speedMult > 0f ? WeaponData.WeaponCoolTime / speedMult : WeaponData.WeaponCoolTime;
 
-        if (WeaponData.WeaponDeltime >= WeaponData.WeaponCoolTime)
+        if (WeaponData.WeaponDeltime >= adjustedCoolTime)
         {
             var finddata = FindTarget();
             if (finddata != null)

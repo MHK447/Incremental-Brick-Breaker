@@ -38,7 +38,8 @@ public class PopupInGame : UIBase
     [SerializeField]
     private IncreaseUpgradeGroup InCreaseUpgradeGroup;
 
-
+    [SerializeField]
+    private Transform StageAreaRoot;
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private float targetWaveProgress = 0f;
@@ -81,6 +82,8 @@ public class PopupInGame : UIBase
         InCreaseUpgradeGroup.Init();
 
         ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, false);
+
+        ProjectUtility.SetActiveCheck(StageAreaRoot.gameObject, GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1));
     }
 
     public void SetHpProgress(int hp)

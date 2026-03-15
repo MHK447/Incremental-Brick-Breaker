@@ -42,6 +42,7 @@ MonoBehaviour:
   _eventTextColorDefines: []
   mainfont: {fileID: 12800000, guid: 823821a1683354e37b7b49f85dbe601d, type: 3}
   _fontDefines: []
+  GrayScaleMat: {fileID: 0}
   TextFontMaterialList: []
   _imageColorDefines:
   - key_string: Bg_Yellow
@@ -164,6 +165,14 @@ MonoBehaviour:
     color: {r: 0.08627451, g: 0.11372549, b: 0.30980393, a: 1}
   - key_string: currency_bg_color
     color: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
+  - key_string: image_color_red
+    color: {r: 0.9433962, g: 0.12904951, b: 0.12904951, a: 0.70980394}
+  - key_string: image_color_green
+    color: {r: 0.21698113, g: 0.8679245, b: 0.2953699, a: 0.70980394}
+  - key_string: increa_unlock_img
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - key_string: increa_lock_img
+    color: {r: 0.4509804, g: 0.44705883, b: 0.44705883, a: 0.8}
   _eventImgaeColorDefines: []
   SkeletonGraphicMat: {fileID: 0}
   DisableSpriteMat: {fileID: 0}

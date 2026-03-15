@@ -12,6 +12,7 @@ public class EnemyUnitGroup : MonoBehaviour
 
     public HashSet<EnemyUnitBase> ActiveUnits = new HashSet<EnemyUnitBase>();
     public HashSet<EnemyUnitBase> DeadUnits = new HashSet<EnemyUnitBase>();
+    public HashSet<EnemyUnitBase> PersistentUnits = new HashSet<EnemyUnitBase>();
 
     [SerializeField]
     private List<Transform> UnitSpawnList = new List<Transform>();
@@ -25,10 +26,9 @@ public class EnemyUnitGroup : MonoBehaviour
     {
         get
         {
-            // 일반 적 유닛이 모두 죽었는지 확인
-            if (ActiveUnits.Count > 0) return false;
+            // persistent 유닛을 제외한 일반 적 유닛이 모두 죽었는지 확인
+            if (ActiveUnits.Any(u => !PersistentUnits.Contains(u))) return false;
 
-            // EnemyBlockSpawner가 활성화되어 있고 아직 살아있으면 false
             if (IsEnemyBlockSpawnerActive && EnemyBlockSpawner != null && !EnemyBlockSpawner.IsDead)
                 return false;
 
@@ -80,8 +80,7 @@ public class EnemyUnitGroup : MonoBehaviour
         SpawnOrder = 0;
         OneTimeRewardCount = 0;
         isWinSequenceRunning = false;
-
-
+        PersistentUnits.Clear();
     }
 
 
@@ -131,6 +130,7 @@ public class EnemyUnitGroup : MonoBehaviour
         if (ActiveUnits.Contains(unit))
         {
             ActiveUnits.Remove(unit);
+            PersistentUnits.Remove(unit);
             DeadUnits.Add(unit);
             unit.transform.DOKill();
             ProjectUtility.SetActiveCheck(unit.gameObject, false);
@@ -252,6 +252,7 @@ public class EnemyUnitGroup : MonoBehaviour
 
         ActiveUnits.Clear();
         DeadUnits.Clear();
+        PersistentUnits.Clear();
 
         EnemyBlockSpawner.ClearData();
     }
@@ -312,6 +313,57 @@ public class EnemyUnitGroup : MonoBehaviour
             // 활성화
             ProjectUtility.SetActiveCheck(instance.gameObject, true);
         }
+    }
+
+    public EnemyUnitBase EnemySpawnAtPosition(int enemyidx, int unitdmg, int unithp, Vector3 spawnPosition, bool isPersistent = false)
+    {
+        var td = Tables.Instance.GetTable<EnemyUnitInfo>().GetData(enemyidx);
+        if (td == null) return null;
+
+        var find = DeadUnits.FirstOrDefault(x => x.EnemyIdx == enemyidx);
+        EnemyUnitBase instance;
+
+        if (find != null)
+        {
+            instance = find;
+            DeadUnits.Remove(find);
+            ActiveUnits.Add(instance);
+        }
+        else
+        {
+            var handle = Addressables.InstantiateAsync(td.prefab, transform);
+            var result = handle.WaitForCompletion();
+            instance = result.GetComponent<EnemyUnitBase>();
+            ProjectUtility.SetActiveCheck(instance.gameObject, false);
+            ActiveUnits.Add(instance);
+        }
+
+        instance.transform.position = spawnPosition;
+
+        var enemydata = new EnemyUnitData();
+        enemydata.EnemyIdx = enemyidx;
+        enemydata.StartHp = unithp;
+        enemydata.CurHp = unithp;
+        enemydata.Dmg = unitdmg;
+        enemydata.MoveSpeed = td.move_speed;
+        enemydata.AtkSpeed = (float)td.attack_speed * 0.01f;
+        enemydata.AtkRange = td.atk_range_factor;
+
+        instance.Set(enemydata);
+
+        if (isPersistent)
+        {
+            PersistentUnits.Add(instance);
+        }
+
+        GameRoot.Instance.EffectSystem.MultiPlay<EnemySpawnEffect>(instance.transform.position, (x) =>
+        {
+            x.SetAutoRemove(true, 1.5f);
+        });
+
+        ProjectUtility.SetActiveCheck(instance.gameObject, true);
+
+        return instance;
     }
 
     public IEnumerator SpawnWave(int stageIdx, int waveIdx)

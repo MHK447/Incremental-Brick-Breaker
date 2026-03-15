@@ -53,6 +53,11 @@ public class WeaponController : MonoBehaviour
     }
 
 
+    public bool HasWeapon(int weaponIdx)
+    {
+        return EquipWeaponList.Any(w => w != null && w.GetWeaponData != null && w.GetWeaponData.WeaponIdx == weaponIdx);
+    }
+
     public void RemoveWeapon(Weapon_Base weapon)
     {
         EquipWeaponList.Remove(weapon);

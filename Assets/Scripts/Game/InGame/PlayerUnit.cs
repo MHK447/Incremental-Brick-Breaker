@@ -31,6 +31,12 @@ public class PlayerUnit : MonoBehaviour
 
     public void Init()
     {
+        if(!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1))
+        {
+            ProjectUtility.SetActiveCheck(this.gameObject, false);
+            return;
+        }
+
         WeaponController.Init();
 
         InGamePlayerData = GameRoot.Instance.UserData.InGamePlayerData;

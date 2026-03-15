@@ -19,29 +19,63 @@ MonoBehaviour:
   - 4
   - 5
   - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
   mSecondKey: []
   mDataList:
   - _upgrade_idx: 1
-    _icon: test
-    _upgrade_name: test_name
-    _upgrade_desc: test_name_2
+    _icon: Increa_Upgrade_Icon_1
+    _upgrade_name: Increa_Upgrade_name_1
   - _upgrade_idx: 2
-    _icon: test
-    _upgrade_name: test_name
-    _upgrade_desc: test_name_2
+    _icon: Increa_Upgrade_Icon_2
+    _upgrade_name: Increa_Upgrade_name_2
   - _upgrade_idx: 3
-    _icon: test
-    _upgrade_name: test_name
-    _upgrade_desc: test_name_2
+    _icon: Increa_Upgrade_Icon_3
+    _upgrade_name: Increa_Upgrade_name_3
   - _upgrade_idx: 4
-    _icon: test
-    _upgrade_name: test_name
-    _upgrade_desc: test_name_2
+    _icon: Increa_Upgrade_Icon_4
+    _upgrade_name: Increa_Upgrade_name_4
   - _upgrade_idx: 5
-    _icon: test
-    _upgrade_name: test_name
-    _upgrade_desc: test_name_2
+    _icon: Increa_Upgrade_Icon_5
+    _upgrade_name: Increa_Upgrade_name_5
   - _upgrade_idx: 6
-    _icon: test
-    _upgrade_name: test_name
-    _upgrade_desc: test_name_2
+    _icon: Increa_Upgrade_Icon_6
+    _upgrade_name: Increa_Upgrade_name_6
+  - _upgrade_idx: 7
+    _icon: Increa_Upgrade_Icon_7
+    _upgrade_name: Increa_Upgrade_name_7
+  - _upgrade_idx: 8
+    _icon: Increa_Upgrade_Icon_8
+    _upgrade_name: Increa_Upgrade_name_8
+  - _upgrade_idx: 9
+    _icon: Increa_Upgrade_Icon_9
+    _upgrade_name: Increa_Upgrade_name_9
+  - _upgrade_idx: 10
+    _icon: Increa_Upgrade_Icon_10
+    _upgrade_name: Increa_Upgrade_name_10
+  - _upgrade_idx: 11
+    _icon: Increa_Upgrade_Icon_11
+    _upgrade_name: Increa_Upgrade_name_11
+  - _upgrade_idx: 12
+    _icon: Increa_Upgrade_Icon_12
+    _upgrade_name: Increa_Upgrade_name_12
+  - _upgrade_idx: 13
+    _icon: Increa_Upgrade_Icon_13
+    _upgrade_name: Increa_Upgrade_name_13
+  - _upgrade_idx: 14
+    _icon: Increa_Upgrade_Icon_14
+    _upgrade_name: Increa_Upgrade_name_14
+  - _upgrade_idx: 15
+    _icon: Increa_Upgrade_Icon_15
+    _upgrade_name: Increa_Upgrade_name_15
+  - _upgrade_idx: 16
+    _icon: Increa_Upgrade_Icon_16
+    _upgrade_name: Increa_Upgrade_name_16

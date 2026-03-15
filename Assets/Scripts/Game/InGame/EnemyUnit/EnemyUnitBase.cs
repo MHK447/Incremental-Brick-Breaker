@@ -50,12 +50,15 @@ public class EnemyUnitBase : MonoBehaviour
 
     private EnemyUnitGroup EnemyUnitGroup = null;
 
+    public bool IsStationary { get; set; } = false;
+
     public virtual void Set(EnemyUnitData enemydata)
     {
         EnemyUnitData = enemydata;
         EnemyIdx = enemydata.EnemyIdx;
         currentState = EnemyUnitState.Move;
         attackTimer = 0f;
+        IsStationary = false;
         targetPlayer = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.Player;
         EnemyUnitGroup = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.EnemyUnitGroup;
     }
@@ -63,6 +66,7 @@ public class EnemyUnitBase : MonoBehaviour
     protected virtual void Update()
     {
         if (IsDead || EnemyUnitData == null) return;
+        if (IsStationary) return;
 
         if (targetPlayer == null || !targetPlayer.gameObject.activeInHierarchy)
         {
@@ -171,12 +175,34 @@ public class EnemyUnitBase : MonoBehaviour
             EnemyUnitData.CurHp = 0;
             ChangeState(EnemyUnitState.Dead);
 
+            var playerData = GameRoot.Instance.UserData.InGamePlayerData;
+
             GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
             {
                 x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, EnemyUnitData.Dmg);
             });
 
-            // ActiveUnits에서 제거해 IsAllDeadCheck가 true가 되도록 함 → 다음 웨이브 진행
+            if (playerData.BonusCoinDropRate > 0f && Random.value < playerData.BonusCoinDropRate)
+            {
+                GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
+                {
+                    x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, EnemyUnitData.Dmg);
+                });
+            }
+
+            if (playerData.BonusGemDropRate > 0f && Random.value < playerData.BonusGemDropRate)
+            {
+                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 1);
+            }
+
+            if (playerData.BonusCoinSpawnRate > 0f && Random.value < playerData.BonusCoinSpawnRate)
+            {
+                GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
+                {
+                    x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.SilverCoin, 1);
+                });
+            }
+
             if (EnemyUnitGroup != null)
                 EnemyUnitGroup.DeleteUnit(this);
         }

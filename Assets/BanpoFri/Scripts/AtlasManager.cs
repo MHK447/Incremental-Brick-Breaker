@@ -41,10 +41,6 @@ public class AtlasManager : Singleton<AtlasManager>
 
         if (!spriteCache.ContainsKey(Atlas.Atlas_UI_Common))
             spriteCache.Add(Atlas.Atlas_UI_Common, new Dictionary<string, Sprite>());
-        if (!spriteCache.ContainsKey(Atlas.Atlas_UI_Upgrade))
-            spriteCache.Add(Atlas.Atlas_UI_Upgrade, new Dictionary<string, Sprite>());
-        if (!spriteCache.ContainsKey(Atlas.Atlas_UI_InGame))
-            spriteCache.Add(Atlas.Atlas_UI_InGame, new Dictionary<string, Sprite>());
     }
 
     // 전체 로드
@@ -225,12 +221,8 @@ public enum Atlas
     // stage atlas
 
     Atlas_UI_Common,
-    Atlas_UI_Upgrade,
-    Atlas_UI_InGame,
-    Atlas_UI_CommonWeapon,
         Atlas_Stage,
-        Atlas_UI_Map,
-        Atlas_UI_EquipItem,
+        Atlas_UI_Increa,
     // @ add here
 
 }

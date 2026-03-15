@@ -470,9 +470,12 @@ MonoBehaviour:
   UpgradeOrder: 0
   UpgradeBtn: {fileID: 8487223916562698636}
   GlowRootObj: {fileID: 3784295880464315892}
-  NextLineList:
-  - {fileID: 5410110412290075124}
-  - {fileID: 5672017350524856382}
+  GlowColorImgList:
+  - {fileID: 4052173272425991012}
+  - {fileID: 2486932774906271292}
+  UnLockImgList:
+  - {fileID: 4243534322128114094}
+  LineListRoot: {fileID: 576543636952219793}
 --- !u!114 &8487223916562698636
 MonoBehaviour:
   m_ObjectHideFlags: 0

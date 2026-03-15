@@ -1,8 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
-using BanpoFri;
-using System.Linq;
-using UnityEngine.UI;
 
 namespace BanpoFri
 {
@@ -38,11 +35,18 @@ namespace BanpoFri
 			set { _increase_max_lv = value;}
 		}
 		[SerializeField]
-		private int _cost;
-		public int cost
+		private List<int> _cost;
+		public List<int> cost
 		{
 			get { return _cost;}
 			set { _cost = value;}
+		}
+		[SerializeField]
+		private List<int> _upgrade_value;
+		public List<int> upgrade_value
+		{
+			get { return _upgrade_value;}
+			set { _upgrade_value = value;}
 		}
 
     }

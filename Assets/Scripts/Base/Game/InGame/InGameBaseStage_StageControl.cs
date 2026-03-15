@@ -25,10 +25,16 @@ public partial class InGameBaseStage : MonoBehaviour
     [SerializeField]
     private WeaponFallControler WeaponFallControler;
 
+
+    [SerializeField]
+    private List<Transform> EnemySpawnTrList = new List<Transform>();
+
     public WeaponFallControler GetWeaponFallControler { get { return WeaponFallControler; } }
 
     // MoveMapComponent 통합 관리
     private List<MoveMapComponent> MoveMapComponents = new List<MoveMapComponent>();
+
+
 
     /// <summary> 웨이브 전환 시 플레이어 Run + 맵 이동 연출 시간(초). 웨이브 진행 바 채우기 시간과 동기화됨. </summary>
     public const float WaveMoveDuration = 4f;
@@ -55,6 +61,8 @@ public partial class InGameBaseStage : MonoBehaviour
         EquipTutorialCheck();
 
         InitMoveMapComponents();
+
+        FirstStartEnemySpawn();
 
         StartCoroutine(EnemySpawnStart());
 
@@ -239,27 +247,39 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public IEnumerator EnemySpawnStart()
     {
-        // 매 웨이브마다 이동 연출: 플레이어 Run + 맵(바퀴) 무한 이동 4초 후 스폰
-        PlayerUnit.ChangeState(PlayerUnit.PlayerState.Run);
+        bool truckUnlocked = GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1);
 
-        foreach (var movemap in MoveMapComponents)
+        if (truckUnlocked)
         {
-            movemap.StartInfiniteMove();
+            PlayerUnit.ChangeState(PlayerUnit.PlayerState.Run);
+
+            foreach (var movemap in MoveMapComponents)
+            {
+                movemap.StartInfiniteMove();
+            }
+
+            yield return new WaitForSeconds(WaveMoveDuration);
+
+            foreach (var movemap in MoveMapComponents)
+            {
+                movemap.PauseMove();
+            }
+            PlayerUnit.ChangeState(PlayerUnit.PlayerState.Idle);
+            yield return null;
         }
-
-        yield return new WaitForSeconds(WaveMoveDuration);
-
-        // 이동 연출 완전히 종료
-        foreach (var movemap in MoveMapComponents)
+        else
         {
-            movemap.PauseMove();
+            foreach (var movemap in MoveMapComponents)
+            {
+                movemap.PauseMove();
+            }
         }
-        PlayerUnit.ChangeState(PlayerUnit.PlayerState.Idle);
-        yield return null; // 한 프레임 대기해 이동 종료 상태 반영 후 진행
-
 
         if (!_firstWaveMoveDone)
             _firstWaveMoveDone = true;
+
+        if (!truckUnlocked)
+            yield break;
 
         var waveidx = GameRoot.Instance.UserData.Waveidx.Value;
         var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
@@ -267,11 +287,10 @@ public partial class InGameBaseStage : MonoBehaviour
 
         if (td != null)
         {
-            currentWaveCoroutine = StartCoroutine(SpawnEnemiesSequentially(td)); // 이동 다 끝난 뒤 적 소환
+            currentWaveCoroutine = StartCoroutine(SpawnEnemiesSequentially(td));
         }
         else
         {
-            // 해당 스테이지/웨이브 데이터가 없으면 다음 구간으로 진행 후 재시도
             GameRoot.Instance.UserData.Waveidx.Value += 1;
             int nextStage = GameRoot.Instance.UserData.Stageidx.Value;
             int nextWave = GameRoot.Instance.UserData.Waveidx.Value;
@@ -310,6 +329,98 @@ public partial class InGameBaseStage : MonoBehaviour
         currentWaveCoroutine = null;
 
         yield return new WaitUntil(() => EnemyUnitGroup.IsAllDeadCheck);
+    }
+
+    private Coroutine persistentSpawnCoroutine;
+    private List<EnemyUnitBase> persistentEnemyList = new List<EnemyUnitBase>();
+    private float[] persistentRespawnTimers;
+
+    public void FirstStartEnemySpawn()
+    {
+        if (GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1))
+            return;
+
+        if (persistentSpawnCoroutine != null)
+        {
+            StopCoroutine(persistentSpawnCoroutine);
+        }
+        persistentSpawnCoroutine = StartCoroutine(PersistentEnemySpawnRoutine());
+    }
+
+    private EnemyUnitBase SpawnStationaryEnemy(int enemyIdx, int dmg, int hp, Vector3 position)
+    {
+        var unit = EnemyUnitGroup.EnemySpawnAtPosition(enemyIdx, dmg, hp, position, true);
+        if (unit != null)
+        {
+            unit.IsStationary = true;
+            unit.ChangeState(EnemyUnitBase.EnemyUnitState.Idle);
+        }
+        return unit;
+    }
+
+    private IEnumerator PersistentEnemySpawnRoutine()
+    {
+        persistentEnemyList.Clear();
+        persistentRespawnTimers = new float[EnemySpawnTrList.Count];
+        for (int i = 0; i < EnemySpawnTrList.Count; i++)
+        {
+            persistentEnemyList.Add(null);
+        }
+
+        while (!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1))
+        {
+            var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
+            var waveidx = GameRoot.Instance.UserData.Waveidx.Value;
+            var td = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(stageidx, waveidx));
+
+            if (td != null && td.unit_idx.Count > 0)
+            {
+                int enemyIdx = td.unit_idx[0];
+                int dmg = td.unit_dmg.Count > 0 ? td.unit_dmg[0] : 0;
+                int hp = td.unit_hp.Count > 0 ? td.unit_hp[0] : 0;
+
+                for (int i = 0; i < EnemySpawnTrList.Count; i++)
+                {
+                    var enemy = persistentEnemyList[i];
+                    bool isAlive = enemy != null && !enemy.IsDead && enemy.gameObject.activeSelf;
+
+                    if (isAlive) continue;
+
+                    if (persistentRespawnTimers[i] > 0f)
+                    {
+                        persistentRespawnTimers[i] -= Time.deltaTime;
+                        continue;
+                    }
+
+                    if (enemy != null)
+                    {
+                        persistentRespawnTimers[i] = 1f;
+                        persistentEnemyList[i] = null;
+                        continue;
+                    }
+
+                    persistentEnemyList[i] = SpawnStationaryEnemy(
+                        enemyIdx, dmg, hp, EnemySpawnTrList[i].position);
+                }
+            }
+
+            yield return null;
+        }
+
+        EnemyUnitGroup.PersistentUnits.Clear();
+        persistentEnemyList.Clear();
+        persistentSpawnCoroutine = null;
+    }
+
+    public void StopPersistentSpawn()
+    {
+        if (persistentSpawnCoroutine != null)
+        {
+            StopCoroutine(persistentSpawnCoroutine);
+            persistentSpawnCoroutine = null;
+        }
+        EnemyUnitGroup.PersistentUnits.Clear();
+        persistentEnemyList.Clear();
     }
 
 
