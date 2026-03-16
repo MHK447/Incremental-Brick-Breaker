@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 25f1a1c6d9aaf4eb1a34cae405c4bb0a
+guid: b9f6f2a0979904415922c72b49cfd7fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2071784693182099215
-    second: Increa_Upgrade_Icon_13_0
+      213: -8769515350818982275
+    second: Increa_Upgrade_Icon_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Increa_Upgrade_Icon_13_0
+      name: Increa_Upgrade_Icon_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 99
-        height: 99
+        width: 164
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f0fe530a33570cc10800000000000000
-      internalID: 2071784693182099215
+      spriteID: d767916504c6c4680800000000000000
+      internalID: -8769515350818982275
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Increa_Upgrade_Icon_13_0: 2071784693182099215
+      Increa_Upgrade_Icon_2_0: -8769515350818982275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

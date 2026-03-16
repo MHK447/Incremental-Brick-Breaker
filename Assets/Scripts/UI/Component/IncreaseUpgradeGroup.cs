@@ -25,7 +25,7 @@ public class IncreaseUpgradeGroup : MonoBehaviour
 
     public void UnLockUpgrade(int idx)
     {
-        var td = Tables.Instance.GetTable<IncreaseUpgradeOrder>().GetData(idx);
+        var td = Tables.Instance.GetTable<IncreaUpgradeOrder>().GetData(idx);
 
         if(td != null)
         {

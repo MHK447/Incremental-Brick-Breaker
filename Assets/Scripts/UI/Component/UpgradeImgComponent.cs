@@ -33,23 +33,25 @@ public class UpgradeImgComponent : MonoBehaviour
     {
         UpgradeIdx = upgradeidx;
 
+        var td = Tables.Instance.GetTable<IncreaUpgradeOrder>().GetData(UpgradeIdx);
+        if (td == null) return;
 
-        var finddata = GameRoot.Instance.UserData.Increaseugprades.Find(x => x.Idx == UpgradeIdx);
+        var finddata = GameRoot.Instance.UserData.Increaseugprades.Find(x => x.Order == td.order);
         if (finddata != null)
         {
-            var td = Tables.Instance.GetTable<IncreaseUpgradeOrder>().GetData(UpgradeIdx);
-            var tdinfo = Tables.Instance.GetTable<IncreaseUpgradeInfo>().GetData(UpgradeIdx);
+            var tdinfo = Tables.Instance.GetTable<IncreaUpgradeInfo>().GetData(td.increase_idx);
 
-            if (td != null && tdinfo != null && td.cost != null && td.cost.Count > 0)
+            if (tdinfo != null && td.cost != null && td.cost.Count > 0)
             {
-                int level = finddata.Level.Value;
+                var level = finddata.Level.Value == 0 ? 0 : finddata.Level.Value - 1;
+                
                 int costIdx = Mathf.Clamp(level, 0, td.cost.Count - 1);
                 int currentCost = td.cost[costIdx];
 
                 UpgradeCountText.text = $"{level}/{td.increase_max_lv}";
                 UpgradeCostText.text = $"{currentCost}";
 
-                var upgradevalue = td.upgrade_value[finddata.Level.Value];
+                var upgradevalue = td.upgrade_value[level];
 
                 UpgradeDescText.text =  upgradevalue == -1 ? 
                  Tables.Instance.GetTable<Localize>().GetString(tdinfo.upgrade_name) : 

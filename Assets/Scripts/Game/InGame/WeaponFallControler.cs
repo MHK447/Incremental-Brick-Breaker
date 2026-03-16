@@ -8,11 +8,11 @@ using UnityEngine.AddressableAssets;
 
 public class WeaponFallControler : MonoBehaviour
 {
-    private int StartFallCount = 2;
+    private int StartFallCount = 1;
 
     private float FallDelTime = 0f;
 
-    private float FallCoolTime = 0f;
+    private float BaseFallCoolTime = 2f;
 
 
     protected List<FallWeaponBase> ActiveFallBullets = new List<FallWeaponBase>();
@@ -20,12 +20,15 @@ public class WeaponFallControler : MonoBehaviour
 
     public void Init()
     {
+        FallDelTime = 0f;
+
         GameRoot.Instance.UserData.InGamePlayerData.InitIncreaMentalBonuses();
 
         var playerData = GameRoot.Instance.UserData.InGamePlayerData;
-        StartFallCount = playerData.WeaponFallStartCount;
+        StartFallCount = Mathf.Max(1, playerData.WeaponFallStartCount);
 
-        FallCoolTime = 2f;
+        playerData.WeaponFallCountProperty.Value = StartFallCount;
+        playerData.WeaponFallCooldownProgressProperty.Value = 1f;
     }
 
     public void CreateFallEffect(Vector3 worldPosition, int weaponidx)
@@ -42,14 +45,21 @@ public class WeaponFallControler : MonoBehaviour
         });
     }
 
+    private float GetCurrentFallCoolTime()
+    {
+        float speedMult = GameRoot.Instance.UserData.InGamePlayerData.FallWeaponSpeedMultiplier;
+        return speedMult > 0f ? BaseFallCoolTime / speedMult : BaseFallCoolTime;
+    }
+
     void Update()
     {
         var inGameData = GameRoot.Instance.UserData.InGamePlayerData;
-        if (inGameData.WeaponFallCountProperty.Value <= inGameData.WeaponFallStartCount)
+        float fallCoolTime = GetCurrentFallCoolTime();
+        if (inGameData.WeaponFallCountProperty.Value < inGameData.WeaponFallStartCount)
         {
             FallDelTime += Time.deltaTime;
-            inGameData.WeaponFallCooldownProgressProperty.Value = Mathf.Clamp01(FallDelTime / FallCoolTime);
-            if (FallDelTime >= FallCoolTime)
+            inGameData.WeaponFallCooldownProgressProperty.Value = Mathf.Clamp01(FallDelTime / fallCoolTime);
+            if (FallDelTime >= fallCoolTime)
             {
                 inGameData.WeaponFallCountProperty.Value += 1;
                 FallDelTime = 0f;
@@ -81,6 +91,12 @@ public class WeaponFallControler : MonoBehaviour
     public void FallAddBullet(int weaponidx, Vector3 pos)
     {
         var td = Tables.Instance.GetTable<WeaponInfo>().GetData(weaponidx);
+
+        if (td == null)
+        {
+            weaponidx = InGamePlayerData.FallWeaponIdx_Default;
+            td = Tables.Instance.GetTable<WeaponInfo>().GetData(weaponidx);
+        }
 
         if (td != null)
         {

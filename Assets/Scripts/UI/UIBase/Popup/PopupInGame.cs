@@ -83,7 +83,7 @@ public class PopupInGame : UIBase
 
         ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, false);
 
-        ProjectUtility.SetActiveCheck(StageAreaRoot.gameObject, GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1));
+        ProjectUtility.SetActiveCheck(StageAreaRoot.gameObject, GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock));
     }
 
     public void SetHpProgress(int hp)
@@ -141,11 +141,16 @@ public class PopupInGame : UIBase
     }
 
 
+    public void RefreshTruckUI()
+    {
+        ProjectUtility.SetActiveCheck(StageAreaRoot.gameObject, GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock));
+    }
+
     public void UpgradeImgHover(int upgradeidx , Vector3 pos)
     {
         ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, true);
         UpgradeImgComponent.Set(upgradeidx);
-        UpgradeImgComponent.transform.position = new Vector3(pos.x, pos.y + 100, 0);
+        UpgradeImgComponent.transform.position = new Vector3(pos.x, pos.y + 200, 0);
     }
 
     public void UpgradeImgHoverExit()

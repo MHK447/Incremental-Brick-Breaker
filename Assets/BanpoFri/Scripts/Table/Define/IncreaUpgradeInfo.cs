@@ -1,8 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
-using BanpoFri;
-using System.Linq;
-using UnityEngine.UI;
 
 namespace BanpoFri
 {
@@ -29,13 +26,6 @@ namespace BanpoFri
 		{
 			get { return _upgrade_name;}
 			set { _upgrade_name = value;}
-		}
-		[SerializeField]
-		private string _upgrade_desc;
-		public string upgrade_desc
-		{
-			get { return _upgrade_desc;}
-			set { _upgrade_desc = value;}
 		}
 
     }

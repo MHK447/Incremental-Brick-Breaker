@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using BanpoFri;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void Init()
     {
-        if(!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1))
+        if(!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock))
         {
             ProjectUtility.SetActiveCheck(this.gameObject, false);
             return;
@@ -49,11 +49,11 @@ public class PlayerUnit : MonoBehaviour
 
     public void SetPlayerData()
     {
-        InGamePlayerData.CurHppProperty.Value = InGamePlayerData.StartHpProperty.Value = 50;
+        int baseHp = 50 + InGamePlayerData.BonusHealth;
+        InGamePlayerData.CurHppProperty.Value = InGamePlayerData.StartHpProperty.Value = baseHp;
         InGamePlayerData.CriticalChanceProperty.Value = 30;
         InGamePlayerData.CriticalDamageProperty.Value = 10;
         InGamePlayerData.FallWeaponIdxProperty.Value = 101;
-
     }
 
     public void Damage(int damage)

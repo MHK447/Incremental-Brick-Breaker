@@ -12,6 +12,7 @@ public class WeaponSystem
         BaseArrow = 1,
         GearWeapon = 2,
         MachineGun = 3,
+        Flamethrower = 4,
     }
 
 }

@@ -28,11 +28,11 @@ public class InGamePlayerData
 
     public int WeaponFallStartCount = 1;
 
-    /// <summary> 인크리멘탈 공격력 배율 </summary>
-    public float IncreaDamageMultiplier = 1f;
+    /// <summary> 인크리멘탈 공격력 추가 보너스 </summary>
+    public int IncreaDamageBonus = 0;
 
-    /// <summary> 인크리멘탈 공격속도 배율 (높을수록 빠름) </summary>
-    public float IncreaAttackSpeedMultiplier = 1f;
+    /// <summary> Fall 무기 속도 배율 (높을수록 빠름) </summary>
+    public float FallWeaponSpeedMultiplier = 1f;
 
     /// <summary> 낙하 탄환 관통 횟수 </summary>
     public int FallPenetrationCount = 0;
@@ -43,8 +43,17 @@ public class InGamePlayerData
     /// <summary> 코인 추가 드랍 확률 </summary>
     public float BonusCoinDropRate = 0f;
 
-    /// <summary> 코인 등장 추가 확률 </summary>
-    public float BonusCoinSpawnRate = 0f;
+    /// <summary> 코인 얻는 벨류 추가 보너스 </summary>
+    public int CoinValueBonus = 0;
+
+    /// <summary> 무기 쿨타임 감소 배율 (높을수록 쿨타임 짧음) </summary>
+    public float WeaponCooldownMultiplier = 1f;
+
+    /// <summary> 체력 추가 보너스 </summary>
+    public int BonusHealth = 0;
+
+    /// <summary> 체력 회복 추가 보너스 </summary>
+    public int HealthRegenBonus = 0;
 
     public const int FallWeaponIdx_Default = 101;
     public const int FallWeaponIdx_Bomb = 102;
@@ -54,12 +63,13 @@ public class InGamePlayerData
     {
         var system = GameRoot.Instance.IncreaMentalSystem;
 
-        IncreaDamageMultiplier = system.GetAttackDamageMultiplier();
-        IncreaAttackSpeedMultiplier = system.GetAttackSpeedMultiplier();
+        IncreaDamageBonus = system.GetAttackDamageBonus();
+        FallWeaponSpeedMultiplier = system.GetFallWeaponSpeedMultiplier();
+        WeaponCooldownMultiplier = system.GetWeaponCooldownMultiplier();
 
         int bonusFallCount = system.GetBonusFallCount();
         int prevStartCount = WeaponFallStartCount;
-        WeaponFallStartCount = 2 + bonusFallCount;
+        WeaponFallStartCount = 1 + bonusFallCount;
 
         int diff = WeaponFallStartCount - prevStartCount;
         if (diff > 0)
@@ -70,7 +80,9 @@ public class InGamePlayerData
         FallPenetrationCount = system.GetFallPenetrationCount();
         BonusGemDropRate = system.GetGemDropBonusRate();
         BonusCoinDropRate = system.GetCoinDropBonusRate();
-        BonusCoinSpawnRate = system.GetCoinSpawnBonusRate();
+        CoinValueBonus = system.GetCoinValueBonus();
+        BonusHealth = system.GetBonusHealth();
+        HealthRegenBonus = system.GetHealthRegenBonus();
 
         FallWeaponIdxProperty.Value = system.IsBombUpgraded() ? FallWeaponIdx_Bomb : FallWeaponIdx_Default;
     }
@@ -80,17 +92,20 @@ public class InGamePlayerData
     {
         var system = GameRoot.Instance.IncreaMentalSystem;
 
-        IncreaDamageMultiplier = system.GetAttackDamageMultiplier();
-        IncreaAttackSpeedMultiplier = system.GetAttackSpeedMultiplier();
+        IncreaDamageBonus = system.GetAttackDamageBonus();
+        FallWeaponSpeedMultiplier = system.GetFallWeaponSpeedMultiplier();
+        WeaponCooldownMultiplier = system.GetWeaponCooldownMultiplier();
 
         int bonusFallCount = system.GetBonusFallCount();
-        WeaponFallStartCount = 2 + bonusFallCount;
+        WeaponFallStartCount = 1 + bonusFallCount;
         WeaponFallCountProperty.Value = WeaponFallStartCount;
 
         FallPenetrationCount = system.GetFallPenetrationCount();
         BonusGemDropRate = system.GetGemDropBonusRate();
         BonusCoinDropRate = system.GetCoinDropBonusRate();
-        BonusCoinSpawnRate = system.GetCoinSpawnBonusRate();
+        CoinValueBonus = system.GetCoinValueBonus();
+        BonusHealth = system.GetBonusHealth();
+        HealthRegenBonus = system.GetHealthRegenBonus();
 
         FallWeaponIdxProperty.Value = system.IsBombUpgraded() ? FallWeaponIdx_Bomb : FallWeaponIdx_Default;
     }

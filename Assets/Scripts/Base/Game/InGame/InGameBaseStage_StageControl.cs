@@ -247,7 +247,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public IEnumerator EnemySpawnStart()
     {
-        bool truckUnlocked = GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1);
+        bool truckUnlocked = GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock);
 
         if (truckUnlocked)
         {
@@ -337,7 +337,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void FirstStartEnemySpawn()
     {
-        if (GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1))
+        if (GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock))
             return;
 
         if (persistentSpawnCoroutine != null)
@@ -367,7 +367,7 @@ public partial class InGameBaseStage : MonoBehaviour
             persistentEnemyList.Add(null);
         }
 
-        while (!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock1))
+        while (!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock))
         {
             var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
             var waveidx = GameRoot.Instance.UserData.Waveidx.Value;

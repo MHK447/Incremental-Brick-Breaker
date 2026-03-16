@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: b9f6f2a0979904415922c72b49cfd7fc
+guid: 42b04b99abbb44bb692a5710d5869e97
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8769515350818982275
-    second: Increa_Upgrade_Icon_2_0
+      213: -7044027345683165485
+    second: Increa_Upgrade_Icon_9_0
+  - first:
+      213: 6198726322458073965
+    second: Increa_Upgrade_Icon_9_1
+  - first:
+      213: 8059518702241820501
+    second: Increa_Upgrade_Icon_9_2
+  - first:
+      213: 3115566788430268178
+    second: Increa_Upgrade_Icon_9_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Increa_Upgrade_Icon_2_0
+      name: Increa_Upgrade_Icon_9_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 164
-        height: 170
+        width: 63
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +150,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d767916504c6c4680800000000000000
-      internalID: -8769515350818982275
+      spriteID: 3deca6033769e3e90800000000000000
+      internalID: -7044027345683165485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Increa_Upgrade_Icon_9_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 36
+        width: 69
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6b1afd7fbc460650800000000000000
+      internalID: 6198726322458073965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Increa_Upgrade_Icon_9_2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 21
+        width: 47
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55fadbbfe8929df60800000000000000
+      internalID: 8059518702241820501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Increa_Upgrade_Icon_9_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 2
+        width: 58
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2170462bc77bc3b20800000000000000
+      internalID: 3115566788430268178
       vertices: []
       indices: 
       edges: []
@@ -160,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Increa_Upgrade_Icon_9_0: -7044027345683165485
+      Increa_Upgrade_Icon_9_1: 6198726322458073965
+      Increa_Upgrade_Icon_9_2: 8059518702241820501
+      Increa_Upgrade_Icon_9_3: 3115566788430268178
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

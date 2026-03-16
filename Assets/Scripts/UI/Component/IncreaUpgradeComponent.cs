@@ -74,15 +74,15 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void Init(System.Action<int> unlockaction)
     {
-        var td = Tables.Instance.GetTable<IncreaseUpgradeOrder>().GetData(UpgradeOrder);
-        if (td != null && td.cost != null && td.cost.Count > 0)
+        var td = Tables.Instance.GetTable<IncreaUpgradeOrder>().GetData(UpgradeOrder);
+        if (td != null  && td.cost.Count > 0)
         {
-            var finddata = GameRoot.Instance.IncreaMentalSystem.FindData(UpgradeOrder);
+            var finddata = GameRoot.Instance.IncreaMentalSystem.FindData(td.order);
             int level = finddata != null ? finddata.Level.Value : 0;
             int costIdx = Mathf.Clamp(level, 0, td.cost.Count - 1);
             UpgradeCost = td.cost[costIdx];
 
-            var upgradetd = Tables.Instance.GetTable<IncreaseUpgradeInfo>().GetData(td.increase_idx);
+            var upgradetd = Tables.Instance.GetTable<IncreaUpgradeInfo>().GetData(td.increase_idx);
 
             if (upgradetd != null)
             {
@@ -109,7 +109,6 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             img.color = cost >= UpgradeCost ? Config.Instance.GetImageColor("image_color_green") : Config.Instance.GetImageColor("image_color_red");
         }
-
     }
 
 
@@ -121,10 +120,18 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnClickUpgrade()
     {
+        var td = Tables.Instance.GetTable<IncreaUpgradeOrder>().GetData(UpgradeOrder);
+        if (td == null) return;
+
+        var finddata = GameRoot.Instance.IncreaMentalSystem.FindData(td.order);
+        int level = finddata != null ? finddata.Level.Value : 0;
+
+        if (level >= td.increase_max_lv) return;
+
         if (GameRoot.Instance.UserData.Money.Value >= UpgradeCost)
         {
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
-            GameRoot.Instance.IncreaMentalSystem.IncreaseLevelUp(UpgradeOrder);
+            GameRoot.Instance.IncreaMentalSystem.IncreaseLevelUp(td.order);
             UnLock();
             UnlockAction?.Invoke(UpgradeOrder);
         }
@@ -160,21 +167,25 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void SetState()
     {
-        var finddata = GameRoot.Instance.IncreaMentalSystem.FindData(UpgradeOrder);
+        var td = Tables.Instance.GetTable<IncreaUpgradeOrder>().GetData(UpgradeOrder);
+        if (td == null) return;
+
+        var finddata = GameRoot.Instance.IncreaMentalSystem.FindData(td.order);
         if (finddata != null)
         {
             foreach (var line in NextLineList)
             {
                 ProjectUtility.SetActiveCheck(line, false);
             }
-
-            if (finddata.Level.Value == 0 && !GameRoot.Instance.IncreaMentalSystem.UpgradeUnLockOrderList.Contains(UpgradeOrder))
+    
+            if (finddata.Level.Value == 0 && !GameRoot.Instance.IncreaMentalSystem.UpgradeUnLockOrderList.Contains(UpgradeOrder)
+            && UpgradeOrder != 2)
             {
                 CurType = UpgradeType.Hide;
 
                 ProjectUtility.SetActiveCheck(this.gameObject, false);
             }
-            else if (finddata.Level.Value <= 0 && GameRoot.Instance.IncreaMentalSystem.UpgradeUnLockOrderList.Contains(UpgradeOrder))
+            else if (finddata.Level.Value <= 0 && (GameRoot.Instance.IncreaMentalSystem.UpgradeUnLockOrderList.Contains(UpgradeOrder) || UpgradeOrder == 2))
             {
                 CurType = UpgradeType.Lock;
                 ProjectUtility.SetActiveCheck(this.gameObject, true);

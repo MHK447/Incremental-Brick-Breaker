@@ -19,22 +19,22 @@ public struct InCreaseUpgradeData : IFlatbufferObject
   public void __init(int _i, ByteBuffer _bb) { __p = new Table(_i, _bb); }
   public InCreaseUpgradeData __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public int Idx { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public bool MutateIdx(int idx) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, idx); return true; } else { return false; } }
+  public int Order { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateOrder(int order) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, order); return true; } else { return false; } }
   public int Level { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
   public bool MutateLevel(int level) { int o = __p.__offset(6); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, level); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.InCreaseUpgradeData> CreateInCreaseUpgradeData(FlatBufferBuilder builder,
-      int idx = 0,
+      int order = 0,
       int level = 0) {
     builder.StartTable(2);
     InCreaseUpgradeData.AddLevel(builder, level);
-    InCreaseUpgradeData.AddIdx(builder, idx);
+    InCreaseUpgradeData.AddOrder(builder, order);
     return InCreaseUpgradeData.EndInCreaseUpgradeData(builder);
   }
 
   public static void StartInCreaseUpgradeData(FlatBufferBuilder builder) { builder.StartTable(2); }
-  public static void AddIdx(FlatBufferBuilder builder, int idx) { builder.AddInt(0, idx, 0); }
+  public static void AddOrder(FlatBufferBuilder builder, int order) { builder.AddInt(0, order, 0); }
   public static void AddLevel(FlatBufferBuilder builder, int level) { builder.AddInt(1, level, 0); }
   public static Offset<BanpoFri.Data.InCreaseUpgradeData> EndInCreaseUpgradeData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
@@ -46,27 +46,27 @@ public struct InCreaseUpgradeData : IFlatbufferObject
     return _o;
   }
   public void UnPackTo(InCreaseUpgradeDataT _o) {
-    _o.Idx = this.Idx;
+    _o.Order = this.Order;
     _o.Level = this.Level;
   }
   public static Offset<BanpoFri.Data.InCreaseUpgradeData> Pack(FlatBufferBuilder builder, InCreaseUpgradeDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.InCreaseUpgradeData>);
     return CreateInCreaseUpgradeData(
       builder,
-      _o.Idx,
+      _o.Order,
       _o.Level);
   }
 }
 
 public class InCreaseUpgradeDataT
 {
-  [Newtonsoft.Json.JsonProperty("idx")]
-  public int Idx { get; set; }
+  [Newtonsoft.Json.JsonProperty("order")]
+  public int Order { get; set; }
   [Newtonsoft.Json.JsonProperty("level")]
   public int Level { get; set; }
 
   public InCreaseUpgradeDataT() {
-    this.Idx = 0;
+    this.Order = 0;
     this.Level = 0;
   }
 }
@@ -77,7 +77,7 @@ static public class InCreaseUpgradeDataVerify
   static public bool Verify(Google.FlatBuffers.Verifier verifier, uint tablePos)
   {
     return verifier.VerifyTableStart(tablePos)
-      && verifier.VerifyField(tablePos, 4 /*Idx*/, 4 /*int*/, 4, false)
+      && verifier.VerifyField(tablePos, 4 /*Order*/, 4 /*int*/, 4, false)
       && verifier.VerifyField(tablePos, 6 /*Level*/, 4 /*int*/, 4, false)
       && verifier.VerifyTableEnd(tablePos);
   }

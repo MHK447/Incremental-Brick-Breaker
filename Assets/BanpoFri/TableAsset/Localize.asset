@@ -30,6 +30,8 @@ MonoBehaviour:
   - Increa_Upgrade_name_14
   - Increa_Upgrade_name_15
   - Increa_Upgrade_name_16
+  - Increa_Upgrade_name_17
+  - Increa_Upgrade_name_18
   mSecondKey: []
   mDataList:
   - _idx: str_name_choices_1
@@ -53,7 +55,7 @@ MonoBehaviour:
     _es: Ataque +{0}
     _vi: "T\u1EA5n c\xF4ng +{0}"
   - _idx: Increa_Upgrade_name_2
-    _ko: "\uACF5\uACA9\uC18D\uB3C4 {0}% \uC99D\uAC00"
+    _ko: "\uBB34\uAE30 \uB5A8\uC5B4\uC9C0\uB294 \uC18D\uB3C4 {0}% \uC99D\uAC00"
     _en: Attack Speed +{0}%
     _ja: "\u653B\u6483\u901F\u5EA6 +{0}%"
     _de: Angriffsgeschwindigkeit +{0}%
@@ -75,7 +77,7 @@ MonoBehaviour:
     _es: "Desbloquear cami\xF3n"
     _vi: "M\u1EDF kh\xF3a xe t\u1EA3i"
   - _idx: Increa_Upgrade_name_4
-    _ko: "\uD69F\uC218 +{0} \uC99D\uAC00"
+    _ko: "\uB5A8\uC5B4\uC9C0\uB294 \uBB34\uAE30 \uD69F\uC218 +{0} \uC99D\uAC00"
     _en: Count +{0}
     _ja: "\u56DE\u6570 +{0}"
     _de: Anzahl +{0}
@@ -95,7 +97,7 @@ MonoBehaviour:
     _es: "Perforaci\xF3n +{0}"
     _vi: "S\u1ED1 l\u1EA7n xuy\xEAn +{0}"
   - _idx: Increa_Upgrade_name_6
-    _ko: "\uC7BC \uB4DC\uB78D \uD655\uB960 {0}% \uC99D\uAC00"
+    _ko: "\uC7BC \uB4DC\uB78D   +{0} \uC99D\uAC00"
     _en: Gem Drop Rate +{0}%
     _ja: "\u30B8\u30A7\u30E0\u30C9\u30ED\u30C3\u30D7\u7387 +{0}%"
     _de: Edelstein-Droprate +{0}%
@@ -106,7 +108,7 @@ MonoBehaviour:
     _es: "Probabilidad de ca\xEDda de gemas +{0}%"
     _vi: "T\u1EF7 l\u1EC7 r\u01A1i ng\u1ECDc +{0}%"
   - _idx: Increa_Upgrade_name_7
-    _ko: "\uCF54\uC778 +{0} \uC99D\uAC00"
+    _ko: "\uACE8\uB4DC \uCF54\uC778 +{0} \uC99D\uAC00"
     _en: Coin +{0}
     _ja: "\u30B3\u30A4\u30F3 +{0}"
     _de: "M\xFCnzen +{0}"
@@ -116,7 +118,7 @@ MonoBehaviour:
     _es: Monedas +{0}
     _vi: Xu +{0}
   - _idx: Increa_Upgrade_name_8
-    _ko: "\uD2B8\uB7ED \uC7A0\uAE08 \uD574\uCCB4"
+    _ko: "\uCF54\uC778 \uC5BB\uB294 \uAC12 +{0} \uC99D\uAC00"
     _en: Unlock Truck
     _ja: "\u30C8\u30E9\u30C3\u30AF\u89E3\u653E"
     _de: Truck freischalten
@@ -127,7 +129,7 @@ MonoBehaviour:
     _es: "Desbloquear cami\xF3n"
     _vi: "M\u1EDF kh\xF3a xe t\u1EA3i"
   - _idx: Increa_Upgrade_name_9
-    _ko: "\uCF54\uC778 \uB4F1\uC7A5 \uD655\uB960 {0}% \uC99D\uAC00"
+    _ko: "\uBB34\uAE30 \uCFE8\uD0C0\uC784 {0}% \uAC10\uC18C"
     _en: Coin Spawn Rate +{0}%
     _ja: "\u30B3\u30A4\u30F3\u51FA\u73FE\u7387 +{0}%"
     _de: Coin-Erscheinungsrate +{0}%
@@ -138,7 +140,7 @@ MonoBehaviour:
     _es: "Tasa de aparici\xF3n de monedas +{0}%"
     _vi: "T\u1EF7 l\u1EC7 xu\u1EA5t hi\u1EC7n xu +{0}%"
   - _idx: Increa_Upgrade_name_10
-    _ko: "\uD2B8\uB7ED \uAC15\uD654 \uC7A0\uAE08 \uD574\uCCB4"
+    _ko: "\uD1B1\uB2C8 \uBC14\uD034 \uC7A0\uAE08 \uD574\uCCB4"
     _en: Unlock Truck Upgrade
     _ja: "\u30C8\u30E9\u30C3\u30AF\u5F37\u5316\u89E3\u653E"
     _de: Truck-Upgrade freischalten
@@ -149,7 +151,7 @@ MonoBehaviour:
     _es: "Desbloquear mejora del cami\xF3n"
     _vi: "M\u1EDF kh\xF3a n\xE2ng c\u1EA5p xe t\u1EA3i"
   - _idx: Increa_Upgrade_name_11
-    _ko: "\uACF5\uACA9\uC18D\uB3C4 {0}% \uC99D\uAC00"
+    _ko: "\uD1B1\uB2C8 \uBC14\uD034 +{0} \uC99D\uAC00"
     _en: Attack Speed +{0}%
     _ja: "\u653B\u6483\u901F\u5EA6 +{0}%"
     _de: Angriffsgeschwindigkeit +{0}%
@@ -160,7 +162,7 @@ MonoBehaviour:
     _es: Velocidad de ataque +{0}%
     _vi: "T\u1ED1c \u0111\u1ED9 t\u1EA5n c\xF4ng +{0}%"
   - _idx: Increa_Upgrade_name_12
-    _ko: "\uD1B1\uB2C8 \uBC14\uD034 \uBB34\uAE30 \uD574\uAE08"
+    _ko: "\uBA38\uC2E0\uAC80 \uC7A0\uAE08 \uD574\uCCB4"
     _en: Unlock Gear Weapon
     _ja: "\u6B6F\u8ECA\u6B66\u5668\u89E3\u653E"
     _de: Zahnrad-Waffe freischalten
@@ -171,7 +173,7 @@ MonoBehaviour:
     _es: Desbloquear arma engranaje
     _vi: "M\u1EDF kh\xF3a v\u0169 kh\xED b\xE1nh r\u0103ng"
   - _idx: Increa_Upgrade_name_13
-    _ko: "\uD1B1\uB2C8 \uBC14\uD034\uC218 \uC99D\uAC00"
+    _ko: "\uD2B8\uB7ED \uC5C5\uADF8\uB808\uC774\uB4DC \uD574\uAE08"
     _en: Increase Gear Count
     _ja: "\u6B6F\u8ECA\u6570\u5897\u52A0"
     _de: "Zahnradanzahl erh\xF6hen"
@@ -182,7 +184,7 @@ MonoBehaviour:
     _es: "Aumentar n\xFAmero de engranajes"
     _vi: "T\u0103ng s\u1ED1 b\xE1nh r\u0103ng"
   - _idx: Increa_Upgrade_name_14
-    _ko: "\uBA38\uC2E0\uAC80 \uD574\uAE08"
+    _ko: "\uB5A8\uC5B4\uC9C0\uB294 \uBB34\uAE30 \uD3ED\uD0D1\uC73C\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC"
     _en: Unlock Machine Gun
     _ja: "\u30DE\u30B7\u30F3\u30AC\u30F3\u89E3\u653E"
     _de: Maschinengewehr freischalten
@@ -193,7 +195,7 @@ MonoBehaviour:
     _es: Desbloquear ametralladora
     _vi: "M\u1EDF kh\xF3a s\xFAng m\xE1y"
   - _idx: Increa_Upgrade_name_15
-    _ko: "\uD2B8\uB7ED \uC5C5\uADF8\uB808\uC774\uB4DC \uD574\uAE08"
+    _ko: "\uD654\uC5FC\uBC29\uC0AC\uAE30 \uC7A0\uAE08\uD574\uCCB4"
     _en: Unlock Truck Upgrade
     _ja: "\u30C8\u30E9\u30C3\u30AF\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9\u89E3\u653E"
     _de: Truck-Upgrade freischalten
@@ -204,7 +206,7 @@ MonoBehaviour:
     _es: "Desbloquear mejora del cami\xF3n"
     _vi: "M\u1EDF kh\xF3a n\xE2ng c\u1EA5p xe t\u1EA3i"
   - _idx: Increa_Upgrade_name_16
-    _ko: "fall bullet \uD3ED\uD0C4\uC73C\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC"
+    _ko: "\uBC29\uC5B4 \uAC00\uB4DC \uC7A0\uAE08\uD574\uCCB4"
     _en: Upgrade Fall Bullet to Bomb
     _ja: "\u30D5\u30A9\u30FC\u30EB\u5F3E\u3092\u7206\u5F3E\u306B\u30A2\u30C3\u30D7\u30B0\u30EC\u30FC\u30C9"
     _de: Fall Bullet zu Bombe aufwerten
@@ -214,3 +216,23 @@ MonoBehaviour:
     _fr: "Am\xE9liorer Fall Bullet en bombe"
     _es: Mejorar Fall Bullet a bomba
     _vi: "N\xE2ng c\u1EA5p Fall Bullet th\xE0nh bom"
+  - _idx: Increa_Upgrade_name_17
+    _ko: "\uCCB4\uB825 +{0} \uC99D\uAC00"
+    _en: 
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Increa_Upgrade_name_18
+    _ko: "5\uCD08 \uB9C8\uB2E4 \uCCB4\uB825 \uD68C\uBCF5 +{0} \uC99D\uAC00"
+    _en: 
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 

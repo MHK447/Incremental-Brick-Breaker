@@ -61,7 +61,7 @@ table RecordCount {
 }
 
 table InCreaseUpgradeData {
-  idx:int; 
+  order:int; 
   level:int = 0;  //@ReactiveProperty
 }
 

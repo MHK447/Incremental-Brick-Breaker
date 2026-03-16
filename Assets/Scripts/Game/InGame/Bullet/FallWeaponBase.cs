@@ -103,7 +103,7 @@ public class FallWeaponBase : MonoBehaviour
         if (hitTargets.Contains(collision)) return;
 
 
-        int finalDmg = Mathf.RoundToInt(WeaponData.WeaponDamage * GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageMultiplier);
+        int finalDmg = WeaponData.WeaponDamage + GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageBonus;
 
         if (collidedObj.layer == LayerMask.NameToLayer("Enemy"))
         {
@@ -113,9 +113,11 @@ public class FallWeaponBase : MonoBehaviour
                 hitTargets.Add(collision);
                 enemy.Damage(finalDmg);
 
-                IsCollision = true;
-                OnHitCallback?.Invoke(this);
-
+                if (hitTargets.Count > maxPenetration)
+                {
+                    IsCollision = true;
+                    OnHitCallback?.Invoke(this);
+                }
             }
         }
         else if (collidedObj.layer == LayerMask.NameToLayer("EnemyBlockSpawner"))

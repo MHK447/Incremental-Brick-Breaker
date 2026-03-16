@@ -24,7 +24,7 @@ public partial class UserDataSystem
                 var item = pair;
                 increaseugprades_Array[index++] = BanpoFri.Data.InCreaseUpgradeData.CreateInCreaseUpgradeData(
                     builder,
-                    item.Idx,
+                    item.Order,
                     item.Level.Value
                 );
             }
@@ -54,7 +54,7 @@ public partial class UserDataSystem
             {
                 var increaseupgradedata = new InCreaseUpgradeData
                 {
-                    Idx = Increaseugprades_item.Value.Idx,
+                    Order = Increaseugprades_item.Value.Order,
                     Level = new ReactiveProperty<int>(Increaseugprades_item.Value.Level)
                 };
                 Increaseugprades.Add(increaseupgradedata);
@@ -66,7 +66,7 @@ public partial class UserDataSystem
 
 public class InCreaseUpgradeData
 {
-    public int Idx { get; set; } = 0;
+    public int Order { get; set; } = 0;
     public IReactiveProperty<int> Level { get; set; } = new ReactiveProperty<int>(0);
 
 }

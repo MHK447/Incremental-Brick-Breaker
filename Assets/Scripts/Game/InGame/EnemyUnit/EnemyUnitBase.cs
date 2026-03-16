@@ -177,30 +177,24 @@ public class EnemyUnitBase : MonoBehaviour
 
             var playerData = GameRoot.Instance.UserData.InGamePlayerData;
 
+            int coinReward = EnemyUnitData.Dmg + playerData.CoinValueBonus;
+
             GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
             {
-                x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, EnemyUnitData.Dmg);
+                x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, coinReward);
             });
 
             if (playerData.BonusCoinDropRate > 0f && Random.value < playerData.BonusCoinDropRate)
             {
                 GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
                 {
-                    x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, EnemyUnitData.Dmg);
+                    x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, coinReward);
                 });
             }
 
             if (playerData.BonusGemDropRate > 0f && Random.value < playerData.BonusGemDropRate)
             {
                 GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 1);
-            }
-
-            if (playerData.BonusCoinSpawnRate > 0f && Random.value < playerData.BonusCoinSpawnRate)
-            {
-                GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
-                {
-                    x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.SilverCoin, 1);
-                });
             }
 
             if (EnemyUnitGroup != null)
