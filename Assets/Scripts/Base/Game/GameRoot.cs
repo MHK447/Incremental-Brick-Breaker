@@ -58,6 +58,8 @@ public class GameRoot : Singleton<GameRoot>
 
 	public WeaponSystem WeaponSystem { get; private set; } = new WeaponSystem();
 
+	public EquipmentSystem EquipmentSystem { get; private set; } = new EquipmentSystem();
+
 	public UnityMainThreadDispatcher MainThreadDispatcher;
 
 	private Queue<System.Action> PauseActions = new Queue<System.Action>();

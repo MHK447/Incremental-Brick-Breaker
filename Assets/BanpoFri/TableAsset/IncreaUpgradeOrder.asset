@@ -72,9 +72,9 @@ MonoBehaviour:
   - _order: 6
     _open_order: ffffffff
     _increase_idx: 11
-    _increase_max_lv: 3
-    _cost: 050000000a00000014000000
-    _upgrade_value: 050000000a00000014000000
+    _increase_max_lv: 1
+    _cost: 0a000000
+    _upgrade_value: 01000000
   - _order: 7
     _open_order: 040000000a0000000b000000
     _increase_idx: 5

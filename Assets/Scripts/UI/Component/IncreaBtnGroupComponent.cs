@@ -13,6 +13,9 @@ public class IncreaBtnGroupComponent : MonoBehaviour
 
     public HudBottomBtnType CurrentlyOpenPage = HudBottomBtnType.Done;
 
+    [SerializeField]
+    private List<GameObject> GroupComponentList = new List<GameObject>();
+
 
     public void UpdateButtonLock()
     {
@@ -26,25 +29,29 @@ public class IncreaBtnGroupComponent : MonoBehaviour
     void OnEnable()
     {
         foreach (var item in HudBottomBtnList)
-        {   
+        {
             item.Set(OnClickHudBottomBtn);
         }
 
-        // 처음 시작할 때 IncreaseUpgrade 활성화
+        // 처음 시작할 때 IncreaseUpgrade 탭을 기본으로 열어 준다.
+        // 1. 버튼 비주얼 상태 세팅
         for (int i = 0; i < HudBottomBtnList.Count; ++i)
         {
             HudBottomBtnList[i].SetActive(HudBottomBtnList[i].CurBtnType != HudBottomBtnType.IncreaseUpgrade);
         }
-        CurrentlyOpenPage = HudBottomBtnType.IncreaseUpgrade;
 
-        // 첫 킬 때는 Animator가 아직 갱신 전이라 Play가 먹지 않을 수 있음 → 한 프레임 뒤에 OpenPage
-        GameRoot.Instance.StartCoroutine(OpenPageNextFrame(HudBottomBtnType.IncreaseUpgrade));
+        // 2. 내부 상태 갱신 및 실제 페이지 오픈
+        CurrentlyOpenPage = HudBottomBtnType.Done; // 강제로 다른 상태로 만들어서 OpenPage가 항상 실행되게
+        OpenPage(HudBottomBtnType.IncreaseUpgrade, true); // 첫 진입은 무조건 강제 오픈
+
+        // 3. Animator / 레이아웃 초기화 타이밍 문제 대비용으로 한 프레임 뒤에 한 번 더 보정
+        StartCoroutine(OpenPageNextFrame(HudBottomBtnType.IncreaseUpgrade));
     }
 
     IEnumerator OpenPageNextFrame(HudBottomBtnType type)
     {
         yield return null; // 한 프레임 대기
-        OpenPage(type); 
+        OpenPage(type);
     }
 
 
@@ -58,14 +65,25 @@ public class IncreaBtnGroupComponent : MonoBehaviour
             HudBottomBtnList[i].SetActive(HudBottomBtnList[i].CurBtnType != type);
         }
 
+        foreach(var obj in GroupComponentList)
+        {
+            obj.SetActive(false);
+        }
+
         // PreLoadUI로 로드된 UI를 활성화 (OnEnable에서 Show 애니메이션 자동 재생)
         switch (type)
-        {   
+        {
             case HudBottomBtnType.IncreaseUpgrade:
-            {
-                
-            }
-            break;
+                {
+                    GroupComponentList[(int)type].SetActive(true);
+
+                }
+                break;
+            case HudBottomBtnType.EquipmentItemUpgrade:
+                {
+                    GroupComponentList[(int)type].SetActive(true);
+                }
+                break;
         }
 
         CurrentlyOpenPage = type;

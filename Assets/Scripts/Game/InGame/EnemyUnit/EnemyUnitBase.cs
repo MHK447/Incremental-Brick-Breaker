@@ -179,14 +179,11 @@ public class EnemyUnitBase : MonoBehaviour
 
             int coinReward = EnemyUnitData.Dmg + playerData.CoinValueBonus;
 
-            GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
+            int totalCoinCount = 1 + playerData.BonusCoinDropCount;
+            for (int i = 0; i < totalCoinCount; i++)
             {
-                x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, coinReward);
-            });
-
-            if (playerData.BonusCoinDropRate > 0f && Random.value < playerData.BonusCoinDropRate)
-            {
-                GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(transform.position, x =>
+                Vector3 dropPos = transform.position + new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0f);
+                GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(dropPos, x =>
                 {
                     x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, coinReward);
                 });

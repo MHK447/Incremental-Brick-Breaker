@@ -10,9 +10,7 @@ public class WeaponSystem
     public enum WeaponType
     {
         BaseArrow = 1,
-        GearWeapon = 2,
-        MachineGun = 3,
-        Flamethrower = 4,
+        Blade = 2,
     }
 
 }

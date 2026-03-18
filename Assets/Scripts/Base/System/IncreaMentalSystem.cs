@@ -151,23 +151,23 @@ public class IncreaMentalSystem
                 break;
 
             case IncreaMentalType.GearWeaponUnlock:
-                if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.GearWeapon))
-                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.GearWeapon);
+                if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Blade))
+                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.Blade);
                 break;
 
             case IncreaMentalType.GearCountUp:
                 if (weaponController != null)
-                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.GearWeapon);
+                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.Blade);
                 break;
 
             case IncreaMentalType.MachineGunUnlock:
-                if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.MachineGun))
-                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.MachineGun);
+                // if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.MachineGun))
+                //     weaponController.AddWeapon((int)WeaponSystem.WeaponType.MachineGun);
                 break;
 
             case IncreaMentalType.FlamethrowerUnlock:
-                if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Flamethrower))
-                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.Flamethrower);
+                // if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Flamethrower))
+                //     weaponController.AddWeapon((int)WeaponSystem.WeaponType.Flamethrower);
                 break;
         }
     }
@@ -252,10 +252,10 @@ public class IncreaMentalSystem
         return GetUpgradeValue(IncreaMentalType.GemDropRateUp) * 0.001f;
     }
 
-    /// <summary> 코인 드랍 추가 확률 (플러스 증가, 0.0 ~ 1.0) </summary>
-    public float GetCoinDropBonusRate()
+    /// <summary> 코인 추가 드랍 개수 (버프 값만큼 추가 드랍) </summary>
+    public int GetBonusCoinDropCount()
     {
-        return GetUpgradeValue(IncreaMentalType.CoinDropRateUp) * 0.001f;
+        return GetUpgradeValue(IncreaMentalType.CoinDropRateUp);
     }
 
     /// <summary> 코인 얻는 벨류 추가 보너스 (플러스 증가) </summary>

@@ -81,6 +81,7 @@ SpriteAtlas:
     - cdba41103cc3c45f8a1043f3704e14cd: 21300000
     - 604f5130ad9c642389b5662861142588: 21300000
     - 9421f440aab2c47a4a266d14e98487a5: 21300000
+    - 5da45940076f84fc1b1ff367d461232b: 21300000
     - 9d5ec1506a4754b9b8b79a4b1ac5af87: 21300000
     - 51cf1350bf2e442f4a79c143cfdc6022: 21300000
     - f4f57160765c84eb4925e6b6d93521ea: 21300000
@@ -273,6 +274,7 @@ SpriteAtlas:
     - 128c93291c2bc4ef0b7fd768be2c1c7a: 21300000
     - 19b5f7293a0b24a368647bae5bdd8a5e: 21300000
     - 623b9639861214660a1f7f7a650f8cd9: 21300000
+    - dcb53b39062f048ebbcdc70106189da8: 21300000
     - 11d4446926a2040b99184b585004b1e7: 21300000
     - 3b515d79427e3418f8d08a0103de8359: 21300000
     - 0f4e3489f831642f8b7142829778edf8: 21300000
@@ -407,6 +409,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cdba41103cc3c45f8a1043f3704e14cd, type: 3}
   - {fileID: 21300000, guid: 604f5130ad9c642389b5662861142588, type: 3}
   - {fileID: 21300000, guid: 9421f440aab2c47a4a266d14e98487a5, type: 3}
+  - {fileID: 21300000, guid: 5da45940076f84fc1b1ff367d461232b, type: 3}
   - {fileID: 21300000, guid: 9d5ec1506a4754b9b8b79a4b1ac5af87, type: 3}
   - {fileID: 21300000, guid: 51cf1350bf2e442f4a79c143cfdc6022, type: 3}
   - {fileID: 21300000, guid: f4f57160765c84eb4925e6b6d93521ea, type: 3}
@@ -599,6 +602,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 128c93291c2bc4ef0b7fd768be2c1c7a, type: 3}
   - {fileID: 21300000, guid: 19b5f7293a0b24a368647bae5bdd8a5e, type: 3}
   - {fileID: 21300000, guid: 623b9639861214660a1f7f7a650f8cd9, type: 3}
+  - {fileID: 21300000, guid: dcb53b39062f048ebbcdc70106189da8, type: 3}
   - {fileID: 21300000, guid: 11d4446926a2040b99184b585004b1e7, type: 3}
   - {fileID: 21300000, guid: 3b515d79427e3418f8d08a0103de8359, type: 3}
   - {fileID: 21300000, guid: 0f4e3489f831642f8b7142829778edf8, type: 3}
@@ -732,6 +736,7 @@ SpriteAtlas:
   - Common_Frame_PopupBg_Blue
   - Common_Icon_Difficult
   - Common_Btn_Default_Secondary
+  - Common_InGame_Truck
   - Common_Fx_RayEffect
   - Common_Icon_Status_Skeleton
   - Common_Frame_ToolTip_Tail
@@ -924,6 +929,7 @@ SpriteAtlas:
   - Common_Icon_HUDBottom_Artifact
   - Common_Frame_PopupBg_Blue02
   - Common_Btn_Default_Red
+  - Common_Icon_Moru
   - Common_Icon_EquipStar
   - Common_RankGold
   - Common_Exp_Icon

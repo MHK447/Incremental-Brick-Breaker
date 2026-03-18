@@ -9,17 +9,15 @@ public class IncreaseUpgradeGroup : MonoBehaviour
     [SerializeField]
     private List<IncreaUpgradeComponent> IncreaseUpgradeGroupList = new List<IncreaUpgradeComponent>();
 
-
+    [SerializeField]
+    private List<Image> StageNodeList = new List<Image>();
 
     public void Init()
     {
         foreach (var increaupgrade in IncreaseUpgradeGroupList)
         {
             increaupgrade.Init(UnLockUpgrade);
-        }
-
-
-        
+        }   
     }
 
 

@@ -223,6 +223,7 @@ public enum Atlas
     Atlas_UI_Common,
         Atlas_Stage,
         Atlas_UI_Increa,
+        Atlas_InGame,
     // @ add here
 
 }

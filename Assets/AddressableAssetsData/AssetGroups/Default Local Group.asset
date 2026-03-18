@@ -310,6 +310,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9efc597374a9a498e893fba85174377b
+    m_Address: InGameBlade_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a009fb2ec470d4ca3a6859ab3c7c5d3d
     m_Address: UI/Popup/PopupMaterialInsufficent
     m_ReadOnly: 0
@@ -412,6 +417,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e4b2c1ca2572b4762967f68bdb5e455c
     m_Address: SoundPlayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4ce140347ad84959bdf2d4d93ba2b8a
+    m_Address: Atlas_InGame
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

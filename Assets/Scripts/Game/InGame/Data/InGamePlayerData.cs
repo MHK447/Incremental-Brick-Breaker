@@ -40,8 +40,8 @@ public class InGamePlayerData
     /// <summary> 잼 추가 드랍 확률 </summary>
     public float BonusGemDropRate = 0f;
 
-    /// <summary> 코인 추가 드랍 확률 </summary>
-    public float BonusCoinDropRate = 0f;
+    /// <summary> 코인 추가 드랍 개수 </summary>
+    public int BonusCoinDropCount = 0;
 
     /// <summary> 코인 얻는 벨류 추가 보너스 </summary>
     public int CoinValueBonus = 0;
@@ -79,7 +79,7 @@ public class InGamePlayerData
 
         FallPenetrationCount = system.GetFallPenetrationCount();
         BonusGemDropRate = system.GetGemDropBonusRate();
-        BonusCoinDropRate = system.GetCoinDropBonusRate();
+        BonusCoinDropCount = system.GetBonusCoinDropCount();
         CoinValueBonus = system.GetCoinValueBonus();
         BonusHealth = system.GetBonusHealth();
         HealthRegenBonus = system.GetHealthRegenBonus();
@@ -102,7 +102,7 @@ public class InGamePlayerData
 
         FallPenetrationCount = system.GetFallPenetrationCount();
         BonusGemDropRate = system.GetGemDropBonusRate();
-        BonusCoinDropRate = system.GetCoinDropBonusRate();
+        BonusCoinDropCount = system.GetBonusCoinDropCount();
         CoinValueBonus = system.GetCoinValueBonus();
         BonusHealth = system.GetBonusHealth();
         HealthRegenBonus = system.GetHealthRegenBonus();

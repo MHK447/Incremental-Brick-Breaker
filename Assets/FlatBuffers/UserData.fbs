@@ -42,6 +42,7 @@ table UserData {
   waveidx:int = 1; //@ReactiveProperty
   playerlevel:int = 1; //@ReactiveProperty
   increaseugprades:[InCreaseUpgradeData]; // @@ReactiveCollection
+  playerequipdata:PlayerEquipData; // @ReactiveCollection
 
 }
 
@@ -63,6 +64,19 @@ table RecordCount {
 table InCreaseUpgradeData {
   order:int; 
   level:int = 0;  //@ReactiveProperty
+}
+
+table PlayerEquipData
+{
+  equipitemdatas:[EquipItemData];
+}
+
+table EquipItemData
+{
+   equipitemidx:int = 0;
+   level:int = 0;
+   grade:int = 0;
+
 }
 
 
