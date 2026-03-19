@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using BanpoFri;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,6 +80,18 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
 
 
         ColliderAction.AttackAction = GachaStart;
+    }
+
+    /// <summary>
+    /// 장착/교체 직후 EquipmentComponent 화면만 즉시 갱신합니다.
+    /// </summary>
+    public void RefreshEquipmentComponents()
+    {
+        foreach (var component in EquipmentComponentList)
+        {
+            if (component == null) continue;
+            component.Init();
+        }
     }
 }
 

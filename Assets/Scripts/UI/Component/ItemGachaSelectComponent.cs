@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using BanpoFri;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,13 @@ public class ItemGachaSelectComponent : MonoBehaviour
     {
         GameRoot.Instance.EquipmentSystem.EquipItem(GachaItemData);
 
+        // 장착 데이터가 바뀌는 즉시 EquipmentComponent UI도 갱신합니다.
+        var parentGroup = GetComponentInParent<EquipmnentUpgradeGroup>();
+        parentGroup?.RefreshEquipmentComponents();
+
         Init(GachaItemData , EquipItemData);
+        
+        GameRoot.Instance.UISystem.OpenUI<PopupStatusValue>(popup => popup.SetStatusValue(5));
     }
 
     void OnSellBtnClick()

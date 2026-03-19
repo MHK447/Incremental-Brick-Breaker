@@ -277,6 +277,7 @@ SpriteAtlas:
     - 623b9639861214660a1f7f7a650f8cd9: 21300000
     - dcb53b39062f048ebbcdc70106189da8: 21300000
     - 11d4446926a2040b99184b585004b1e7: 21300000
+    - a6d423791d3984972b57646d310297ca: 21300000
     - 3b515d79427e3418f8d08a0103de8359: 21300000
     - 0f4e3489f831642f8b7142829778edf8: 21300000
     - 85a34689f38e047e2a27d7d3fb7952b6: 21300000
@@ -607,6 +608,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 623b9639861214660a1f7f7a650f8cd9, type: 3}
   - {fileID: 21300000, guid: dcb53b39062f048ebbcdc70106189da8, type: 3}
   - {fileID: 21300000, guid: 11d4446926a2040b99184b585004b1e7, type: 3}
+  - {fileID: 21300000, guid: a6d423791d3984972b57646d310297ca, type: 3}
   - {fileID: 21300000, guid: 3b515d79427e3418f8d08a0103de8359, type: 3}
   - {fileID: 21300000, guid: 0f4e3489f831642f8b7142829778edf8, type: 3}
   - {fileID: 21300000, guid: 85a34689f38e047e2a27d7d3fb7952b6, type: 3}
@@ -918,7 +920,7 @@ SpriteAtlas:
   - Common_Icon_Status_4
   - Common_Icon_Noads
   - Common_Btn_BottomClose_Front 1
-  - Common_Icon_Levelup_Back_3
+  - Common_Icon_StattusUp
   - Common_Frame_PopupBg_Purple
   - Common_Fx_Particle_Alpha
   - Common_Frame_Gradation
@@ -936,6 +938,7 @@ SpriteAtlas:
   - Common_Btn_Default_Red
   - Common_Icon_Moru
   - Common_Icon_EquipStar
+  - Common_Icon_StattusDown
   - Common_RankGold
   - Common_Exp_Icon
   - Common_Card_Icon_3

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3064408004470996840}
   - component: {fileID: 3910132319126108544}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,8 +91,9 @@ GameObject:
   - component: {fileID: 9101982153663583047}
   - component: {fileID: 1062569062044750644}
   - component: {fileID: 8396451877419711182}
+  - component: {fileID: 3437545241087187273}
   m_Layer: 5
-  m_Name: ToastMessage
+  m_Name: PopupStatusValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,6 +254,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3437545241087187273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431125706732203282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8583676d66544dca84addfec7fb0bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiType: 7
+  uiShowStateName: Show
+  activeAnimator: {fileID: 3454760133138560549}
+  closeBtn: {fileID: 0}
+  sortingObjects: []
+  batchParticleOrder: 0
+  DontCloseInteraction: 0
+  touchLockTime: 0.5
+  ResetCurrency: 1
+  CurrencyToShow: 0
+  StatusValueText: {fileID: 6121599894981945314}
+  StatusImg: {fileID: 3910132319126108544}
 --- !u!1 &8465355931069269645
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +518,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
+--- !u!114 &6121599894981945314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5257182365439181791, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
+  m_PrefabInstance: {fileID: 2017904185340912701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7304501696062303451 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8745925318361794790, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
