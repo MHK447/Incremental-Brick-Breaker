@@ -16,6 +16,12 @@ public class IncreaBtnGroupComponent : MonoBehaviour
     [SerializeField]
     private List<GameObject> GroupComponentList = new List<GameObject>();
 
+    [SerializeField]
+    private EquipmnentUpgradeGroup EquipmentUpgradeGroup;
+
+    [SerializeField]
+    private IncreaseUpgradeGroup IncreaseUpgradeGroup;
+
 
     public void UpdateButtonLock()
     {
@@ -76,12 +82,13 @@ public class IncreaBtnGroupComponent : MonoBehaviour
             case HudBottomBtnType.IncreaseUpgrade:
                 {
                     GroupComponentList[(int)type].SetActive(true);
-
+                    IncreaseUpgradeGroup.Init();
                 }
                 break;
             case HudBottomBtnType.EquipmentItemUpgrade:
                 {
                     GroupComponentList[(int)type].SetActive(true);
+                    EquipmentUpgradeGroup.Init();
                 }
                 break;
         }

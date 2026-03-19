@@ -19,28 +19,33 @@ public struct EquipItemData : IFlatbufferObject
   public void __init(int _i, ByteBuffer _bb) { __p = new Table(_i, _bb); }
   public EquipItemData __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public int Equipitemidx { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public bool MutateEquipitemidx(int equipitemidx) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, equipitemidx); return true; } else { return false; } }
-  public int Level { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public bool MutateLevel(int level) { int o = __p.__offset(6); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, level); return true; } else { return false; } }
-  public int Grade { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
-  public bool MutateGrade(int grade) { int o = __p.__offset(8); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, grade); return true; } else { return false; } }
+  public int Equipitemtype { get { int o = __p.__offset(4); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateEquipitemtype(int equipitemtype) { int o = __p.__offset(4); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, equipitemtype); return true; } else { return false; } }
+  public int Equipitemidx { get { int o = __p.__offset(6); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateEquipitemidx(int equipitemidx) { int o = __p.__offset(6); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, equipitemidx); return true; } else { return false; } }
+  public int Level { get { int o = __p.__offset(8); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateLevel(int level) { int o = __p.__offset(8); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, level); return true; } else { return false; } }
+  public int Grade { get { int o = __p.__offset(10); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateGrade(int grade) { int o = __p.__offset(10); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, grade); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.EquipItemData> CreateEquipItemData(FlatBufferBuilder builder,
+      int equipitemtype = 0,
       int equipitemidx = 0,
       int level = 0,
       int grade = 0) {
-    builder.StartTable(3);
+    builder.StartTable(4);
     EquipItemData.AddGrade(builder, grade);
     EquipItemData.AddLevel(builder, level);
     EquipItemData.AddEquipitemidx(builder, equipitemidx);
+    EquipItemData.AddEquipitemtype(builder, equipitemtype);
     return EquipItemData.EndEquipItemData(builder);
   }
 
-  public static void StartEquipItemData(FlatBufferBuilder builder) { builder.StartTable(3); }
-  public static void AddEquipitemidx(FlatBufferBuilder builder, int equipitemidx) { builder.AddInt(0, equipitemidx, 0); }
-  public static void AddLevel(FlatBufferBuilder builder, int level) { builder.AddInt(1, level, 0); }
-  public static void AddGrade(FlatBufferBuilder builder, int grade) { builder.AddInt(2, grade, 0); }
+  public static void StartEquipItemData(FlatBufferBuilder builder) { builder.StartTable(4); }
+  public static void AddEquipitemtype(FlatBufferBuilder builder, int equipitemtype) { builder.AddInt(0, equipitemtype, 0); }
+  public static void AddEquipitemidx(FlatBufferBuilder builder, int equipitemidx) { builder.AddInt(1, equipitemidx, 0); }
+  public static void AddLevel(FlatBufferBuilder builder, int level) { builder.AddInt(2, level, 0); }
+  public static void AddGrade(FlatBufferBuilder builder, int grade) { builder.AddInt(3, grade, 0); }
   public static Offset<BanpoFri.Data.EquipItemData> EndEquipItemData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.EquipItemData>(o);
@@ -51,6 +56,7 @@ public struct EquipItemData : IFlatbufferObject
     return _o;
   }
   public void UnPackTo(EquipItemDataT _o) {
+    _o.Equipitemtype = this.Equipitemtype;
     _o.Equipitemidx = this.Equipitemidx;
     _o.Level = this.Level;
     _o.Grade = this.Grade;
@@ -59,6 +65,7 @@ public struct EquipItemData : IFlatbufferObject
     if (_o == null) return default(Offset<BanpoFri.Data.EquipItemData>);
     return CreateEquipItemData(
       builder,
+      _o.Equipitemtype,
       _o.Equipitemidx,
       _o.Level,
       _o.Grade);
@@ -67,6 +74,8 @@ public struct EquipItemData : IFlatbufferObject
 
 public class EquipItemDataT
 {
+  [Newtonsoft.Json.JsonProperty("equipitemtype")]
+  public int Equipitemtype { get; set; }
   [Newtonsoft.Json.JsonProperty("equipitemidx")]
   public int Equipitemidx { get; set; }
   [Newtonsoft.Json.JsonProperty("level")]
@@ -75,6 +84,7 @@ public class EquipItemDataT
   public int Grade { get; set; }
 
   public EquipItemDataT() {
+    this.Equipitemtype = 0;
     this.Equipitemidx = 0;
     this.Level = 0;
     this.Grade = 0;
@@ -87,9 +97,10 @@ static public class EquipItemDataVerify
   static public bool Verify(Google.FlatBuffers.Verifier verifier, uint tablePos)
   {
     return verifier.VerifyTableStart(tablePos)
-      && verifier.VerifyField(tablePos, 4 /*Equipitemidx*/, 4 /*int*/, 4, false)
-      && verifier.VerifyField(tablePos, 6 /*Level*/, 4 /*int*/, 4, false)
-      && verifier.VerifyField(tablePos, 8 /*Grade*/, 4 /*int*/, 4, false)
+      && verifier.VerifyField(tablePos, 4 /*Equipitemtype*/, 4 /*int*/, 4, false)
+      && verifier.VerifyField(tablePos, 6 /*Equipitemidx*/, 4 /*int*/, 4, false)
+      && verifier.VerifyField(tablePos, 8 /*Level*/, 4 /*int*/, 4, false)
+      && verifier.VerifyField(tablePos, 10 /*Grade*/, 4 /*int*/, 4, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }

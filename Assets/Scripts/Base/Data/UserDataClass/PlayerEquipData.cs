@@ -6,9 +6,6 @@ using Google.FlatBuffers;
 public partial class UserDataSystem
 {
     public PlayerEquipData Playerequipdata { get; private set; } = new PlayerEquipData();
-
-
-
     private void SaveData_PlayerEquipData(FlatBufferBuilder builder)
     {
         // 선언된 변수들은 모두 저장되어야함
@@ -25,6 +22,7 @@ public partial class UserDataSystem
                 var playerequipdata_equipitemdatas_item = Playerequipdata.Equipitemdatas[playerequipdata_equipitemdatas_idx];
                 playerequipdata_equipitemdatas_Array[playerequipdata_equipitemdatas_idx++] = BanpoFri.Data.EquipItemData.CreateEquipItemData(
                     builder,
+                    playerequipdata_equipitemdatas_item.Equipitemtype,
                     playerequipdata_equipitemdatas_item.Equipitemidx,
                     playerequipdata_equipitemdatas_item.Level,
                     playerequipdata_equipitemdatas_item.Grade
@@ -66,6 +64,7 @@ public partial class UserDataSystem
                 {
                     var nested_item = new EquipItemData
                     {
+                        Equipitemtype = fbEquipitemdatasItem.Value.Equipitemtype,
                         Equipitemidx = fbEquipitemdatasItem.Value.Equipitemidx,
                         Level = fbEquipitemdatasItem.Value.Level,
                         Grade = fbEquipitemdatasItem.Value.Grade
@@ -81,5 +80,12 @@ public partial class UserDataSystem
 public class PlayerEquipData
 {
     public List<EquipItemData> Equipitemdatas = new List<EquipItemData>();
+
+
+
+    public EquipItemData FindEquipItemData(int partstype)
+    {
+        return Equipitemdatas.Find(x => x.Equipitemtype == partstype);
+    }
 
 }

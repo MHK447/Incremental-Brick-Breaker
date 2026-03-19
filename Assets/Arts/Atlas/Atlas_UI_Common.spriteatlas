@@ -270,6 +270,7 @@ SpriteAtlas:
     - 9cd3f119dee2f49619d0f72fe63f8c45: 21300000
     - 1317b2198d8374ceb9afee606c0bb2ec: 21300000
     - cd707a198bd344007be0da7cd7da0d63: 21300000
+    - 1104c0292d1144d8d9a0d0c7998a524e: 21300000
     - 11d6c0297ddb6074ebda5ec4821f91e2: 21300000
     - 128c93291c2bc4ef0b7fd768be2c1c7a: 21300000
     - 19b5f7293a0b24a368647bae5bdd8a5e: 21300000
@@ -368,6 +369,7 @@ SpriteAtlas:
     - ab8050fddd5754748a15f8f3c674e27a: 21300000
     - 840a47fde25d64e5e8f6f6a22ada36b5: 21300000
     - a76068fd979cbbc41841efa316a44794: 21300000
+    - f6887b0e257504727a1be5b2f6163e60: 21300000
     - 6d21b01e5dabd6e4c83b273325fc7ce1: 21300000
     - eccc861e5e6e94510b417e4fe44b3aef: 21300000
     - 523c192e89dfe46409b6e715d5dcc3a3: 21300000
@@ -598,6 +600,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9cd3f119dee2f49619d0f72fe63f8c45, type: 3}
   - {fileID: 21300000, guid: 1317b2198d8374ceb9afee606c0bb2ec, type: 3}
   - {fileID: 21300000, guid: cd707a198bd344007be0da7cd7da0d63, type: 3}
+  - {fileID: 21300000, guid: 1104c0292d1144d8d9a0d0c7998a524e, type: 3}
   - {fileID: 21300000, guid: 11d6c0297ddb6074ebda5ec4821f91e2, type: 3}
   - {fileID: 21300000, guid: 128c93291c2bc4ef0b7fd768be2c1c7a, type: 3}
   - {fileID: 21300000, guid: 19b5f7293a0b24a368647bae5bdd8a5e, type: 3}
@@ -696,6 +699,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ab8050fddd5754748a15f8f3c674e27a, type: 3}
   - {fileID: 21300000, guid: 840a47fde25d64e5e8f6f6a22ada36b5, type: 3}
   - {fileID: 21300000, guid: a76068fd979cbbc41841efa316a44794, type: 3}
+  - {fileID: 21300000, guid: f6887b0e257504727a1be5b2f6163e60, type: 3}
   - {fileID: 21300000, guid: 6d21b01e5dabd6e4c83b273325fc7ce1, type: 3}
   - {fileID: 21300000, guid: eccc861e5e6e94510b417e4fe44b3aef, type: 3}
   - {fileID: 21300000, guid: 523c192e89dfe46409b6e715d5dcc3a3, type: 3}
@@ -925,6 +929,7 @@ SpriteAtlas:
   - Common_Icon_Upgrade_Arrow
   - Common_Progress_Default
   - Common_Frame_SelectRewardBg_Mythic
+  - Common_Ribbon_Blue
   - Common_Fx_HealGlow
   - Common_Icon_HUDBottom_Artifact
   - Common_Frame_PopupBg_Blue02
@@ -1023,6 +1028,7 @@ SpriteAtlas:
   - Common_Icon_Train_101
   - Common_Icon_Reward_Material_04
   - Common_Icon_Goods_Gem
+  - Title_Ribbon_Bg_DarkBlue
   - Common_Progress_Bg
   - Common_Frame_Item_Levelup_Unique
   - Common_Frame_Train_LockLine

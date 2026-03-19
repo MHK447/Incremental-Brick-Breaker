@@ -39,10 +39,12 @@ table UserData {
   money:string;
 
   // @AutoCreate
-  waveidx:int = 1; //@ReactiveProperty
+  waveidx:int = 1; //@ReactiveProperty  
   playerlevel:int = 1; //@ReactiveProperty
   increaseugprades:[InCreaseUpgradeData]; // @@ReactiveCollection
   playerequipdata:PlayerEquipData; // @ReactiveCollection
+  forgelevelproperty:int = 1; //@ReactiveProperty
+  material:int = 0;// @ReactiveProperty
 
 }
 
@@ -68,15 +70,15 @@ table InCreaseUpgradeData {
 
 table PlayerEquipData
 {
-  equipitemdatas:[EquipItemData];
+  equipitemdatas:[EquipItemData]; // @ReactiveCollection
 }
 
 table EquipItemData
 {
+   equipitemtype:int = 0;
    equipitemidx:int = 0;
    level:int = 0;
    grade:int = 0;
-
 }
 
 

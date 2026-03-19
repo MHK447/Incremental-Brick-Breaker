@@ -35,8 +35,7 @@ public partial class UserDataSystem
     public System.DateTime FirstStartTime = default(System.DateTime);
 
     public IReactiveCollection<string> GameNotifications { get; private set; } = new ReactiveCollection<string>();
-    public IReactiveCollection<int> EquipCostumes { get; set; } = new ReactiveCollection<int>();
-
+    
     public Queue<int> RandomSeeds = new Queue<int>();
     public int GameSpeedCount { get; set; }
     public IReactiveProperty<int> ADSpeedUpTimeProperty { get; set; } = new ReactiveProperty<int>(0);
@@ -70,8 +69,8 @@ public partial class UserDataSystem
     public IReactiveProperty<double> HUDArtifactStone = new ReactiveProperty<double>(0);
 
     // @변수 자동 등록 위치
+    public IReactiveProperty<int> Forgelevelproperty { get; set; } = new ReactiveProperty<int>(1);
     public IReactiveProperty<int> Playerlevel { get; set; } = new ReactiveProperty<int>(1);
-    public List<int> Equipcarddatas = new List<int>();
     public DateTime Resetdaytime { get; set; } = new DateTime();
     public DateTime Attendancetime { get; set; } = new DateTime();
     public IReactiveProperty<int> Ingamesilvercoin { get; set; } = new ReactiveProperty<int>(0);
@@ -136,6 +135,7 @@ public partial class UserDataSystem
 
 
         Money.Value = HUDMoney.Value = BigInteger.Parse(flatBufferUserData.Money);
+        Material.Value = flatBufferUserData.Material;
 
 
 
@@ -186,6 +186,7 @@ public partial class UserDataSystem
         Stageidx.Value = flatBufferUserData.Stageidx;
         Waveidx.Value = flatBufferUserData.Waveidx;
         Cash.Value = flatBufferUserData.Cash;
+        Material.Value = flatBufferUserData.Material;
 
 
 

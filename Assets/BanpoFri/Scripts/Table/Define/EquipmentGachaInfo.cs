@@ -1,8 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
-using BanpoFri;
-using System.Linq;
-using UnityEngine.UI;
 
 namespace BanpoFri
 {
@@ -22,6 +19,20 @@ namespace BanpoFri
 		{
 			get { return _gacha_ratio;}
 			set { _gacha_ratio = value;}
+		}
+		[SerializeField]
+		private int _rand_level_min;
+		public int rand_level_min
+		{
+			get { return _rand_level_min;}
+			set { _rand_level_min = value;}
+		}
+		[SerializeField]
+		private int _rand_level_max;
+		public int rand_level_max
+		{
+			get { return _rand_level_max;}
+			set { _rand_level_max = value;}
 		}
 
     }

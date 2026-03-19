@@ -1,8 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
-using BanpoFri;
-using System.Linq;
-using UnityEngine.UI;
 
 namespace BanpoFri
 {
@@ -51,11 +48,18 @@ namespace BanpoFri
 			get { return _item_name;}
 			set { _item_name = value;}
 		}
+		[SerializeField]
+		private string _image;
+		public string image
+		{
+			get { return _image;}
+			set { _image = value;}
+		}
 
     }
 
     [System.Serializable]
-    public class EquipItemInfo : Table<EquipItemInfoData, int>
+    public class EquipItemInfo : Table<EquipItemInfoData, KeyValuePair<int,int>>
     {
     }
 }

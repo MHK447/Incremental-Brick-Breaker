@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bc3219d9b9d6340c6bddfb82f0bde0a3
+guid: 8021848078234446ea4cfd65057c6f54
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5591909428118740836
-    second: InGame_Floor_Parts_1_0
+      213: -7139712849992481779
+    second: InGame_M_Parts_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: InGame_Floor_Parts_1_0
+      name: InGame_M_Parts_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 343
-        height: 82
+        width: 150
+        height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c9023d8900c8562b0800000000000000
-      internalID: -5591909428118740836
+      spriteID: d0408e1adf4aaec90800000000000000
+      internalID: -7139712849992481779
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      InGame_M_Parts_1_0: -7139712849992481779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

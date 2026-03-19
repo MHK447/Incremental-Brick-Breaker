@@ -236,10 +236,7 @@ public partial class UserDataSystem
 
         var strMoney = builder.CreateString(Money.Value.ToString());
         // equipcarddatas
-        int[] equipcarddatasArray = null;
-        if (Equipcarddatas.Count > 0) {
-            equipcarddatasArray = Equipcarddatas.ToArray();
-        }
+  
         // @add userdata
 
         BanpoFri.Data.UserData.StartUserData(builder);
@@ -253,8 +250,10 @@ public partial class UserDataSystem
         BanpoFri.Data.UserData.AddRecordcount(builder, recordCountVec);
         BanpoFri.Data.UserData.AddTutorial(builder, tutorialVec);
         BanpoFri.Data.UserData.AddMoney(builder, money);
+        BanpoFri.Data.UserData.AddMaterial(builder, Material.Value);
         BanpoFri.Data.UserData.AddStageidx(builder, Stageidx.Value);
         BanpoFri.Data.UserData.AddPlayerlevel(builder, Playerlevel.Value);
+        BanpoFri.Data.UserData.AddForgelevelproperty(builder, Forgelevelproperty.Value);
         var orc = BanpoFri.Data.UserData.EndUserData(builder);
         builder.Finish(orc.Value);
 

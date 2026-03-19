@@ -280,6 +280,7 @@ public class GameRoot : Singleton<GameRoot>
 		AttendanceSystem.Create();
 		ItemSystem.Create();
 		IncreaMentalSystem.Create();
+		EquipmentSystem.Create();
 
         GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.EnsureStageLoaded();
 
@@ -371,6 +372,7 @@ public class GameRoot : Singleton<GameRoot>
 		ContentsOpenSystem.Create();
 		DamageTextSystem.Create();
 		IncreaMentalSystem.Create();
+		EquipmentSystem.Create();
 	}
 
 	private void SetNativeLanguage()

@@ -32,31 +32,61 @@ MonoBehaviour:
   mDataList:
   - _level: 1
     _gacha_ratio: b6030000320000000000000000000000
+    _rand_level_min: 1
+    _rand_level_max: 5
   - _level: 2
     _gacha_ratio: a2030000450000000100000000000000
+    _rand_level_min: 5
+    _rand_level_max: 10
   - _level: 3
     _gacha_ratio: 9d030000460000000500000000000000
+    _rand_level_min: 10
+    _rand_level_max: 15
   - _level: 4
     _gacha_ratio: 98030000490000000700000000000000
+    _rand_level_min: 20
+    _rand_level_max: 25
   - _level: 5
     _gacha_ratio: 8e030000500000000900000001000000
+    _rand_level_min: 30
+    _rand_level_max: 35
   - _level: 6
     _gacha_ratio: 89030000550000000900000001000000
+    _rand_level_min: 40
+    _rand_level_max: 45
   - _level: 7
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 50
+    _rand_level_max: 55
   - _level: 8
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 60
+    _rand_level_max: 70
   - _level: 9
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 80
+    _rand_level_max: 90
   - _level: 10
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 100
+    _rand_level_max: 110
   - _level: 11
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 120
+    _rand_level_max: 130
   - _level: 12
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 140
+    _rand_level_max: 160
   - _level: 13
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 180
+    _rand_level_max: 200
   - _level: 14
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 220
+    _rand_level_max: 240
   - _level: 15
     _gacha_ratio: 84030000560000000c00000002000000
+    _rand_level_min: 260
+    _rand_level_max: 280

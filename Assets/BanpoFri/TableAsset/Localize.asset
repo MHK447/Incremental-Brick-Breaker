@@ -32,6 +32,15 @@ MonoBehaviour:
   - Increa_Upgrade_name_16
   - Increa_Upgrade_name_17
   - Increa_Upgrade_name_18
+  - Equip_Item_Desc_1
+  - Equip_Item_Desc_2
+  - Equip_Item_Desc_3
+  - Equip_Item_Name_1_1
+  - Equip_Item_Name_2_1
+  - Equip_Item_Name_3_1
+  - Equip_Item_Name_4_1
+  - Equip_Item_Name_5_1
+  - Equip_Item_Name_6_1
   mSecondKey: []
   mDataList:
   - _idx: str_name_choices_1
@@ -229,6 +238,96 @@ MonoBehaviour:
   - _idx: Increa_Upgrade_name_18
     _ko: "5\uCD08 \uB9C8\uB2E4 \uCCB4\uB825 \uD68C\uBCF5 +{0} \uC99D\uAC00"
     _en: 
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Desc_1
+    _ko: "\uCCB4\uB825 +{0} \uC99D\uAC00"
+    _en: "\uCCB4\uB825 +{0} \uC99D\uAC00"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Desc_2
+    _ko: "\uACF5\uACA9\uB825 +{0} \uC99D\uAC00"
+    _en: "\uACF5\uACA9\uB825 +{0} \uC99D\uAC00"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Desc_3
+    _ko: "\uACF5\uACA9\uC18D\uB3C4 +{0} \uC99D\uAC00"
+    _en: "\uACF5\uACA9\uC18D\uB3C4 +{0} \uC99D\uAC00"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Name_1_1
+    _ko: "\uC790\uB3D9\uCC28 \uC55E\uD310"
+    _en: "\uC790\uB3D9\uCC28 \uC55E\uD310"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Name_2_1
+    _ko: "\uC790\uB3D9\uCC28 \uC911\uAC04"
+    _en: "\uC790\uB3D9\uCC28 \uC911\uAC04"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Name_3_1
+    _ko: "\uC790\uB3D9\uCC28 \uD6C4\uBA74"
+    _en: "\uC790\uB3D9\uCC28 \uD6C4\uBA74"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Name_4_1
+    _ko: "\uC55E \uBC14\uD034"
+    _en: "\uC55E \uBC14\uD034"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Name_5_1
+    _ko: "\uB4B7 \uBC14\uD034"
+    _en: "\uB4B7 \uBC14\uD034"
+    _ja: 
+    _de: 
+    _tw: 
+    _ru: 
+    _fr: 
+    _es: 
+    _vi: 
+  - _idx: Equip_Item_Name_6_1
+    _ko: "\uC790\uB3D9\uCC28 \uD558\uBD80"
+    _en: "\uC790\uB3D9\uCC28 \uD558\uBD80"
     _ja: 
     _de: 
     _tw: 

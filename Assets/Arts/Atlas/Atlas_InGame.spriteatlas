@@ -99,16 +99,16 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 44f0c36eee40f4d1f81a8b9c93342756, type: 3}
   - {fileID: 21300000, guid: 6b36457ffa3f644bcb787e8248c70174, type: 3}
   m_PackedSpriteNamesToIndex:
-  - InGame_M_Parts_1
+  - InGame_M_Parts_2_1
   - InGameBullet_1
-  - InGame_Front_Wheel_1
+  - InGame_Front_Wheel_4_1
   - InGame_Gear_2
-  - InGame_B_Parts_1
-  - InGame_Floor_Parts_1
-  - InGame_Back_Wheel_1
+  - InGame_B_Parts_3_1
+  - InGame_Floor_Parts_6_1
+  - InGame_Back_Wheel_5_1
   - InGame_Weapon_MachineGun_1
   - InGame_Blade_2
-  - InGame_F_Parts_1
+  - InGame_F_Parts_1_1
   m_RenderDataMap: {}
   m_Tag: Atlas_InGame
   m_IsVariant: 0

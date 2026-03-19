@@ -60,6 +60,10 @@ public struct UserData : IFlatbufferObject
   public BanpoFri.Data.InCreaseUpgradeData? Increaseugprades(int j) { int o = __p.__offset(30); return o != 0 ? (BanpoFri.Data.InCreaseUpgradeData?)(new BanpoFri.Data.InCreaseUpgradeData()).__assign(__p.__indirect(__p.__vector(o) + j * 4), __p.bb) : null; }
   public int IncreaseugpradesLength { get { int o = __p.__offset(30); return o != 0 ? __p.__vector_len(o) : 0; } }
   public BanpoFri.Data.PlayerEquipData? Playerequipdata { get { int o = __p.__offset(32); return o != 0 ? (BanpoFri.Data.PlayerEquipData?)(new BanpoFri.Data.PlayerEquipData()).__assign(__p.__indirect(o + __p.bb_pos), __p.bb) : null; } }
+  public int Forgelevelproperty { get { int o = __p.__offset(34); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)1; } }
+  public bool MutateForgelevelproperty(int forgelevelproperty) { int o = __p.__offset(34); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, forgelevelproperty); return true; } else { return false; } }
+  public int Material { get { int o = __p.__offset(36); return o != 0 ? __p.bb.GetInt(o + __p.bb_pos) : (int)0; } }
+  public bool MutateMaterial(int material) { int o = __p.__offset(36); if (o != 0) { __p.bb.PutInt(o + __p.bb_pos, material); return true; } else { return false; } }
 
   public static Offset<BanpoFri.Data.UserData> CreateUserData(FlatBufferBuilder builder,
       int cash = 0,
@@ -76,11 +80,15 @@ public struct UserData : IFlatbufferObject
       int waveidx = 1,
       int playerlevel = 1,
       VectorOffset increaseugpradesOffset = default(VectorOffset),
-      Offset<BanpoFri.Data.PlayerEquipData> playerequipdataOffset = default(Offset<BanpoFri.Data.PlayerEquipData>)) {
-    builder.StartTable(15);
+      Offset<BanpoFri.Data.PlayerEquipData> playerequipdataOffset = default(Offset<BanpoFri.Data.PlayerEquipData>),
+      int forgelevelproperty = 1,
+      int material = 0) {
+    builder.StartTable(17);
     UserData.AddUuid(builder, uuid);
     UserData.AddGamestarttime(builder, gamestarttime);
     UserData.AddLastlogintime(builder, lastlogintime);
+    UserData.AddMaterial(builder, material);
+    UserData.AddForgelevelproperty(builder, forgelevelproperty);
     UserData.AddPlayerequipdata(builder, playerequipdataOffset);
     UserData.AddIncreaseugprades(builder, increaseugpradesOffset);
     UserData.AddPlayerlevel(builder, playerlevel);
@@ -96,7 +104,7 @@ public struct UserData : IFlatbufferObject
     return UserData.EndUserData(builder);
   }
 
-  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(15); }
+  public static void StartUserData(FlatBufferBuilder builder) { builder.StartTable(17); }
   public static void AddCash(FlatBufferBuilder builder, int cash) { builder.AddInt(0, cash, 0); }
   public static void AddBuyinappids(FlatBufferBuilder builder, StringOffset buyinappidsOffset) { builder.AddOffset(1, buyinappidsOffset.Value, 0); }
   public static void AddTutorial(FlatBufferBuilder builder, VectorOffset tutorialOffset) { builder.AddOffset(2, tutorialOffset.Value, 0); }
@@ -132,6 +140,8 @@ public struct UserData : IFlatbufferObject
   public static VectorOffset CreateIncreaseugpradesVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<Offset<BanpoFri.Data.InCreaseUpgradeData>>(dataPtr, sizeInBytes); return builder.EndVector(); }
   public static void StartIncreaseugpradesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static void AddPlayerequipdata(FlatBufferBuilder builder, Offset<BanpoFri.Data.PlayerEquipData> playerequipdataOffset) { builder.AddOffset(14, playerequipdataOffset.Value, 0); }
+  public static void AddForgelevelproperty(FlatBufferBuilder builder, int forgelevelproperty) { builder.AddInt(15, forgelevelproperty, 1); }
+  public static void AddMaterial(FlatBufferBuilder builder, int material) { builder.AddInt(16, material, 0); }
   public static Offset<BanpoFri.Data.UserData> EndUserData(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<BanpoFri.Data.UserData>(o);
@@ -163,6 +173,8 @@ public struct UserData : IFlatbufferObject
     _o.Increaseugprades = new List<BanpoFri.Data.InCreaseUpgradeDataT>();
     for (var _j = 0; _j < this.IncreaseugpradesLength; ++_j) {_o.Increaseugprades.Add(this.Increaseugprades(_j).HasValue ? this.Increaseugprades(_j).Value.UnPack() : null);}
     _o.Playerequipdata = this.Playerequipdata.HasValue ? this.Playerequipdata.Value.UnPack() : null;
+    _o.Forgelevelproperty = this.Forgelevelproperty;
+    _o.Material = this.Material;
   }
   public static Offset<BanpoFri.Data.UserData> Pack(FlatBufferBuilder builder, UserDataT _o) {
     if (_o == null) return default(Offset<BanpoFri.Data.UserData>);
@@ -210,7 +222,9 @@ public struct UserData : IFlatbufferObject
       _o.Waveidx,
       _o.Playerlevel,
       _increaseugprades,
-      _playerequipdata);
+      _playerequipdata,
+      _o.Forgelevelproperty,
+      _o.Material);
   }
 }
 
@@ -246,6 +260,10 @@ public class UserDataT
   public List<BanpoFri.Data.InCreaseUpgradeDataT> Increaseugprades { get; set; }
   [Newtonsoft.Json.JsonProperty("playerequipdata")]
   public BanpoFri.Data.PlayerEquipDataT Playerequipdata { get; set; }
+  [Newtonsoft.Json.JsonProperty("forgelevelproperty")]
+  public int Forgelevelproperty { get; set; }
+  [Newtonsoft.Json.JsonProperty("material")]
+  public int Material { get; set; }
 
   public UserDataT() {
     this.Cash = 0;
@@ -263,6 +281,8 @@ public class UserDataT
     this.Playerlevel = 1;
     this.Increaseugprades = null;
     this.Playerequipdata = null;
+    this.Forgelevelproperty = 1;
+    this.Material = 0;
   }
 
   public static UserDataT DeserializeFromJson(string jsonText) {
@@ -302,6 +322,8 @@ static public class UserDataVerify
       && verifier.VerifyField(tablePos, 28 /*Playerlevel*/, 4 /*int*/, 4, false)
       && verifier.VerifyVectorOfTables(tablePos, 30 /*Increaseugprades*/, BanpoFri.Data.InCreaseUpgradeDataVerify.Verify, false)
       && verifier.VerifyTable(tablePos, 32 /*Playerequipdata*/, BanpoFri.Data.PlayerEquipDataVerify.Verify, false)
+      && verifier.VerifyField(tablePos, 34 /*Forgelevelproperty*/, 4 /*int*/, 4, false)
+      && verifier.VerifyField(tablePos, 36 /*Material*/, 4 /*int*/, 4, false)
       && verifier.VerifyTableEnd(tablePos);
   }
 }
