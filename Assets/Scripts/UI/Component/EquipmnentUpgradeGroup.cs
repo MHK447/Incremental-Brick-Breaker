@@ -24,13 +24,29 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
     private ItemGachaSelectComponent ItemGachaSelectComponent;
 
     [SerializeField]
+    private SelectItemComponent EquipInfoItemComponent;
+
+    [SerializeField]
     private ColliderAction ColliderAction;
+
+    private CanvasGroup EquipInfoCanvasGroup;
+
     
 
 
     void Awake()
     {
         UpgradeBtn.onClick.AddListener(OnUpgradeBtnClick);
+
+        EquipInfoCanvasGroup = EquipInfoItemComponent.GetComponent<CanvasGroup>();
+        if (EquipInfoCanvasGroup == null)
+        {
+            EquipInfoCanvasGroup = EquipInfoItemComponent.gameObject.AddComponent<CanvasGroup>();
+        }
+
+        // Hover tooltip should not intercept pointer raycasts (prevents enter/exit flicker).
+        EquipInfoCanvasGroup.blocksRaycasts = false;
+        EquipInfoCanvasGroup.interactable = false;
     }
 
     private bool IsStartUpgrade = false;
@@ -78,6 +94,8 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
 
         ProjectUtility.SetActiveCheck(ItemGachaSelectComponent.gameObject, false);
 
+        ProjectUtility.SetActiveCheck(EquipInfoItemComponent.gameObject , false);
+
 
         ColliderAction.AttackAction = GachaStart;
     }
@@ -92,6 +110,27 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
             if (component == null) continue;
             component.Init();
         }
+    }
+
+
+
+    public void EquipItemSet(EquipItemData equipitemdata , bool active)
+    {
+        ProjectUtility.SetActiveCheck(EquipInfoItemComponent.gameObject , active);
+
+        if (!active || equipitemdata == null) return;
+
+        EquipInfoItemComponent.EquipItemSet(equipitemdata);
+    }
+
+    public void EquipItemSet(EquipItemData equipitemdata, bool active, Vector3 worldPos)
+    {
+        ProjectUtility.SetActiveCheck(EquipInfoItemComponent.gameObject, active);
+
+        if (!active || equipitemdata == null) return;
+
+        EquipInfoItemComponent.transform.position = worldPos;
+        EquipInfoItemComponent.EquipItemSet(equipitemdata);
     }
 }
 

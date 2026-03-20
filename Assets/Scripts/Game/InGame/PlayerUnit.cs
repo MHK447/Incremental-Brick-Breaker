@@ -49,7 +49,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void SetPlayerData()
     {
-        int baseHp = 50 + InGamePlayerData.BonusHealth;
+        int baseHp = 50 + InGamePlayerData.BonusHealth + InGamePlayerData.EquipHealthBonus;
         InGamePlayerData.CurHppProperty.Value = InGamePlayerData.StartHpProperty.Value = baseHp;
         InGamePlayerData.CriticalChanceProperty.Value = 30;
         InGamePlayerData.CriticalDamageProperty.Value = 10;

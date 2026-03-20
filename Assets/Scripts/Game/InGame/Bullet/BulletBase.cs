@@ -140,7 +140,9 @@ public class BulletBase : MonoBehaviour
             if (enemy != null)
             {
                 hitTargets.Add(collision);
-                int finalDmg = WeaponData.WeaponDamage + GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageBonus;
+                int finalDmg = WeaponData.WeaponDamage
+                    + GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageBonus
+                    + GameRoot.Instance.UserData.InGamePlayerData.EquipDamageBonus;
                 enemy.Damage(finalDmg);
 
                 IsCollision = true;
@@ -153,7 +155,9 @@ public class BulletBase : MonoBehaviour
             if (enemy != null)
             {
                 hitTargets.Add(collision);
-                int finalDmg = WeaponData.WeaponDamage + GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageBonus;
+                int finalDmg = WeaponData.WeaponDamage
+                    + GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageBonus
+                    + GameRoot.Instance.UserData.InGamePlayerData.EquipDamageBonus;
                 enemy.Damage(finalDmg);
 
                 IsCollision = true;

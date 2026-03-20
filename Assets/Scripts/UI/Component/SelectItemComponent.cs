@@ -24,22 +24,41 @@ public class SelectItemComponent : MonoBehaviour
     private EquipItemData AfterItemData;
 
 
-    public void Set(EquipItemData  currentitemData , EquipItemData afteritemData)
+    public void Set(EquipItemData currentitemData, EquipItemData afteritemData)
     {
         CurrentItemData = currentitemData;
         AfterItemData = afteritemData;
 
         var td = Tables.Instance.GetTable<EquipItemInfo>().GetData(new KeyValuePair<int, int>(currentitemData.Equipitemtype, currentitemData.Equipitemidx));
 
-        if(td != null)
+        if (td != null)
         {
             var getitemvalue = GameRoot.Instance.EquipmentSystem.GetItemValue(currentitemData.Equipitemtype, currentitemData.Equipitemidx, currentitemData.Grade, currentitemData.Level);
 
             ItemComponent.Set(currentitemData.Equipitemtype, currentitemData.Equipitemidx, currentitemData.Grade, currentitemData.Level);
             ItemNameText.text = Tables.Instance.GetTable<Localize>().GetString(td.item_name);
-            ItemValueText.text = Tables.Instance.GetTable<Localize>().GetFormat(td.item_desc , getitemvalue);
+            ItemValueText.text = Tables.Instance.GetTable<Localize>().GetFormat(td.item_desc, getitemvalue);
 
             ArrowCheck();
+        }
+    }
+
+
+    public void EquipItemSet(EquipItemData equipitemdata)
+    {
+        ProjectUtility.SetActiveCheck(this.gameObject, true);
+
+        ItemComponent.Set(equipitemdata.Equipitemtype, equipitemdata.Equipitemidx, equipitemdata.Grade, equipitemdata.Level);
+
+        var td = Tables.Instance.GetTable<EquipItemInfo>().GetData(new KeyValuePair<int, int>(equipitemdata.Equipitemtype, equipitemdata.Equipitemidx));
+
+        if (td != null)
+        {   
+            var getitemvalue = GameRoot.Instance.EquipmentSystem.GetItemValue(equipitemdata.Equipitemtype, equipitemdata.Equipitemidx, equipitemdata.Grade, equipitemdata.Level);
+
+            ItemNameText.text = Tables.Instance.GetTable<Localize>().GetString(td.item_name);
+            ItemValueText.text = Tables.Instance.GetTable<Localize>().GetFormat(td.item_desc, getitemvalue);
+            ProjectUtility.SetActiveCheck(ArrowImg.gameObject, false);
         }
     }
 

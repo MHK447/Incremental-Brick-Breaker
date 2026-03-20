@@ -25,6 +25,13 @@ public enum ItemGradeType
     Mythic = 5,
 }
 
+public enum EquipAbilityType
+{
+    HpIncrease = 1,
+    AttackIncrease = 2,
+    AttackSpeedIncrease = 3,
+}
+
 
 public class EquipmentSystem
 {
@@ -59,11 +66,45 @@ public class EquipmentSystem
 
         if (td != null)
         {
-            return level * grade;
+            return td.ability_value * level * grade;
         }
 
 
         return 0;
+    }
+
+    public int GetTotalAbilityValue(EquipAbilityType abilityType)
+    {
+        int total = 0;
+        var equipItems = GameRoot.Instance.UserData.Playerequipdata.Equipitemdatas;
+        for (int i = 0; i < equipItems.Count; i++)
+        {
+            var equipItem = equipItems[i];
+            var td = Tables.Instance.GetTable<EquipItemInfo>().GetData(new KeyValuePair<int, int>(equipItem.Equipitemtype, equipItem.Equipitemidx));
+            if (td == null) continue;
+            if (td.item_ability_type != (int)abilityType) continue;
+
+            total += td.ability_value * equipItem.Level * equipItem.Grade;
+        }
+
+        return total;
+    }
+
+    public int GetAttackBonus()
+    {
+        return GetTotalAbilityValue(EquipAbilityType.AttackIncrease);
+    }
+
+    public int GetHealthBonus()
+    {
+        return GetTotalAbilityValue(EquipAbilityType.HpIncrease);
+    }
+
+    /// <summary> 공격속도 배율 (예: 합계 10이면 1.10f) </summary>
+    public float GetAttackSpeedMultiplier()
+    {
+        int percent = GetTotalAbilityValue(EquipAbilityType.AttackSpeedIncrease);
+        return 1f + percent * 0.01f;
     }
 
 
@@ -105,6 +146,7 @@ public class EquipmentSystem
             GameRoot.Instance.UserData.Playerequipdata.Equipitemdatas.Remove(finddata);
             GameRoot.Instance.UserData.Playerequipdata.Equipitemdatas.Add(equipItemData);
             GameRoot.Instance.UserData.Save();
+            GameRoot.Instance.IncreaMentalSystem.RefreshPlayerBonuses();
         }
 
     }

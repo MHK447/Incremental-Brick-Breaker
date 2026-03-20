@@ -103,7 +103,9 @@ public class FallWeaponBase : MonoBehaviour
         if (hitTargets.Contains(collision)) return;
 
 
-        int finalDmg = WeaponData.WeaponDamage + GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageBonus;
+        int finalDmg = WeaponData.WeaponDamage
+            + GameRoot.Instance.UserData.InGamePlayerData.IncreaDamageBonus
+            + GameRoot.Instance.UserData.InGamePlayerData.EquipDamageBonus;
 
         if (collidedObj.layer == LayerMask.NameToLayer("Enemy"))
         {

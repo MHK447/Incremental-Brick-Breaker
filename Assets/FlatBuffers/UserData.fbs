@@ -45,6 +45,7 @@ table UserData {
   playerequipdata:PlayerEquipData; // @ReactiveCollection
   forgelevelproperty:int = 1; //@ReactiveProperty
   material:int = 0;// @ReactiveProperty
+  
 
 }
 
