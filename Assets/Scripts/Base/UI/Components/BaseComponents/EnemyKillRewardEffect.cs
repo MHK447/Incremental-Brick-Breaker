@@ -22,6 +22,9 @@ public class EnemyKillRewardEffect : Effect
     private int RewardIdx = 0;
     private int RewardValue = 0;
 
+
+    private float XRewardPos = -260f;
+
     public void Set(int rewardtype, int rewardidx, int rewardvalue)
     {
         RewardSprite.sprite = Config.Instance.GetRewardImage(rewardtype, rewardidx);
@@ -36,6 +39,24 @@ public class EnemyKillRewardEffect : Effect
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutSine)
             .SetTarget(transform);
+    }
+
+    void LateUpdate()
+    {
+        var stage = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.Stage;
+        if (stage == null)
+            return;
+
+        Vector3 scrollDelta = stage.GetMapScrollWorldDelta();
+        if (scrollDelta.sqrMagnitude > 0f)
+            transform.position += scrollDelta;
+
+
+        if (transform.localPosition.x <= XRewardPos)
+        {
+            OnRewardHover();
+            onMouseHover?.Invoke();
+        }
     }
 
     void OnMouseEnter()

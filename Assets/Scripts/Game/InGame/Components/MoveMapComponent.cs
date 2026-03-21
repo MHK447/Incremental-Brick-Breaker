@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -142,6 +142,25 @@ public class MoveMapComponent : MonoBehaviour
     public void SetSpeedRatio(float speedratio)
     {
         CurScrollSpeed = scrollSpeed * speedratio;
+    }
+
+    /// <summary>이번 프레임에 적용된 스크롤만큼의 월드 이동량 (맵과 동일 속도로 오브젝트를 옮길 때 사용).</summary>
+    public Vector3 GetWorldScrollDelta()
+    {
+        if (!IsMove || IsPaused)
+            return Vector3.zero;
+
+        if (MoveTime > 0f && Deltime >= MoveTime)
+            return Vector3.zero;
+
+        float progress = MoveTime > 0f ? Mathf.Clamp01(Deltime / MoveTime) : 1f;
+        float easeValue = MoveTime > 0f ? EaseInOutQuad(progress) : 1f;
+        float distanceToMove = CurScrollSpeed * easeValue * Time.deltaTime;
+
+        Vector3 parentLocalDelta = new Vector3(-distanceToMove, 0f, 0f);
+        if (transform.parent != null)
+            return transform.parent.TransformVector(parentLocalDelta);
+        return parentLocalDelta;
     }
 
     // 반복 위치 체크 및 리셋

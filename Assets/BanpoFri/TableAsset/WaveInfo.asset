@@ -43,8 +43,8 @@ MonoBehaviour:
     _unit_dmg: 0100000001000000010000000100000001000000
     _unit_hp: 0300000003000000030000000300000003000000
     _unit_count: 0100000001000000010000000100000001000000
-    _block_spawn_hp: -1
-    _block_spawn_check: -1
+    _block_spawn_hp: 1000
+    _block_spawn_check: 1
     _unit_appear_time: f4010000f4010000f4010000f4010000f4010000
     _unit_dead_coin: 1
   - _stage: 1
@@ -83,7 +83,7 @@ MonoBehaviour:
     _unit_dmg: 0100000001000000010000000100000001000000
     _unit_hp: 0300000003000000030000000300000003000000
     _unit_count: 0100000001000000010000000100000001000000
-    _block_spawn_hp: -1
-    _block_spawn_check: -1
+    _block_spawn_hp: 1000
+    _block_spawn_check: 1
     _unit_appear_time: f4010000f4010000f4010000f4010000f4010000
     _unit_dead_coin: 1

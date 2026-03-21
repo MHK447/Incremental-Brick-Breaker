@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2414303528717142882}
-  - component: {fileID: 7906386043034903049}
+  - component: {fileID: 1051222149223744721}
   m_Layer: 5
   m_Name: InGameHpProgress
   m_TagString: Untagged
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: -2000, y: 20000}
   m_SizeDelta: {x: 140, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7906386043034903049
+--- !u!114 &1051222149223744721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,14 +47,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7477977995340301213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e44b99b0be7fb4b7bac6e9116e037259, type: 3}
+  m_Script: {fileID: 11500000, guid: 26104cbecd5cf4a4e8b4d6dcd308840b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TrackingScale: 0
   TrackingPos: 1
-  OffsetVec: {x: -0.1, y: 1.2, z: 0}
-  HpSlider: {fileID: 6605406663282468538}
-  DelayHealthBar: {fileID: 3917253667873248333}
+  OffsetVec: {x: 0, y: 2, z: 0}
+  HpSlider: {fileID: 3917253667873248333}
+  DelayHealthBar: {fileID: 6605406663282468538}
   updatespeed: 1
 --- !u!1001 &4130441828510694259
 PrefabInstance:

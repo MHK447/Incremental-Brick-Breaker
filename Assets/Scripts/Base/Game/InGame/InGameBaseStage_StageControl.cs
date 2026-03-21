@@ -5,6 +5,7 @@ using System.Collections;
 using System.IO.Compression;
 using System.Linq;
 using UnityEngine.AddressableAssets;
+using DG.Tweening;
 
 public partial class InGameBaseStage : MonoBehaviour
 {
@@ -19,12 +20,17 @@ public partial class InGameBaseStage : MonoBehaviour
 
     private Coroutine currentWaveCoroutine = null;
 
+    /// <summary> 유닛 스폰 for 루프까지 끝났는지. WaitUntil(전멸) 구간에서도 true라 승리 연출 시작 가능. </summary>
+    private bool waveEnemySpawnDeliveryComplete = false;
+
     [SerializeField]
     private Transform MoveMapRoot;
 
     [SerializeField]
     private WeaponFallControler WeaponFallControler;
 
+    [SerializeField]
+    private EnemyBlockSpawner EnemyBlockSpawner;
 
     [SerializeField]
     private List<Transform> EnemySpawnTrList = new List<Transform>();
@@ -34,10 +40,11 @@ public partial class InGameBaseStage : MonoBehaviour
     // MoveMapComponent 통합 관리
     private List<MoveMapComponent> MoveMapComponents = new List<MoveMapComponent>();
 
-
+    
 
     /// <summary> 웨이브 전환 시 플레이어 Run + 맵 이동 연출 시간(초). 웨이브 진행 바 채우기 시간과 동기화됨. </summary>
-    public const float WaveMoveDuration = 4f;
+    public const float WaveMoveDuration = 5f;
+    [SerializeField] private float enemySpawnMoveLeftSpeed = 2f;
 
     /// <summary> 첫 웨이브 이동 연출을 이미 했으면 true (다음 웨이브부터는 이동 생략) </summary>
     private bool _firstWaveMoveDone = false;
@@ -45,8 +52,8 @@ public partial class InGameBaseStage : MonoBehaviour
     [HideInInspector]
     public int StageStartTime = 0;
 
-    // 웨이브가 완전히 끝났는지 확인 (스폰이 모두 완료되었는지)
-    public bool IsWaveSpawnComplete { get { return currentWaveCoroutine == null; } }
+    // 웨이브 유닛 스폰이 모두 끝났는지 (전멸 대기 중이어도 true — 승리 연출 조건용)
+    public bool IsWaveSpawnComplete { get { return waveEnemySpawnDeliveryComplete; } }
 
 
 
@@ -67,6 +74,11 @@ public partial class InGameBaseStage : MonoBehaviour
         StartCoroutine(EnemySpawnStart());
 
         WeaponFallControler.Init();
+
+        persistentBlockSpawnerWaveKey = -1;
+        ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, false);
+        if (EnemyUnitGroup != null)
+            EnemyUnitGroup.IsEnemyBlockSpawnerActive = false;
     }
 
     public void StartBattle()
@@ -191,35 +203,35 @@ public partial class InGameBaseStage : MonoBehaviour
             currentWaveCoroutine = null;
         }
 
-
-        // 웨이브 중지 시 휴식 상태로 전환하여 TileWeaponComponent 드래그 가능하도록 설정
+        // 스폰 루프 중단 여부와 무관하게 현재 웨이브는 더 이상 스폰 진행으로 간주하지 않음
+        waveEnemySpawnDeliveryComplete = true;
     }
 
 
-    public void StartWave()
-    {
-        // 이미 웨이브가 진행 중이면 무시
-        if (currentWaveCoroutine != null)
-        {
-            return;
-        }
+    // public void StartWave()
+    // {
+    //     // 이미 웨이브가 진행 중이면 무시
+    //     if (currentWaveCoroutine != null)
+    //     {
+    //         return;
+    //     }
 
-        if (EnemyUnitGroup == null) return;
+    //     if (EnemyUnitGroup == null) return;
 
-        int stageIdx = GameRoot.Instance.UserData.Stageidx.Value;
-        int waveIdx = GameRoot.Instance.UserData.Waveidx.Value;
+    //     int stageIdx = GameRoot.Instance.UserData.Stageidx.Value;
+    //     int waveIdx = GameRoot.Instance.UserData.Waveidx.Value;
 
-        currentWaveCoroutine = StartCoroutine(RunWave(stageIdx, waveIdx));
-    }
+    //     currentWaveCoroutine = StartCoroutine(RunWave(stageIdx, waveIdx));
+    // }
 
-    private IEnumerator RunWave(int stageIdx, int waveIdx)
-    {
-        yield return StartCoroutine(EnemyUnitGroup.SpawnWave(stageIdx, waveIdx));
-        currentWaveCoroutine = null;
+    // private IEnumerator RunWave(int stageIdx, int waveIdx)
+    // {
+    //     yield return StartCoroutine(EnemyUnitGroup.SpawnWave(stageIdx, waveIdx));
+    //     currentWaveCoroutine = null;
 
-        // 스폰 완료 후 이미 모든 적이 죽었는지 체크
-        EnemyUnitGroup.CheckAndStartRestIfAllDead();
-    }
+    //     // 스폰 완료 후 이미 모든 적이 죽었는지 체크
+    //     EnemyUnitGroup.CheckAndStartRestIfAllDead();
+    // }
 
     public void StartRest()
     {
@@ -287,6 +299,21 @@ public partial class InGameBaseStage : MonoBehaviour
 
         if (td != null)
         {
+            if (td.block_spawn_check > 0)
+            {
+
+                if (td.block_spawn_check > 0 && EnemyBlockSpawner != null)
+                {
+                    EnemyUnitGroup.EnemyBlockSpawner = EnemyBlockSpawner;
+                    EnemyUnitGroup.IsEnemyBlockSpawnerActive = true;
+                    ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, true);
+                    EnemyBlockSpawner.Set(td.block_spawn_check, td.block_spawn_hp);
+                }
+
+
+                EnsurePersistentBlockSpawnerForWave(stageidx, waveidx, td);
+            }
+
             currentWaveCoroutine = StartCoroutine(SpawnEnemiesSequentially(td));
         }
         else
@@ -306,6 +333,8 @@ public partial class InGameBaseStage : MonoBehaviour
 
     private IEnumerator SpawnEnemiesSequentially(BanpoFri.WaveInfoData waveData)
     {
+        waveEnemySpawnDeliveryComplete = false;
+
         for (int i = 0; i < waveData.unit_idx.Count; i++)
         {
             int enemyIdx = waveData.unit_idx[i];
@@ -325,15 +354,21 @@ public partial class InGameBaseStage : MonoBehaviour
             }
         }
 
-        // 스폰 완료 → 웨이브 진행 플래그 해제 (승리 연출 시 IsWaveSpawnComplete true)
-        currentWaveCoroutine = null;
+        // 스폰 루프 종료 → 승리 판정(전멸) 가능. 코루틴 핸들은 WaitUntil 끝날 때까지 유지해 StopWave로 중단 가능.
+        waveEnemySpawnDeliveryComplete = true;
 
         yield return new WaitUntil(() => EnemyUnitGroup.IsAllDeadCheck);
+
+        currentWaveCoroutine = null;
     }
 
     private Coroutine persistentSpawnCoroutine;
     private List<EnemyUnitBase> persistentEnemyList = new List<EnemyUnitBase>();
     private float[] persistentRespawnTimers;
+
+    private int persistentBlockSpawnerWaveKey = -1;
+
+    private static int MakePersistentWaveKey(int stageIdx, int waveIdx) => stageIdx * 10000 + waveIdx;
 
     public void FirstStartEnemySpawn()
     {
@@ -347,15 +382,45 @@ public partial class InGameBaseStage : MonoBehaviour
         persistentSpawnCoroutine = StartCoroutine(PersistentEnemySpawnRoutine());
     }
 
-    private EnemyUnitBase SpawnStationaryEnemy(int enemyIdx, int dmg, int hp, Vector3 position)
+    private EnemyUnitBase SpawnStationaryEnemy(int enemyIdx, int dmg, int hp, Vector3 position, bool playSpawnPop = false)
     {
         var unit = EnemyUnitGroup.EnemySpawnAtPosition(enemyIdx, dmg, hp, position, true);
         if (unit != null)
         {
             unit.IsStationary = true;
             unit.ChangeState(EnemyUnitBase.EnemyUnitState.Idle);
+
+            if (playSpawnPop)
+            {
+                var t = unit.transform;
+                t.DOKill();
+                Vector3 endScale = t.localScale;
+                if (endScale.sqrMagnitude < 0.0001f)
+                    endScale = Vector3.one;
+                t.localScale = Vector3.zero;
+                t.DOScale(endScale, 0.28f).SetEase(Ease.OutBack);
+            }
         }
         return unit;
+    }
+
+    private void EnsurePersistentBlockSpawnerForWave(int stageIdx, int waveIdx, BanpoFri.WaveInfoData td)
+    {
+        int key = MakePersistentWaveKey(stageIdx, waveIdx);
+        if (persistentBlockSpawnerWaveKey == key)
+            return;
+
+        persistentBlockSpawnerWaveKey = key;
+        StartEnemyBlockSpawner(td.block_spawn_check, td.block_spawn_hp);
+    }
+
+    private void ClearPersistentBlockSpawnerState()
+    {
+        persistentBlockSpawnerWaveKey = -1;
+        if (EnemyBlockSpawner != null)
+            ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, false);
+        if (EnemyUnitGroup != null)
+            EnemyUnitGroup.IsEnemyBlockSpawnerActive = false;
     }
 
     private IEnumerator PersistentEnemySpawnRoutine()
@@ -373,11 +438,50 @@ public partial class InGameBaseStage : MonoBehaviour
             var waveidx = GameRoot.Instance.UserData.Waveidx.Value;
             var td = Tables.Instance.GetTable<WaveInfo>().GetData(new KeyValuePair<int, int>(stageidx, waveidx));
 
-            if (td != null && td.unit_idx.Count > 0)
+            if (td == null || td.unit_idx.Count == 0)
             {
-                int enemyIdx = td.unit_idx[0];
-                int dmg = td.unit_dmg.Count > 0 ? td.unit_dmg[0] : 0;
-                int hp = td.unit_hp.Count > 0 ? td.unit_hp[0] : 0;
+                ClearPersistentBlockSpawnerState();
+                yield return null;
+                continue;
+            }
+
+            int enemyIdx = td.unit_idx[0];
+            int dmg = td.unit_dmg.Count > 0 ? td.unit_dmg[0] : 0;
+            int hp = td.unit_hp.Count > 0 ? td.unit_hp[0] : 0;
+            bool blockSpawnWave = td.block_spawn_check > 0;
+
+            if (blockSpawnWave)
+            {
+                EnsurePersistentBlockSpawnerForWave(stageidx, waveidx, td);
+
+                for (int i = 0; i < EnemySpawnTrList.Count; i++)
+                {
+                    var enemy = persistentEnemyList[i];
+                    bool isAlive = enemy != null && !enemy.IsDead && enemy.gameObject.activeSelf;
+
+                    if (isAlive) continue;
+
+                    if (persistentRespawnTimers[i] > 0f)
+                    {
+                        persistentRespawnTimers[i] -= Time.deltaTime;
+                        continue;
+                    }
+
+                    if (enemy != null)
+                    {
+                        persistentRespawnTimers[i] = 1f;
+                        persistentEnemyList[i] = null;
+                        continue;
+                    }
+
+                    persistentEnemyList[i] = SpawnStationaryEnemy(
+                        enemyIdx, dmg, hp, EnemySpawnTrList[i].position, playSpawnPop: true);
+                }
+            }
+            else
+            {
+                if (persistentBlockSpawnerWaveKey != -1)
+                    ClearPersistentBlockSpawnerState();
 
                 for (int i = 0; i < EnemySpawnTrList.Count; i++)
                 {
@@ -407,6 +511,7 @@ public partial class InGameBaseStage : MonoBehaviour
             yield return null;
         }
 
+        ClearPersistentBlockSpawnerState();
         EnemyUnitGroup.PersistentUnits.Clear();
         persistentEnemyList.Clear();
         persistentSpawnCoroutine = null;
@@ -419,6 +524,7 @@ public partial class InGameBaseStage : MonoBehaviour
             StopCoroutine(persistentSpawnCoroutine);
             persistentSpawnCoroutine = null;
         }
+        ClearPersistentBlockSpawnerState();
         EnemyUnitGroup.PersistentUnits.Clear();
         persistentEnemyList.Clear();
     }
@@ -433,7 +539,39 @@ public partial class InGameBaseStage : MonoBehaviour
             var components = MoveMapRoot.GetComponentsInChildren<MoveMapComponent>().ToList();
             MoveMapComponents.AddRange(components);
         }
-
     }
+
+    /// <summary>MoveMapComponent와 동일한 이번 프레임 스크롤 분량(월드). 이펙트 등을 배경과 같이 움직일 때 사용.</summary>
+    public Vector3 GetMapScrollWorldDelta()
+    {
+        if (MoveMapComponents == null || MoveMapComponents.Count == 0)
+            return Vector3.zero;
+
+        foreach (var mm in MoveMapComponents)
+        {
+            if (mm == null)
+                continue;
+            Vector3 d = mm.GetWorldScrollDelta();
+            if (d.sqrMagnitude > 0f)
+                return d;
+        }
+
+        return Vector3.zero;
+    }
+
+    public void StartEnemyBlockSpawner(int spawnidx, int hp)
+    {
+        ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, true);
+
+        EnemyBlockSpawner.Set(spawnidx, hp);
+
+        if (EnemyUnitGroup != null)
+        {
+            EnemyUnitGroup.EnemyBlockSpawner = EnemyBlockSpawner;
+            EnemyUnitGroup.IsEnemyBlockSpawnerActive = true;
+        }
+    }
+
+
 
 }

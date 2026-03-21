@@ -26,8 +26,8 @@ public class EnemyUnitGroup : MonoBehaviour
     {
         get
         {
-            // persistent 유닛을 제외한 일반 적 유닛이 모두 죽었는지 확인
-            if (ActiveUnits.Any(u => !PersistentUnits.Contains(u))) return false;
+            if (ActiveUnits.Count > 0)
+                return false;
 
             if (IsEnemyBlockSpawnerActive && EnemyBlockSpawner != null && !EnemyBlockSpawner.IsDead)
                 return false;
@@ -38,8 +38,16 @@ public class EnemyUnitGroup : MonoBehaviour
 
     private int SpawnOrder = 0;
     private bool isWinSequenceRunning = false;
+    private bool suppressWinSequence = false;
 
     private int OneTimeRewardCount = 0;
+
+    private Vector3 ResolveEnemySpawnWorldPosition(Vector3 fallbackPosition)
+    {
+        if (IsEnemyBlockSpawnerActive && EnemyBlockSpawner != null && EnemyBlockSpawner.gameObject.activeInHierarchy)
+            return EnemyBlockSpawner.transform.position;
+        return fallbackPosition;
+    }
 
     private void ReleaseInstance(GameObject target)
     {
@@ -64,6 +72,9 @@ public class EnemyUnitGroup : MonoBehaviour
 
     private void TryStartWinActionAndStartRest()
     {
+        if (suppressWinSequence)
+            return;
+
         if (isWinSequenceRunning || !IsAllDeadCheck)
             return;
 
@@ -207,6 +218,49 @@ public class EnemyUnitGroup : MonoBehaviour
         return closestEnemy;
     }
 
+    /// <summary>
+    /// 활성 유닛과 블록 스포너 중, origin X축 기준 가장 가까운 타겟 Transform.
+    /// </summary>
+    public Transform FindClosestEnemyTransform(Transform origin, float attackrange = -1)
+    {
+        if (origin == null)
+            return null;
+
+        float closestDistance = float.MaxValue;
+        Transform closest = null;
+        float originX = origin.position.x;
+        bool useRange = attackrange >= 0f;
+
+        foreach (var unit in ActiveUnits)
+        {
+            if (unit == null || unit.IsDead)
+                continue;
+
+            float distance = Mathf.Abs(originX - unit.transform.position.x);
+            if (useRange && distance > attackrange)
+                continue;
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closest = unit.transform;
+            }
+        }
+
+        if (IsEnemyBlockSpawnerActive && EnemyBlockSpawner != null && !EnemyBlockSpawner.IsDead
+            && EnemyBlockSpawner.gameObject.activeInHierarchy)
+        {
+            float distance = Mathf.Abs(originX - EnemyBlockSpawner.transform.position.x);
+            if (!useRange || distance <= attackrange)
+            {
+                if (distance < closestDistance)
+                    closest = EnemyBlockSpawner.transform;
+            }
+        }
+
+        return closest;
+    }
+
     public void ClearActiveUnitsForResume()
     {
 
@@ -226,6 +280,32 @@ public class EnemyUnitGroup : MonoBehaviour
     {
         ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, false);
         IsEnemyBlockSpawnerActive = false;
+    }
+
+    public void OnBlockSpawnerDestroyed()
+    {
+        IsEnemyBlockSpawnerActive = false;
+
+        // 스폰 루프 진행 중이면 IsWaveSpawnComplete가 false라 승리 처리가 막힘 → 웨이브 코루틴 중단
+        var stage = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()?.Stage;
+        stage?.StopWave();
+
+        // 즉시 웨이브 전환을 위해, 일괄 처치 중 발생하는 DeleteUnit의 승리 코루틴 시작을 막는다.
+        suppressWinSequence = true;
+
+        // 스포너가 죽으면 해당 웨이브 잔여 적도 전부 사망 처리(보상·DeleteUnit 경로 동일)
+        var snapshot = ActiveUnits.ToList();
+        foreach (var unit in snapshot)
+        {
+            if (unit == null || unit.IsDead)
+                continue;
+            unit.Damage(1_000_000_000);
+        }
+
+        suppressWinSequence = false;
+
+        // 2초 승리 대기 없이 즉시 다음 웨이브 이동 연출 시작
+        stage?.StartRest();
     }
 
 
@@ -286,11 +366,8 @@ public class EnemyUnitGroup : MonoBehaviour
                 ActiveUnits.Add(instance);
             }
 
-         
             var randcount = Random.Range(0, UnitSpawnList.Count);
-
-            // 스폰 위치 설정
-            instance.transform.position = UnitSpawnList[randcount].position;
+            instance.transform.position = ResolveEnemySpawnWorldPosition(UnitSpawnList[randcount].position);
 
             // 초기화
             var enemydata = new EnemyUnitData();
@@ -338,7 +415,7 @@ public class EnemyUnitGroup : MonoBehaviour
             ActiveUnits.Add(instance);
         }
 
-        instance.transform.position = spawnPosition;
+        instance.transform.position = ResolveEnemySpawnWorldPosition(spawnPosition);
 
         var enemydata = new EnemyUnitData();
         enemydata.EnemyIdx = enemyidx;
@@ -374,12 +451,6 @@ public class EnemyUnitGroup : MonoBehaviour
         if (waveData == null)
             yield break;
 
-        // block_spawn_check가 1이면 EnemyBlockSpawner 활성화
-        if (waveData.block_spawn_check == 1 && EnemyBlockSpawner != null)
-        {
-            IsEnemyBlockSpawnerActive = true;
-            ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, true);
-        }
 
         // unit_idx 리스트 순회하면서 각 유닛 타입별로 스폰
         for (int i = 0; i < waveData.unit_idx.Count; i++)

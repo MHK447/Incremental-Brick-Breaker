@@ -18,10 +18,8 @@ public class Weapon_ProjectTile : Weapon_Base
     protected Transform barrelTransform;
 
 
-    protected EnemyBlockSpawner EnemyBlockSpawner;
-
-
     private EnemyUnitBase Target = null;
+    private Transform ResolvedFireTarget = null;
     protected List<BulletBase> ActiveBullets = new List<BulletBase>();
 
     private EnemyUnitGroup EnemyUnitGroup;
@@ -121,6 +119,7 @@ public class Weapon_ProjectTile : Weapon_Base
         }
 
         Target = null;
+        ResolvedFireTarget = null;
     }
 
 
@@ -130,10 +129,12 @@ public class Weapon_ProjectTile : Weapon_Base
         if (EnemyUnitGroup == null || barrelTransform == null)
         {
             Target = null;
+            ResolvedFireTarget = null;
             return null;
         }
 
-        Target = EnemyUnitGroup.FindTargetEnemy(barrelTransform);
+        ResolvedFireTarget = EnemyUnitGroup.FindClosestEnemyTransform(barrelTransform);
+        Target = ResolvedFireTarget != null ? ResolvedFireTarget.GetComponent<EnemyUnitBase>() : null;
         return Target;
     }
 
@@ -141,19 +142,18 @@ public class Weapon_ProjectTile : Weapon_Base
 
     private Transform GetTargetTransform()
     {
-        // EnemyUnit 타겟이 유효한 경우
-        if (Target != null && !Target.IsDead && Target.gameObject.activeInHierarchy)
-        {
-            return Target.transform;
-        }
+        if (ResolvedFireTarget == null || !ResolvedFireTarget.gameObject.activeInHierarchy)
+            return null;
 
-        // EnemyBlockSpawner가 활성화되어 있고 죽지 않은 경우
-        if (EnemyBlockSpawner != null && !EnemyBlockSpawner.IsDead)
-        {
-            return EnemyBlockSpawner.transform;
-        }
+        var unit = ResolvedFireTarget.GetComponent<EnemyUnitBase>();
+        if (unit != null)
+            return unit.IsDead ? null : ResolvedFireTarget;
 
-        return null;
+        var spawner = ResolvedFireTarget.GetComponent<EnemyBlockSpawner>();
+        if (spawner != null)
+            return spawner.IsDead ? null : ResolvedFireTarget;
+
+        return ResolvedFireTarget;
     }
 
     protected virtual Transform GetTargetTransformForFire() => GetTargetTransform();
@@ -181,10 +181,10 @@ public class Weapon_ProjectTile : Weapon_Base
 
         if (WeaponData.WeaponDeltime >= adjustedCoolTime)
         {
-            var finddata = FindTarget();
-            if (finddata != null)
+            FindTarget();
+            if (ResolvedFireTarget != null)
             {
-                FireBullet(barrelTransform.position, finddata.transform.position - barrelTransform.position);
+                FireBullet(barrelTransform.position, ResolvedFireTarget.position - barrelTransform.position);
                 WeaponData.WeaponDeltime = 0f;
             }
         }
