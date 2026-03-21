@@ -54,11 +54,11 @@ public class IncreaMentalSystem
         }
         return totalValue;
     }
-    
+
     public void Create()
     {
         UpgradeUnLockOrderList.Clear();
-    
+
         var tdlist = Tables.Instance.GetTable<IncreaUpgradeOrder>().DataList;
 
         if (tdlist.Count != GameRoot.Instance.UserData.Increaseugprades.Count)
@@ -74,7 +74,7 @@ public class IncreaMentalSystem
                 newdata.Level.Value = 0;
                 GameRoot.Instance.UserData.Increaseugprades.Add(newdata);
 
-                if(td.order == 2)
+                if (td.order == 2)
                 {
                     UpgradeUnLockOrderList.Add(td.order);
                 }
@@ -138,7 +138,7 @@ public class IncreaMentalSystem
     }
 
     private void ApplyImmediateEffect(IncreaMentalType type)
-    {   
+    {
         var inGame = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>();
         if (inGame == null || inGame.Stage == null) return;
 
@@ -169,6 +169,11 @@ public class IncreaMentalSystem
                 // if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Flamethrower))
                 //     weaponController.AddWeapon((int)WeaponSystem.WeaponType.Flamethrower);
                 break;
+            case IncreaMentalType.TruckUpgradeUnlock:
+                {
+                    GameRoot.Instance.UISystem.GetUI<PopupInGame>().GetInCreaBtnGroupComponent.UpdateButtonLock(HudBottomBtnType.EquipmentItemUpgrade);
+                    break;
+                }
         }
     }
 

@@ -41,6 +41,12 @@ public class PopupInGame : UIBase
     [SerializeField]
     private Transform StageAreaRoot;
 
+    [SerializeField]
+    private IncreaBtnGroupComponent InCreaBtnGroupComponent;
+
+
+    public IncreaBtnGroupComponent GetInCreaBtnGroupComponent { get { return InCreaBtnGroupComponent; } }
+
     private CompositeDisposable disposables = new CompositeDisposable();
     private float targetWaveProgress = 0f;
     private float waveProgressStartValue = 0f;

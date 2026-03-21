@@ -14,6 +14,7 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
     [SerializeField]
     private Vector3 OffsetVec;
 
+
     public virtual void Init(Transform parent)
     {
         FollowTrans = parent;   
@@ -35,6 +36,8 @@ public class InGameFloatingUI : MonoBehaviour, IFloatingUI
     {
         OffsetVec = pos;
     }
+
+    
 
 
     public void SetLocalUpdatePos(Vector3 position)

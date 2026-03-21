@@ -16,6 +16,7 @@ public class EnemyUnitData
     public int MoveSpeed { get; set; } = 0;
 
     public float Attackdeltime = 0f;
+
 }
 
 public class EnemyUnitBase : MonoBehaviour
@@ -44,6 +45,10 @@ public class EnemyUnitBase : MonoBehaviour
     private List<SpriteRenderer> UnitSpriteList = new List<SpriteRenderer>();
 
 
+    private InGameHpProgress HpProgress;
+    private bool HpProgressLoading = false;
+
+
     private EnemyUnitState currentState = EnemyUnitState.Idle;
     private float attackTimer = 0f;
     private PlayerUnit targetPlayer = null;
@@ -61,6 +66,46 @@ public class EnemyUnitBase : MonoBehaviour
         IsStationary = false;
         targetPlayer = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.Player;
         EnemyUnitGroup = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>().Stage.EnemyUnitGroup;
+        EnsureHpProgress();
+    }
+
+    private void BindHpProgress()
+    {
+        if (HpProgress == null || EnemyUnitData == null || EnemyUnitData.StartHp <= 0)
+            return;
+
+        HpProgress.Init(transform);
+        ProjectUtility.SetActiveCheck(HpProgress.gameObject, true);
+        HpProgress.SetHpText(EnemyUnitData.CurHp, EnemyUnitData.StartHp);
+        HpProgress.SetOffset(new Vector3(0f, 0.7f, 0f));
+    }
+
+    private void EnsureHpProgress()
+    {
+        if (HpProgress != null)
+        {
+            BindHpProgress();
+            return;
+        }
+
+        if (HpProgressLoading || EnemyUnitData == null || EnemyUnitData.StartHp <= 0)
+            return;
+
+        HpProgressLoading = true;
+        GameRoot.Instance.UISystem.LoadFloatingUI<InGameHpProgress>(ui =>
+        {
+            HpProgressLoading = false;
+            if (ui == null)
+                return;
+            if (this == null)
+            {
+                ui.Hide();
+                return;
+            }
+
+            HpProgress = ui;
+            BindHpProgress();
+        }, false);
     }
 
     protected virtual void Update()
@@ -165,6 +210,8 @@ public class EnemyUnitBase : MonoBehaviour
         if (IsDead || EnemyUnitData == null) return;
 
         EnemyUnitData.CurHp -= damage;
+        if (HpProgress != null && EnemyUnitData.StartHp > 0)
+            HpProgress.SetHpText(EnemyUnitData.CurHp, EnemyUnitData.StartHp);
 
         DamageColorEffect();
 
@@ -173,6 +220,8 @@ public class EnemyUnitBase : MonoBehaviour
         if (EnemyUnitData.CurHp <= 0)
         {
             EnemyUnitData.CurHp = 0;
+            if (HpProgress != null && EnemyUnitData.StartHp > 0)
+                HpProgress.SetHpText(EnemyUnitData.CurHp, EnemyUnitData.StartHp);
             ChangeState(EnemyUnitState.Dead);
 
             var playerData = GameRoot.Instance.UserData.InGamePlayerData;
@@ -257,6 +306,12 @@ public class EnemyUnitBase : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (HpProgress != null)
+            HpProgress.Hide();
     }
 
 }

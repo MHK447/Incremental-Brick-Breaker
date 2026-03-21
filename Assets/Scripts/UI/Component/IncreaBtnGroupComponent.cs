@@ -23,8 +23,9 @@ public class IncreaBtnGroupComponent : MonoBehaviour
     private IncreaseUpgradeGroup IncreaseUpgradeGroup;
 
 
-    public void UpdateButtonLock()
+    public void UpdateButtonLock(HudBottomBtnType type)
     {
+        HudBottomBtnList[(int)type].SetLocked(false);
     }
 
     public void OnClickHudBottomBtn(HudBottomBtnType type, bool isopen)
@@ -50,8 +51,19 @@ public class IncreaBtnGroupComponent : MonoBehaviour
         CurrentlyOpenPage = HudBottomBtnType.Done; // 강제로 다른 상태로 만들어서 OpenPage가 항상 실행되게
         OpenPage(HudBottomBtnType.IncreaseUpgrade, true); // 첫 진입은 무조건 강제 오픈
 
+
+
         // 3. Animator / 레이아웃 초기화 타이밍 문제 대비용으로 한 프레임 뒤에 한 번 더 보정
         StartCoroutine(OpenPageNextFrame(HudBottomBtnType.IncreaseUpgrade));
+
+
+        for (int i = 0; i < HudBottomBtnList.Count; ++i)
+        {
+            if (i == (int)HudBottomBtnType.EquipmentItemUpgrade)
+            {
+                HudBottomBtnList[i].SetLocked(!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUpgradeUnlock));
+            }
+        }
     }
 
     IEnumerator OpenPageNextFrame(HudBottomBtnType type)
@@ -71,7 +83,7 @@ public class IncreaBtnGroupComponent : MonoBehaviour
             HudBottomBtnList[i].SetActive(HudBottomBtnList[i].CurBtnType != type);
         }
 
-        foreach(var obj in GroupComponentList)
+        foreach (var obj in GroupComponentList)
         {
             obj.SetActive(false);
         }

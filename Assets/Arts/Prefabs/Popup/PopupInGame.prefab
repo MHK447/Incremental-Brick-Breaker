@@ -2022,7 +2022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3217929737175399715
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5285,6 +5285,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8158285101768567416}
     m_Modifications:
+    - target: {fileID: 1036979815743788081, guid: 3c236e1c440b3404c8350d45f3cc9815, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3411197664481500084, guid: 3c236e1c440b3404c8350d45f3cc9815, type: 3}
       propertyPath: CurBtnType
       value: 1
@@ -5327,7 +5331,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0394b764ea0bf4bef972ba1c9ba6730a, type: 3}
     - target: {fileID: 5117550628369405801, guid: 3c236e1c440b3404c8350d45f3cc9815, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6236847402414017235, guid: 3c236e1c440b3404c8350d45f3cc9815, type: 3}
       propertyPath: m_Sprite
@@ -5428,6 +5432,10 @@ PrefabInstance:
     - target: {fileID: 7239620330682128523, guid: 3c236e1c440b3404c8350d45f3cc9815, type: 3}
       propertyPath: m_Name
       value: UpgradeToggle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109480375338412708, guid: 3c236e1c440b3404c8350d45f3cc9815, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8831,7 +8839,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2815389831669873269, guid: 169dbd8849f643b42ad29fb079497f19, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14260,6 +14269,7 @@ MonoBehaviour:
   UpgradeImgComponent: {fileID: 5921107524700382899}
   InCreaseUpgradeGroup: {fileID: 6408751557886566554}
   StageAreaRoot: {fileID: 7018895306745701315}
+  InCreaBtnGroupComponent: {fileID: 2205301349535273123}
 --- !u!224 &8863163350226180404 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2851663316486770002, guid: 9a19794b814697d4fab955bdb7bba1df, type: 3}
@@ -16728,7 +16738,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573564349156922010, guid: cec365a9f4e7e4c5c97fbad2e43cbf47, type: 3}
       propertyPath: m_text
-      value: AUTO
+      value: ON
       objectReference: {fileID: 0}
     - target: {fileID: 573564349156922010, guid: cec365a9f4e7e4c5c97fbad2e43cbf47, type: 3}
       propertyPath: m_fontSize
@@ -16902,7 +16912,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -12
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7499249979950443312, guid: cec365a9f4e7e4c5c97fbad2e43cbf47, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7539863875996715850, guid: cec365a9f4e7e4c5c97fbad2e43cbf47, type: 3}
     - {fileID: 8369117990980294719, guid: cec365a9f4e7e4c5c97fbad2e43cbf47, type: 3}

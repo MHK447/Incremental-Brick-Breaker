@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using TMPro;
+using UniRx;
 
 public class EquipmnentUpgradeGroup : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
 
     private CanvasGroup EquipInfoCanvasGroup;
 
-    
+    private CompositeDisposable disposables = new CompositeDisposable();
 
 
     void Awake()
@@ -47,6 +48,7 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
         // Hover tooltip should not intercept pointer raycasts (prevents enter/exit flicker).
         EquipInfoCanvasGroup.blocksRaycasts = false;
         EquipInfoCanvasGroup.interactable = false;
+
     }
 
     private bool IsStartUpgrade = false;
@@ -58,11 +60,11 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
         if (GameRoot.Instance.UserData.Material.Value >= 20)
         {
             IsStartUpgrade = true;
-            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency , 
-            (int)Config.CurrencyID.Material , -20);
+            GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency,
+            (int)Config.CurrencyID.Material, -20);
 
 
-            UpgradeAnim.Play("Upgrade", 0 , 0f);
+            UpgradeAnim.Play("Upgrade", 0, 0f);
             GameRoot.Instance.UserData.Save();
         }
     }
@@ -94,10 +96,20 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
 
         ProjectUtility.SetActiveCheck(ItemGachaSelectComponent.gameObject, false);
 
-        ProjectUtility.SetActiveCheck(EquipInfoItemComponent.gameObject , false);
+        ProjectUtility.SetActiveCheck(EquipInfoItemComponent.gameObject, false);
 
 
         ColliderAction.AttackAction = GachaStart;
+
+
+        disposables.Clear();
+
+        UpgradeCostText.text = "20";
+
+        GameRoot.Instance.UserData.Material.Subscribe(x =>
+        {
+            UpgradeCostText.color = x >= 20 ? Color.white : Color.red;
+        }).AddTo(disposables);
     }
 
     /// <summary>
@@ -114,9 +126,9 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
 
 
 
-    public void EquipItemSet(EquipItemData equipitemdata , bool active)
+    public void EquipItemSet(EquipItemData equipitemdata, bool active)
     {
-        ProjectUtility.SetActiveCheck(EquipInfoItemComponent.gameObject , active);
+        ProjectUtility.SetActiveCheck(EquipInfoItemComponent.gameObject, active);
 
         if (!active || equipitemdata == null) return;
 
@@ -131,6 +143,17 @@ public class EquipmnentUpgradeGroup : MonoBehaviour
 
         EquipInfoItemComponent.transform.position = worldPos;
         EquipInfoItemComponent.EquipItemSet(equipitemdata);
+    }
+
+
+    void OnDestroy()
+    {
+        disposables.Clear();
+    }
+
+    void OnDisable()
+    {
+        disposables.Clear();
     }
 }
 
