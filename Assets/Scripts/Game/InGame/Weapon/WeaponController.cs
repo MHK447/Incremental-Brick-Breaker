@@ -15,8 +15,6 @@ public class WeaponController : MonoBehaviour
     public void Init()
     {
         EquipWeaponList.Clear();
-
-        AddWeapon((int)WeaponSystem.WeaponType.BaseArrow);
     }
 
 

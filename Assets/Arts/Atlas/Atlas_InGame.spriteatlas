@@ -78,11 +78,15 @@ SpriteAtlas:
     packedSpriteRenderDataKeys:
     - 8021848078234446ea4cfd65057c6f54: 21300000
     - 0ef2fad0ccadd42f2811b6031f9bde5d: 21300000
+    - aea64b234422545a19e3f4f19fe4ec69: 21300000
     - a04ad2860aea245ccb5677a4ab979a1e: 21300000
     - a73fe8786d61a4ddc86d9d9369c16659: 21300000
     - b268e1a8c1082451f86c4e1cfc97fb3c: 21300000
     - e73cdeb80def444968dc565d178df0b2: 21300000
+    - 5c456119e49ab4ebbb30add41c82d569: 21300000
+    - a007bc59c33eb417c85effdd2db5d9f6: 21300000
     - bc3219d9b9d6340c6bddfb82f0bde0a3: 21300000
+    - f7063ae9a3a9d4a5eb84d4d4230b72e4: 21300000
     - 6cff3d8ac7fe34b788d3aa4951c29430: 21300000
     - 493c9b3eb5e354d4faf6e294f6ee9b79: 21300000
     - 44f0c36eee40f4d1f81a8b9c93342756: 21300000
@@ -91,11 +95,15 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 8021848078234446ea4cfd65057c6f54, type: 3}
   - {fileID: 21300000, guid: 0ef2fad0ccadd42f2811b6031f9bde5d, type: 3}
+  - {fileID: 21300000, guid: aea64b234422545a19e3f4f19fe4ec69, type: 3}
   - {fileID: 21300000, guid: a04ad2860aea245ccb5677a4ab979a1e, type: 3}
   - {fileID: 21300000, guid: a73fe8786d61a4ddc86d9d9369c16659, type: 3}
   - {fileID: 21300000, guid: b268e1a8c1082451f86c4e1cfc97fb3c, type: 3}
   - {fileID: 21300000, guid: e73cdeb80def444968dc565d178df0b2, type: 3}
+  - {fileID: 21300000, guid: 5c456119e49ab4ebbb30add41c82d569, type: 3}
+  - {fileID: 21300000, guid: a007bc59c33eb417c85effdd2db5d9f6, type: 3}
   - {fileID: 21300000, guid: bc3219d9b9d6340c6bddfb82f0bde0a3, type: 3}
+  - {fileID: 21300000, guid: f7063ae9a3a9d4a5eb84d4d4230b72e4, type: 3}
   - {fileID: 21300000, guid: 6cff3d8ac7fe34b788d3aa4951c29430, type: 3}
   - {fileID: 21300000, guid: 493c9b3eb5e354d4faf6e294f6ee9b79, type: 3}
   - {fileID: 21300000, guid: 44f0c36eee40f4d1f81a8b9c93342756, type: 3}
@@ -103,14 +111,18 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - InGame_M_Parts_2_1
   - EnemyUnitSpawner_1
+  - InGame_FlameThrow_9_1_Body
   - InGameBullet_1
   - InGame_Front_Wheel_4_1
   - InGame_Gear_2
   - InGame_B_Parts_3_1
+  - InGame_FlameThrow_9_1
+  - InGame_FlameThrow_9_1_Gun
   - InGame_Floor_Parts_6_1
+  - InGame_SpikeBumper_Parts_10_1
   - InGame_Back_Wheel_5_1
-  - InGame_Weapon_MachineGun_1
-  - InGame_Blade_2
+  - InGame_Weapon_MachineGun_8_1
+  - InGame_Blade_Parts_7_1
   - InGame_F_Parts_1_1
   m_RenderDataMap: {}
   m_Tag: Atlas_InGame

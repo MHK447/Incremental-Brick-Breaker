@@ -44,6 +44,10 @@ public partial class InGameBaseStage : MonoBehaviour
 
     /// <summary> 웨이브 전환 시 플레이어 Run + 맵 이동 연출 시간(초). 웨이브 진행 바 채우기 시간과 동기화됨. </summary>
     public const float WaveMoveDuration = 5f;
+    private const float BlockSpawnerShowLeadTime = 1f;
+
+    /// <summary> 트럭 미해금(고정 스폰) 구간에서 슬롯당 적 사망 후 재스폰까지 대기 시간(초). </summary>
+    private const float PersistentEnemyRespawnDelay = 10f;
     [SerializeField] private float enemySpawnMoveLeftSpeed = 2f;
 
     /// <summary> 첫 웨이브 이동 연출을 이미 했으면 true (다음 웨이브부터는 이동 생략) </summary>
@@ -64,6 +68,7 @@ public partial class InGameBaseStage : MonoBehaviour
         GameRoot.Instance.UISystem.OpenUI<PopupInGame>(popup => popup.Init());
 
         PlayerUnit.Init();
+        GameRoot.Instance.IncreaMentalSystem.ApplyWeaponUnlocksOnStageStart();
 
         EquipTutorialCheck();
 
@@ -263,6 +268,8 @@ public partial class InGameBaseStage : MonoBehaviour
 
         if (truckUnlocked)
         {
+            StartWaveSpawnForCurrentWave();
+
             PlayerUnit.ChangeState(PlayerUnit.PlayerState.Run);
 
             foreach (var movemap in MoveMapComponents)
@@ -270,7 +277,22 @@ public partial class InGameBaseStage : MonoBehaviour
                 movemap.StartInfiniteMove();
             }
 
-            yield return new WaitForSeconds(WaveMoveDuration);
+            float showDelay = Mathf.Max(0f, WaveMoveDuration - BlockSpawnerShowLeadTime);
+            if (showDelay > 0f)
+                yield return new WaitForSeconds(showDelay);
+
+            // 블록 스포너는 이동 종료 직전(1초 전)에 미리 노출
+            if (EnemyUnitGroup != null
+                && EnemyUnitGroup.IsEnemyBlockSpawnerActive
+                && EnemyBlockSpawner != null
+                && !EnemyBlockSpawner.IsDead)
+            {
+                ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, true);
+            }
+
+            float remainDelay = WaveMoveDuration - showDelay;
+            if (remainDelay > 0f)
+                yield return new WaitForSeconds(remainDelay);
 
             foreach (var movemap in MoveMapComponents)
             {
@@ -292,6 +314,12 @@ public partial class InGameBaseStage : MonoBehaviour
 
         if (!truckUnlocked)
             yield break;
+    }
+
+    private void StartWaveSpawnForCurrentWave()
+    {
+        if (currentWaveCoroutine != null)
+            return;
 
         var waveidx = GameRoot.Instance.UserData.Waveidx.Value;
         var stageidx = GameRoot.Instance.UserData.Stageidx.Value;
@@ -306,7 +334,7 @@ public partial class InGameBaseStage : MonoBehaviour
                 {
                     EnemyUnitGroup.EnemyBlockSpawner = EnemyBlockSpawner;
                     EnemyUnitGroup.IsEnemyBlockSpawnerActive = true;
-                    ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, true);
+                    ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, false);
                     EnemyBlockSpawner.Set(td.block_spawn_check, td.block_spawn_hp);
                 }
 
@@ -469,7 +497,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
                     if (enemy != null)
                     {
-                        persistentRespawnTimers[i] = 1f;
+                        persistentRespawnTimers[i] = 5f;
                         persistentEnemyList[i] = null;
                         continue;
                     }
@@ -498,7 +526,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
                     if (enemy != null)
                     {
-                        persistentRespawnTimers[i] = 1f;
+                        persistentRespawnTimers[i] = PersistentEnemyRespawnDelay;
                         persistentEnemyList[i] = null;
                         continue;
                     }
@@ -561,7 +589,7 @@ public partial class InGameBaseStage : MonoBehaviour
 
     public void StartEnemyBlockSpawner(int spawnidx, int hp)
     {
-        ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, true);
+        ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, false);
 
         EnemyBlockSpawner.Set(spawnidx, hp);
 

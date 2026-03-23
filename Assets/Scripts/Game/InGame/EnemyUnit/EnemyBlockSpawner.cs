@@ -15,7 +15,7 @@ public class EnemyBlockSpawner : MonoBehaviour
 
     public bool IsDead { get { return Hp <= 0; } }
 
-    public void Set(int spawnidx , int hp)
+    public void Set(int spawnidx, int hp)
     {
         SpawnIdx = spawnidx;
 
@@ -80,6 +80,14 @@ public class EnemyBlockSpawner : MonoBehaviour
         if (Hp <= 0)
             return;
 
+        if(HpProgress != null && !HpProgress.gameObject.activeSelf)
+        {
+            ProjectUtility.SetActiveCheck(HpProgress.gameObject, true);
+        }
+
+
+        DamageColorEffect();
+
         Hp -= Mathf.Max(0, damage);
         transform.DOPunchScale(Vector3.one * 0.14f, 0.16f, 6, 0.45f);
 
@@ -117,6 +125,30 @@ public class EnemyBlockSpawner : MonoBehaviour
     {
         if (HpProgress != null)
             HpProgress.Hide();
+    }
+
+    private bool IsDamageDirect = false;
+
+      public virtual void DamageColorEffect()
+    {
+        if (!IsDamageDirect)
+        {
+            IsDamageDirect = true;
+
+            // 피격 효과 적용
+            BlockSpawnImg.EnableHitEffect();
+
+            GameRoot.Instance.WaitTimeAndCallback(0.15f, () =>
+            {
+                if (this != null)
+                {
+                    // 효과 종료 후 원래 머티리얼로 복귀
+                    BlockSpawnImg.DisableHitEffect();
+
+                    IsDamageDirect = false;
+                }
+            });
+        }
     }
 }
 

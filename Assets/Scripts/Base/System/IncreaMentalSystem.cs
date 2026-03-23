@@ -11,7 +11,7 @@ public enum IncreaMentalType
     TruckUnlock = 3,
     FallCountUp = 4,
     FallBulletPenetrationUp = 5,
-    GemDropRateUp = 6,
+    IncreaUpgradeDropRateUp = 6,
     CoinDropRateUp = 7,
     CoinValueUp = 8,
     WeaponCooldownDown = 9,
@@ -135,6 +135,51 @@ public class IncreaMentalSystem
     {
         if (GameRoot.Instance == null || GameRoot.Instance.UserData == null) return;
         GameRoot.Instance.UserData.InGamePlayerData.ApplyIncreaMentalBonuses();
+
+        var inGame = GameRoot.Instance.InGameSystem != null
+            ? GameRoot.Instance.InGameSystem.GetInGame<InGameBase>()
+            : null;
+        if (inGame != null && inGame.Stage != null && inGame.Stage.Player != null)
+            inGame.Stage.Player.ApplyMaxHealthFromData();
+    }
+
+    public void ApplyWeaponUnlocksOnStageStart()
+    {
+        var inGame = GameRoot.Instance.InGameSystem.GetInGame<InGameBase>();
+        if (inGame == null || inGame.Stage == null || inGame.Stage.Player == null) return;
+
+        var weaponController = inGame.Stage.Player.GetWeaponController;
+        if (weaponController == null) return;
+
+        if (IsUnlocked(IncreaMentalType.GearWeaponUnlock) &&
+            !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Blade))
+        {
+            weaponController.AddWeapon((int)WeaponSystem.WeaponType.Blade);
+        }
+
+        int bonusGearCountLevel = GetUpgradeLevel(IncreaMentalType.GearCountUp);
+        for (int i = 0; i < bonusGearCountLevel; i++)
+        {
+            weaponController.AddWeapon((int)WeaponSystem.WeaponType.Blade);
+        }
+
+        if (IsUnlocked(IncreaMentalType.MachineGunUnlock) &&
+            !weaponController.HasWeapon((int)WeaponSystem.WeaponType.MachineGun))
+        {
+            weaponController.AddWeapon((int)WeaponSystem.WeaponType.MachineGun);
+        }
+
+        if (IsUnlocked(IncreaMentalType.FlamethrowerUnlock) &&
+            !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Flamethrower))
+        {
+            weaponController.AddWeapon((int)WeaponSystem.WeaponType.Flamethrower);
+        }
+
+        if (IsUnlocked(IncreaMentalType.DefenseGuardUnlock) &&
+            !weaponController.HasWeapon((int)WeaponSystem.WeaponType.DefenseGuard))
+        {
+            weaponController.AddWeapon((int)WeaponSystem.WeaponType.DefenseGuard);
+        }
     }
 
     private void ApplyImmediateEffect(IncreaMentalType type)
@@ -161,13 +206,17 @@ public class IncreaMentalSystem
                 break;
 
             case IncreaMentalType.MachineGunUnlock:
-                // if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.MachineGun))
-                //     weaponController.AddWeapon((int)WeaponSystem.WeaponType.MachineGun);
+                if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.MachineGun))
+                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.MachineGun);
                 break;
 
             case IncreaMentalType.FlamethrowerUnlock:
-                // if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Flamethrower))
-                //     weaponController.AddWeapon((int)WeaponSystem.WeaponType.Flamethrower);
+                if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.Flamethrower))
+                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.Flamethrower);
+                break;
+            case IncreaMentalType.DefenseGuardUnlock:
+                if (weaponController != null && !weaponController.HasWeapon((int)WeaponSystem.WeaponType.DefenseGuard))
+                    weaponController.AddWeapon((int)WeaponSystem.WeaponType.DefenseGuard);
                 break;
             case IncreaMentalType.TruckUpgradeUnlock:
                 {
@@ -254,7 +303,7 @@ public class IncreaMentalSystem
     /// <summary> 잼(보석) 드랍 추가 확률 (플러스 증가, 0.0 ~ 1.0) </summary>
     public float GetGemDropBonusRate()
     {
-        return GetUpgradeValue(IncreaMentalType.GemDropRateUp) * 0.001f;
+        return GetUpgradeValue(IncreaMentalType.IncreaUpgradeDropRateUp);
     }
 
     /// <summary> 코인 추가 드랍 개수 (버프 값만큼 추가 드랍) </summary>
@@ -287,7 +336,7 @@ public class IncreaMentalSystem
         return GetUpgradeValue(IncreaMentalType.HealthUp);
     }
 
-    /// <summary> 체력 회복 추가 보너스 (플러스 증가) </summary>
+    /// <summary> 체력 회복 보너스 — 테이블 합산 값만큼 초당 HP 회복 (PlayerUnit) </summary>
     public int GetHealthRegenBonus()
     {
         return GetUpgradeValue(IncreaMentalType.HealthRegenUp);

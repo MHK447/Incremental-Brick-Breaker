@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Cysharp.Threading.Tasks;
 using UniRx;
+using DG.Tweening;
 
 
 public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -50,8 +51,12 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private Vector3 _defaultLocalScale;
+
     void Awake()
     {
+        _defaultLocalScale = transform.localScale;
+
         UpgradeBtn.onClick.AddListener(OnClickUpgrade);
 
         NextLineList.Clear();
@@ -75,7 +80,7 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
     public void Init(System.Action<int> unlockaction)
     {
         var td = Tables.Instance.GetTable<IncreaUpgradeOrder>().GetData(UpgradeOrder);
-        if (td != null  && td.cost.Count > 0)
+        if (td != null && td.cost.Count > 0)
         {
             var finddata = GameRoot.Instance.IncreaMentalSystem.FindData(td.order);
             int level = finddata != null ? finddata.Level.Value : 0;
@@ -130,11 +135,31 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
 
         if (GameRoot.Instance.UserData.Money.Value >= UpgradeCost)
         {
+            DirectionUpgrade();
+
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
             GameRoot.Instance.IncreaMentalSystem.IncreaseLevelUp(td.order);
             UnLock();
             UnlockAction?.Invoke(UpgradeOrder);
+
+            var popup = GameRoot.Instance.UISystem.GetUI<PopupInGame>();
+            if (popup != null)
+            {
+                popup.UpgradeImgHover(UpgradeOrder, this.transform.position);
+            }
         }
+    }
+
+    public void DirectionUpgrade()
+    {
+        transform.DOKill();
+        transform.localScale = _defaultLocalScale;
+
+        Vector3 punch = _defaultLocalScale * 1.18f;
+        transform.DOScale(punch, 0.12f)
+            .SetEase(Ease.OutQuad)
+            .SetLoops(2, LoopType.Yoyo)
+            .SetUpdate(true);
     }
 
 
@@ -177,7 +202,7 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
             {
                 ProjectUtility.SetActiveCheck(line, false);
             }
-    
+
             if (finddata.Level.Value == 0 && !GameRoot.Instance.IncreaMentalSystem.UpgradeUnLockOrderList.Contains(UpgradeOrder)
             && UpgradeOrder != 2)
             {
@@ -201,16 +226,20 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
                 }
             }
 
-            foreach(var img in UnLockImgList)
+            foreach (var img in UnLockImgList)
             {
                 img.color = CurType == UpgradeType.UnLock ? Config.Instance.GetImageColor("increa_unlock_img") : Config.Instance.GetImageColor("increa_lock_img");
             }
 
-            ProjectUtility.SetActiveCheck(GlowRootObj, CurType == UpgradeType.Lock);
+            bool ismaxlevel = finddata.Level.Value >= td.increase_max_lv;
 
             disposables.Clear();
             GameRoot.Instance.UserData.Money.Subscribe(x =>
             {
+
+                bool ismaxlevel = finddata.Level.Value >= td.increase_max_lv;
+
+                ProjectUtility.SetActiveCheck(GlowRootObj, !ismaxlevel);
                 SetGlowColor((int)x);
             }).AddTo(disposables);
         }

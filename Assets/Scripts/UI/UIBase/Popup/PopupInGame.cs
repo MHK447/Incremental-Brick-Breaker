@@ -156,7 +156,7 @@ public class PopupInGame : UIBase
     {
         ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, true);
         UpgradeImgComponent.Set(upgradeidx);
-        UpgradeImgComponent.transform.position = new Vector3(pos.x, pos.y + 200, 0);
+        UpgradeImgComponent.transform.position = new Vector3(pos.x, pos.y + 100f, 0);
     }
 
     public void UpgradeImgHoverExit()

@@ -19,7 +19,15 @@ MonoBehaviour:
   - 4
   - 5
   - 6
+  - 7
+  - 8
+  - 9
+  - 10
   mSecondKey:
+  - 1
+  - 1
+  - 1
+  - 1
   - 1
   - 1
   - 1
@@ -30,42 +38,70 @@ MonoBehaviour:
   - _item_equip_type: 1
     _item_idx: 1
     _item_ability_type: 1
-    _ability_value: 10
+    _ability_value: 1
     _item_desc: Equip_Item_Desc_1
     _item_name: Equip_Item_Name_1_1
     _image: InGame_F_Parts_1_1
   - _item_equip_type: 2
     _item_idx: 1
     _item_ability_type: 2
-    _ability_value: 20
+    _ability_value: 1
     _item_desc: Equip_Item_Desc_2
     _item_name: Equip_Item_Name_2_1
     _image: InGame_M_Parts_2_1
   - _item_equip_type: 3
     _item_idx: 1
     _item_ability_type: 3
-    _ability_value: 30
+    _ability_value: 1
     _item_desc: Equip_Item_Desc_3
     _item_name: Equip_Item_Name_3_1
     _image: InGame_B_Parts_3_1
   - _item_equip_type: 4
     _item_idx: 1
     _item_ability_type: 1
-    _ability_value: 40
+    _ability_value: 1
     _item_desc: Equip_Item_Desc_1
     _item_name: Equip_Item_Name_4_1
     _image: InGame_Front_Wheel_4_1
   - _item_equip_type: 5
     _item_idx: 1
     _item_ability_type: 2
-    _ability_value: 50
+    _ability_value: 1
     _item_desc: Equip_Item_Desc_2
     _item_name: Equip_Item_Name_5_1
     _image: InGame_Back_Wheel_5_1
   - _item_equip_type: 6
     _item_idx: 1
     _item_ability_type: 3
-    _ability_value: 60
+    _ability_value: 1
     _item_desc: Equip_Item_Desc_3
     _item_name: Equip_Item_Name_6_1
     _image: InGame_Floor_Parts_6_1
+  - _item_equip_type: 7
+    _item_idx: 1
+    _item_ability_type: 3
+    _ability_value: 1
+    _item_desc: Equip_Item_Desc_3
+    _item_name: Equip_Item_Name_7_1
+    _image: InGame_Blade_Parts_7_1
+  - _item_equip_type: 8
+    _item_idx: 1
+    _item_ability_type: 3
+    _ability_value: 1
+    _item_desc: Equip_Item_Desc_3
+    _item_name: Equip_Item_Name_8_1
+    _image: InGame_MachineGun_Parts_8_1
+  - _item_equip_type: 9
+    _item_idx: 1
+    _item_ability_type: 3
+    _ability_value: 1
+    _item_desc: Equip_Item_Desc_3
+    _item_name: Equip_Item_Name_9_1
+    _image: InGame_FlameThrow_Parts_9_1
+  - _item_equip_type: 10
+    _item_idx: 1
+    _item_ability_type: 3
+    _ability_value: 1
+    _item_desc: Equip_Item_Desc_3
+    _item_name: Equip_Item_Name_10_1
+    _image: InGame_SpikeBumper_Parts_10_1

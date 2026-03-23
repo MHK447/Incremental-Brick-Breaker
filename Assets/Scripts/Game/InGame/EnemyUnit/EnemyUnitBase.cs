@@ -75,7 +75,7 @@ public class EnemyUnitBase : MonoBehaviour
             return;
 
         HpProgress.Init(transform);
-        ProjectUtility.SetActiveCheck(HpProgress.gameObject, true);
+        ProjectUtility.SetActiveCheck(HpProgress.gameObject, false);
         HpProgress.SetHpText(EnemyUnitData.CurHp, EnemyUnitData.StartHp);
         HpProgress.SetOffset(new Vector3(0f, 0.7f, 0f));
     }
@@ -174,9 +174,27 @@ public class EnemyUnitBase : MonoBehaviour
     public void AttackAfter()
     {
         attackTimer = EnemyUnitData.AtkSpeed;
-        targetPlayer.Damage(EnemyUnitData.Dmg);
+        targetPlayer.Damage(EnemyUnitData.Dmg, this);
 
         ChangeState(EnemyUnitState.Move);
+    }
+
+    public void ApplyDefenseGuardKnockback(Vector3 sourcePosition)
+    {
+        if (IsDead) return;
+
+        Vector3 knockbackDir = (transform.position - sourcePosition);
+        if (knockbackDir.sqrMagnitude <= 0.0001f)
+        {
+            Vector2 randomDir = Random.insideUnitCircle.normalized;
+            knockbackDir = new Vector3(randomDir.x, randomDir.y, 0f);
+        }
+
+        knockbackDir.z = 0f;
+        knockbackDir.Normalize();
+
+        const float knockbackDistance = 0.65f;
+        transform.position += knockbackDir * knockbackDistance;
     }
 
     public void DeadAfter()
@@ -211,9 +229,13 @@ public class EnemyUnitBase : MonoBehaviour
 
         EnemyUnitData.CurHp -= damage;
         if (HpProgress != null && EnemyUnitData.StartHp > 0)
+        {
             HpProgress.SetHpText(EnemyUnitData.CurHp, EnemyUnitData.StartHp);
+            ProjectUtility.SetActiveCheck(HpProgress.gameObject, true);
+        }
 
         DamageColorEffect();
+
 
         GameRoot.Instance.DamageTextSystem.ShowDamage(damage, transform.position, Color.red);
 
@@ -238,9 +260,19 @@ public class EnemyUnitBase : MonoBehaviour
                 });
             }
 
-            if (playerData.BonusGemDropRate > 0f && Random.value < playerData.BonusGemDropRate)
+            float bonusGemDropRate = GameRoot.Instance.IncreaMentalSystem.GetGemDropBonusRate();
+            bonusGemDropRate = Mathf.Max(0f, bonusGemDropRate);
+            int guaranteedGemDropCount = Mathf.FloorToInt(bonusGemDropRate);
+            float extraGemDropChance = bonusGemDropRate - guaranteedGemDropCount;
+            int totalGemDropCount = guaranteedGemDropCount + (Random.value < extraGemDropChance ? 1 : 0);
+
+            for (int i = 0; i < totalGemDropCount; i++)
             {
-                GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Cash, 1);
+                Vector3 dropPos = transform.position + new Vector3(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0f);
+                GameRoot.Instance.EffectSystem.MultiPlay<EnemyKillRewardEffect>(dropPos, x =>
+                {
+                    x.Set((int)Config.RewardType.Currency, (int)Config.CurrencyID.Material, 1);
+                });
             }
 
             if (EnemyUnitGroup != null)

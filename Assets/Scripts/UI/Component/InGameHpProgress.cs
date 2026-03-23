@@ -32,7 +32,10 @@ public class InGameHpProgress : InGameFloatingUI
     private void OnEnable()
     {
         // 활성화될 때마다 초기화
-        HpSlider.value = DelayHealthBar.value = 1f;
+        HpSlider.value = 1f;
+
+        if (DelayHealthBar != null)
+            DelayHealthBar.value = 1f;
     }
 
     public void SetHpText(double curhp, double maxhp)
@@ -44,7 +47,8 @@ public class InGameHpProgress : InGameFloatingUI
         var curhpvalue = (float)curhp / (float)maxhp;
 
         // DelayHealthBar는 즉시 변경 (흰색 바)
-        DelayHealthBar.value = (float)curhp / (float)maxhp;
+        if (DelayHealthBar != null)
+            DelayHealthBar.value = (float)curhp / (float)maxhp;
 
         // HpSlider는 천천히 감소 (빨간색 바)
         if (Col != null)

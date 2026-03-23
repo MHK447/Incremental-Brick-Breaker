@@ -29,6 +29,8 @@ public class PlayerUnit : MonoBehaviour
 
     private PlayerState State = PlayerState.Idle;
 
+    private float healthRegenAccumulator;
+
     public void Init()
     {
         if(!GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock))
@@ -46,9 +48,55 @@ public class PlayerUnit : MonoBehaviour
         ChangeState(PlayerState.Run);
     }
 
+    void Update()
+    {
+        if (State == PlayerState.Dead) return;
+        if (!gameObject.activeInHierarchy || InGamePlayerData == null) return;
+
+        int regenPerSec = InGamePlayerData.HealthRegenBonus;
+        if (regenPerSec <= 0) return;
+
+        int maxHp = InGamePlayerData.StartHpProperty.Value;
+        int cur = InGamePlayerData.CurHppProperty.Value;
+        if (cur >= maxHp) return;
+
+        healthRegenAccumulator += regenPerSec * Time.deltaTime;
+        if (healthRegenAccumulator < 1f) return;
+
+        int heal = Mathf.FloorToInt(healthRegenAccumulator);
+        healthRegenAccumulator -= heal;
+        InGamePlayerData.CurHppProperty.Value = Mathf.Min(maxHp, cur + heal);
+    }
+
+    /// <summary> 보너스 체력(인크/장비) 변경 후 최대 체력·현재 체력 동기화 </summary>
+    public void ApplyMaxHealthFromData()
+    {
+        if (InGamePlayerData == null)
+            InGamePlayerData = GameRoot.Instance?.UserData?.InGamePlayerData;
+        if (InGamePlayerData == null) return;
+        if (!gameObject.activeInHierarchy) return;
+
+        int newMax = 50 + InGamePlayerData.BonusHealth + InGamePlayerData.EquipHealthBonus;
+        int oldMax = InGamePlayerData.StartHpProperty.Value;
+        int delta = newMax - oldMax;
+
+        InGamePlayerData.StartHpProperty.Value = newMax;
+
+        if (InGamePlayerData.IsDeadProperty.Value) return;
+
+        if (oldMax <= 0)
+        {
+            InGamePlayerData.CurHppProperty.Value = newMax;
+            return;
+        }
+
+        int newCur = InGamePlayerData.CurHppProperty.Value + delta;
+        InGamePlayerData.CurHppProperty.Value = Mathf.Clamp(newCur, 1, newMax);
+    }
 
     public void SetPlayerData()
     {
+        healthRegenAccumulator = 0f;
         int baseHp = 50 + InGamePlayerData.BonusHealth + InGamePlayerData.EquipHealthBonus;
         InGamePlayerData.CurHppProperty.Value = InGamePlayerData.StartHpProperty.Value = baseHp;
         InGamePlayerData.CriticalChanceProperty.Value = 30;
@@ -56,7 +104,7 @@ public class PlayerUnit : MonoBehaviour
         InGamePlayerData.FallWeaponIdxProperty.Value = 101;
     }
 
-    public void Damage(int damage)
+    public void Damage(int damage, EnemyUnitBase attacker = null)
     {
         InGamePlayerData.CurHppProperty.Value -= damage;
 
@@ -64,10 +112,26 @@ public class PlayerUnit : MonoBehaviour
 
         GameRoot.Instance.DamageTextSystem.ShowDamage(damage, transform.position, Color.red);
 
+        TryTriggerDefenseGuard(damage, attacker);
+
         if (InGamePlayerData.CurHppProperty.Value <= 0)
         {
             Dead();
         }
+    }
+
+    private void TryTriggerDefenseGuard(int receivedDamage, EnemyUnitBase attacker)
+    {
+        if (attacker == null) return;
+        if (receivedDamage <= 0) return;
+        if (GameRoot.Instance == null || GameRoot.Instance.IncreaMentalSystem == null) return;
+        if (!GameRoot.Instance.IncreaMentalSystem.IsDefenseGuardUnlocked()) return;
+        if (Random.value > 0.1f) return;
+
+        attacker.ApplyDefenseGuardKnockback(transform.position);
+
+        int rollbackDamage = Mathf.Max(1, Mathf.FloorToInt(receivedDamage * 0.5f));
+        attacker.Damage(rollbackDamage);
     }
 
 

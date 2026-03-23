@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d26a45e591bb40ada9de0672e8684dd
+    m_Address: SpikeBumper_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 10df33a42a52540f294c0e31520cdea7
     m_Address: UI/Page/PageLobbyShop
     m_ReadOnly: 0
@@ -220,6 +225,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 615c2393c17754b50851e47e738cf003
+    m_Address: Effect/FlameThrowEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6233b4aa473a74ef5a9b93aae88c15c5
     m_Address: UI/InGame/InGameHpProgress
     m_ReadOnly: 0
@@ -247,6 +257,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7500b6d09474b473796141c020e34c4a
     m_Address: ClearEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75ada64a5b84f4203a1069eb3cc1167b
+    m_Address: InGameFlameThrow_1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

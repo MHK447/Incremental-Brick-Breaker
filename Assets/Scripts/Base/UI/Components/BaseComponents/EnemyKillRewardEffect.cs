@@ -21,21 +21,34 @@ public class EnemyKillRewardEffect : Effect
     private int RewardType = 0;
     private int RewardIdx = 0;
     private int RewardValue = 0;
+    private bool IsRewardHovered = false;
+    private float AutoCollectEnableTime = 0f;
+    [SerializeField] private float autoCollectDelay = 0.2f;
 
 
     private float XRewardPos = -260f;
+    private Collider2D cachedCollider;
+    private Camera cachedCamera;
 
     public void Set(int rewardtype, int rewardidx, int rewardvalue)
     {
         RewardSprite.sprite = Config.Instance.GetRewardImage(rewardtype, rewardidx);
 
+        var ypos = rewardidx == (int)Config.CurrencyID.Material ? 1.8f : 1f;
+
+        RewardSprite.transform.localScale = new Vector3(ypos, ypos, 1f);
+
         RewardType = rewardtype;
         RewardIdx = rewardidx;
         RewardValue = rewardvalue;
+        IsRewardHovered = false;
+        AutoCollectEnableTime = Time.time + autoCollectDelay;
+        cachedCollider = GetComponent<Collider2D>();
+        cachedCamera = Camera.main;
 
-        transform.DOKill();
+        RewardSprite.DOKill();
         float startY = transform.localPosition.y;
-        transform.DOLocalMoveY(startY + floatAmplitude, floatDuration * 0.5f)
+        RewardSprite.transform.DOLocalMoveY(startY + floatAmplitude, floatDuration * 0.5f)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutSine)
             .SetTarget(transform);
@@ -54,13 +67,29 @@ public class EnemyKillRewardEffect : Effect
 
         if (transform.localPosition.x <= XRewardPos)
         {
-            OnRewardHover();
-            onMouseHover?.Invoke();
+            TryRewardHover(false);
+        }
+
+        if (!IsRewardHovered && cachedCollider != null && cachedCamera != null)
+        {
+            Vector3 mouseWorld = cachedCamera.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorld.z = 0f;
+            if (cachedCollider.OverlapPoint(mouseWorld))
+            {
+                TryRewardHover(true);
+            }
         }
     }
 
-    void OnMouseEnter()
+    private void TryRewardHover(bool ignoreAutoCollectDelay)
     {
+        if (!ignoreAutoCollectDelay && Time.time < AutoCollectEnableTime)
+            return;
+
+        if (IsRewardHovered)
+            return;
+
+        IsRewardHovered = true;
         OnRewardHover();
         onMouseHover?.Invoke();
     }
@@ -97,6 +126,8 @@ public class EnemyKillRewardEffect : Effect
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.GetComponentInParent<EnemyBlockSpawner>() != null)
+            TryRewardHover(false);
     }
 }
 

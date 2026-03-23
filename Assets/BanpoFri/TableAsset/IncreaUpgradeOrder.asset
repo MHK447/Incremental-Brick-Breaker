@@ -37,6 +37,41 @@ MonoBehaviour:
   - 22
   - 23
   - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+  - 32
+  - 33
+  - 34
+  - 35
+  - 36
+  - 37
+  - 38
+  - 39
+  - 40
+  - 41
+  - 42
+  - 43
+  - 44
+  - 45
+  - 46
+  - 47
+  - 48
+  - 49
+  - 50
+  - 51
+  - 52
+  - 53
+  - 54
+  - 55
+  - 56
+  - 57
+  - 58
+  - 59
   mSecondKey: []
   mDataList:
   - _order: 1
@@ -113,7 +148,7 @@ MonoBehaviour:
     _upgrade_value: 010000000200000003000000
   - _order: 13
     _open_order: 11000000
-    _increase_idx: 7
+    _increase_idx: 15
     _increase_max_lv: 1
     _cost: 14000000
     _upgrade_value: 01000000
@@ -125,13 +160,13 @@ MonoBehaviour:
     _upgrade_value: 01000000
   - _order: 15
     _open_order: 1000000014000000
-    _increase_idx: 19
+    _increase_idx: 18
     _increase_max_lv: 3
     _cost: 140000001e00000028000000
     _upgrade_value: 050000000a0000000f000000
   - _order: 16
     _open_order: 16000000
-    _increase_idx: 20
+    _increase_idx: 17
     _increase_max_lv: 1
     _cost: 1e000000
     _upgrade_value: 01000000
@@ -149,37 +184,247 @@ MonoBehaviour:
     _upgrade_value: 010000000200000003000000
   - _order: 19
     _open_order: 18000000
-    _increase_idx: 19
+    _increase_idx: 6
     _increase_max_lv: 3
     _cost: 0a000000140000001e000000
     _upgrade_value: 010000000200000003000000
   - _order: 20
-    _open_order: 15000000
+    _open_order: 15000000190000001a000000
     _increase_idx: 9
     _increase_max_lv: 3
     _cost: 0a000000140000001e000000
     _upgrade_value: 010000000200000003000000
   - _order: 21
-    _open_order: 16000000
+    _open_order: 160000001b000000
     _increase_idx: 7
     _increase_max_lv: 1
     _cost: 1e000000
     _upgrade_value: 01000000
   - _order: 22
-    _open_order: 17000000
+    _open_order: 1500000017000000
     _increase_idx: 17
     _increase_max_lv: 1
     _cost: 32000000
     _upgrade_value: 01000000
   - _order: 23
-    _open_order: 18000000
+    _open_order: 180000001b000000
     _increase_idx: 6
     _increase_max_lv: 1
     _cost: 32000000
     _upgrade_value: 01000000
   - _order: 24
-    _open_order: ffffffff
+    _open_order: 1c0000001d000000
     _increase_idx: 16
+    _increase_max_lv: 1
+    _cost: 32000000
+    _upgrade_value: 01000000
+  - _order: 25
+    _open_order: 1a000000
+    _increase_idx: 7
+    _increase_max_lv: 1
+    _cost: 0300000001000000
+    _upgrade_value: 0100000001000000
+  - _order: 26
+    _open_order: 1e0000001f000000
+    _increase_idx: 5
+    _increase_max_lv: 1
+    _cost: 03000000
+    _upgrade_value: 01000000
+  - _order: 27
+    _open_order: 20000000
+    _increase_idx: 4
+    _increase_max_lv: 1
+    _cost: 03000000
+    _upgrade_value: 01000000
+  - _order: 28
+    _open_order: 21000000
+    _increase_idx: 8
+    _increase_max_lv: 3
+    _cost: 050000000a0000000f000000
+    _upgrade_value: 010000000200000003000000
+  - _order: 29
+    _open_order: 22000000
+    _increase_idx: 3
+    _increase_max_lv: 1
+    _cost: 0a000000
+    _upgrade_value: 01000000
+  - _order: 30
+    _open_order: 23000000
+    _increase_idx: 11
+    _increase_max_lv: 1
+    _cost: 0a000000
+    _upgrade_value: 01000000
+  - _order: 31
+    _open_order: 2400000025000000
+    _increase_idx: 5
+    _increase_max_lv: 1
+    _cost: 0f000000
+    _upgrade_value: 01000000
+  - _order: 32
+    _open_order: 1f00000021000000
+    _increase_idx: 12
+    _increase_max_lv: 1
+    _cost: 14000000
+    _upgrade_value: 01000000
+  - _order: 33
+    _open_order: 220000002500000026000000
+    _increase_idx: 7
+    _increase_max_lv: 1
+    _cost: 0f000000
+    _upgrade_value: 01000000
+  - _order: 34
+    _open_order: 27000000
+    _increase_idx: 4
+    _increase_max_lv: 1
+    _cost: 28000000
+    _upgrade_value: 01000000
+  - _order: 35
+    _open_order: 2400000028000000
+    _increase_idx: 13
+    _increase_max_lv: 1
+    _cost: 32000000
+    _upgrade_value: 01000000
+  - _order: 36
+    _open_order: 2500000028000000
+    _increase_idx: 10
+    _increase_max_lv: 3
+    _cost: 050000000f00000014000000
+    _upgrade_value: 010000000200000003000000
+  - _order: 37
+    _open_order: 2400000026000000290000002b000000
+    _increase_idx: 7
+    _increase_max_lv: 1
+    _cost: 14000000
+    _upgrade_value: 01000000
+  - _order: 38
+    _open_order: 270000002c000000
+    _increase_idx: 18
+    _increase_max_lv: 1
+    _cost: 1e000000
+    _upgrade_value: 01000000
+  - _order: 39
+    _open_order: 2c000000
+    _increase_idx: 17
+    _increase_max_lv: 3
+    _cost: 140000001e00000028000000
+    _upgrade_value: 050000000a0000000f000000
+  - _order: 40
+    _open_order: 290000002d000000
+    _increase_idx: 18
+    _increase_max_lv: 1
+    _cost: 1e000000
+    _upgrade_value: 01000000
+  - _order: 41
+    _open_order: 2d0000002e000000
+    _increase_idx: 14
+    _increase_max_lv: 1
+    _cost: 32000000
+    _upgrade_value: ffffffff
+  - _order: 42
+    _open_order: 290000002b000000
+    _increase_idx: 1
+    _increase_max_lv: 3
+    _cost: 0a000000140000001e000000
+    _upgrade_value: 010000000200000003000000
+  - _order: 43
+    _open_order: 2f00000030000000
+    _increase_idx: 17
+    _increase_max_lv: 3
+    _cost: 0a000000140000001e000000
+    _upgrade_value: 010000000200000003000000
+  - _order: 44
+    _open_order: 2b00000031000000
+    _increase_idx: 9
+    _increase_max_lv: 3
+    _cost: 0a000000140000001e000000
+    _upgrade_value: 010000000200000003000000
+  - _order: 45
+    _open_order: 2e00000032000000
+    _increase_idx: 7
+    _increase_max_lv: 1
+    _cost: 1e000000
+    _upgrade_value: 01000000
+  - _order: 46
+    _open_order: 2f000000
+    _increase_idx: 17
+    _increase_max_lv: 1
+    _cost: 32000000
+    _upgrade_value: 01000000
+  - _order: 47
+    _open_order: 34000000
+    _increase_idx: 6
+    _increase_max_lv: 1
+    _cost: 32000000
+    _upgrade_value: 01000000
+  - _order: 48
+    _open_order: 3100000035000000
+    _increase_idx: 16
+    _increase_max_lv: 1
+    _cost: 32000000
+    _upgrade_value: 01000000
+  - _order: 49
+    _open_order: 36000000
+    _increase_idx: 7
+    _increase_max_lv: 1
+    _cost: 0300000001000000
+    _upgrade_value: 0100000001000000
+  - _order: 50
+    _open_order: 3300000038000000
+    _increase_idx: 5
+    _increase_max_lv: 1
+    _cost: 03000000
+    _upgrade_value: 01000000
+  - _order: 51
+    _open_order: 3400000039000000
+    _increase_idx: 4
+    _increase_max_lv: 1
+    _cost: 03000000
+    _upgrade_value: 01000000
+  - _order: 52
+    _open_order: 35000000
+    _increase_idx: 8
+    _increase_max_lv: 3
+    _cost: 050000000a0000000f000000
+    _upgrade_value: 010000000200000003000000
+  - _order: 53
+    _open_order: 3600000039000000
+    _increase_idx: 3
+    _increase_max_lv: 1
+    _cost: 0a000000
+    _upgrade_value: 01000000
+  - _order: 54
+    _open_order: 3b000000
+    _increase_idx: 11
+    _increase_max_lv: 1
+    _cost: 0a000000
+    _upgrade_value: 01000000
+  - _order: 55
+    _open_order: 38000000
+    _increase_idx: 5
+    _increase_max_lv: 1
+    _cost: 0f000000
+    _upgrade_value: 01000000
+  - _order: 56
+    _open_order: 39000000
+    _increase_idx: 12
+    _increase_max_lv: 1
+    _cost: 14000000
+    _upgrade_value: 01000000
+  - _order: 57
+    _open_order: 3a000000
+    _increase_idx: 7
+    _increase_max_lv: 1
+    _cost: 0f000000
+    _upgrade_value: 01000000
+  - _order: 58
+    _open_order: 3b000000
+    _increase_idx: 4
+    _increase_max_lv: 1
+    _cost: 28000000
+    _upgrade_value: 01000000
+  - _order: 59
+    _open_order: ffffffff
+    _increase_idx: 13
     _increase_max_lv: 1
     _cost: 32000000
     _upgrade_value: 01000000

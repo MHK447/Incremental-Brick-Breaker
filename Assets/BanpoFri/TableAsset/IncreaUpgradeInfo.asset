@@ -26,6 +26,11 @@ MonoBehaviour:
   - 11
   - 12
   - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
   mSecondKey: []
   mDataList:
   - _upgrade_idx: 1
@@ -67,3 +72,18 @@ MonoBehaviour:
   - _upgrade_idx: 13
     _icon: Increa_Upgrade_Icon_13
     _upgrade_name: Increa_Upgrade_name_13
+  - _upgrade_idx: 14
+    _icon: Increa_Upgrade_Icon_14
+    _upgrade_name: Increa_Upgrade_name_14
+  - _upgrade_idx: 15
+    _icon: Increa_Upgrade_Icon_15
+    _upgrade_name: Increa_Upgrade_name_15
+  - _upgrade_idx: 16
+    _icon: Increa_Upgrade_Icon_16
+    _upgrade_name: Increa_Upgrade_name_16
+  - _upgrade_idx: 17
+    _icon: Increa_Upgrade_Icon_17
+    _upgrade_name: Increa_Upgrade_name_17
+  - _upgrade_idx: 18
+    _icon: Increa_Upgrade_Icon_18
+    _upgrade_name: Increa_Upgrade_name_18
