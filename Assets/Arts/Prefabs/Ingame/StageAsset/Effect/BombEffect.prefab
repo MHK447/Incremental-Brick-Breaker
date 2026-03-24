@@ -2258,7 +2258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3315811681618963301}
   - component: {fileID: 8513779519293079169}
-  - component: {fileID: 5704830784990444390}
+  - component: {fileID: 2253548216008579265}
   m_Layer: 9
   m_Name: BombEffect
   m_TagString: Untagged
@@ -2305,7 +2305,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5704830784990444390
+--- !u!114 &2253548216008579265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2314,10 +2314,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7534698047051137549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a0b190412bd4c67a7e8ff2bc3f48e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3aee5b042d11b42c781fcc7fa3c17761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: []
 --- !u!1 &7567012988550406467
 GameObject:
   m_ObjectHideFlags: 0

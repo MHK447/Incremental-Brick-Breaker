@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using BanpoFri;
 using DG.Tweening;
 
@@ -12,6 +14,12 @@ public class EnemyBlockSpawner : MonoBehaviour
 
     private InGameHpProgress HpProgress;
     private bool HpProgressLoading = false;
+
+    private Coroutine spawnCoroutine;
+    private List<int> spawnEnemyIdxList;
+    private List<int> spawnEnemyDmgList;
+    private List<int> spawnEnemyHpList;
+    private List<int> spawnEnemyCountList;
 
     public bool IsDead { get { return Hp <= 0; } }
 
@@ -35,6 +43,64 @@ public class EnemyBlockSpawner : MonoBehaviour
         BlockSpawnImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_InGame, $"EnemyUnitSpawner_{SpawnIdx}");
 
         EnsureHpProgress();
+    }
+
+    public void SetSpawnData(List<int> enemyIdxList, List<int> enemyDmgList, List<int> enemyHpList, List<int> enemyCountList)
+    {
+        spawnEnemyIdxList = enemyIdxList;
+        spawnEnemyDmgList = enemyDmgList;
+        spawnEnemyHpList = enemyHpList;
+        spawnEnemyCountList = enemyCountList;
+    }
+
+    public void StartSpawning()
+    {
+        StopSpawning();
+        if (spawnEnemyIdxList != null && spawnEnemyIdxList.Count > 0)
+        {
+            spawnCoroutine = StartCoroutine(SpawnEnemyRoutine());
+        }
+    }
+
+    public void StopSpawning()
+    {
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
+    }
+
+    private IEnumerator SpawnEnemyRoutine()
+    {
+        var enemyUnitGroup = GetComponentInParent<EnemyUnitGroup>();
+        if (enemyUnitGroup == null)
+            yield break;
+
+        int spawnIndex = 0;
+
+        while (Hp > 0)
+        {
+            yield return new WaitForSeconds(2f);
+
+            if (Hp <= 0)
+                break;
+
+            int idx = spawnIndex % spawnEnemyIdxList.Count;
+            int enemyIdx = spawnEnemyIdxList[idx];
+            int dmg = (idx < spawnEnemyDmgList.Count) ? spawnEnemyDmgList[idx] : 0;
+            int hp = (idx < spawnEnemyHpList.Count) ? spawnEnemyHpList[idx] : 0;
+            int count = (idx < spawnEnemyCountList.Count) ? spawnEnemyCountList[idx] : 1;
+
+            for (int j = 0; j < count; j++)
+            {
+                enemyUnitGroup.EnemySpawn(enemyIdx, dmg, hp);
+            }
+
+            spawnIndex++;
+        }
+
+        spawnCoroutine = null;
     }
 
     private void BindHpProgress()
@@ -96,6 +162,7 @@ public class EnemyBlockSpawner : MonoBehaviour
 
         if (Hp <= 0)
         {
+            StopSpawning();
             transform.DOKill(true);
             GetComponentInParent<EnemyUnitGroup>()?.OnBlockSpawnerDestroyed();
 
@@ -110,6 +177,7 @@ public class EnemyBlockSpawner : MonoBehaviour
 
     public void ClearData()
     {
+        StopSpawning();
         transform.DOKill(true);
         if (BlockSpawnImg != null)
             BlockSpawnImg.DOKill();

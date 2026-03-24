@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 553507668687897906}
   - component: {fileID: 7947118163493050583}
   m_Layer: 0
-  m_Name: FallWeaponBase
+  m_Name: FallWeapon_101
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

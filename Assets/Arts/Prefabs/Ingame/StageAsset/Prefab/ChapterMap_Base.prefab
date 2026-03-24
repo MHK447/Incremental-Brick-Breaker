@@ -389,7 +389,7 @@ Transform:
   m_GameObject: {fileID: 1445868973350762010}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.239995, y: -2.46, z: -0.069999985}
+  m_LocalPosition: {x: 10.239995, y: -2.8, z: -0.069999985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 3.5
   customRepeatPosition: {x: 10.1, y: 0, z: 0}
-  EndPos: {x: -20.48, y: 0, z: 0}
+  EndPos: {x: -20.5, y: 0, z: 0}
   autoStart: 1
   ignoreRepeat: 0
 --- !u!1 &1473437688190351000
@@ -705,7 +705,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.239995, y: -4.61, z: -0.069999985}
-  m_LocalScale: {x: 64, y: 10, z: 1}
+  m_LocalScale: {x: 121.2, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2789632148067178981}
@@ -778,7 +778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 3.5
-  customRepeatPosition: {x: 10.1, y: 0, z: 0}
+  customRepeatPosition: {x: 10.24, y: 0, z: 0}
   EndPos: {x: -20.48, y: 0, z: 0}
   autoStart: 1
   ignoreRepeat: 0
@@ -872,7 +872,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.1999855, y: -4.61, z: 0.06999992}
-  m_LocalScale: {x: 64, y: 10, z: 1}
+  m_LocalScale: {x: 121.2, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2789632148067178981}
@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 3.5
-  customRepeatPosition: {x: 10.1, y: 0, z: 0}
+  customRepeatPosition: {x: 10.24, y: 0, z: 0}
   EndPos: {x: -20.48, y: 0, z: 0}
   autoStart: 1
   ignoreRepeat: 0
@@ -1112,7 +1112,7 @@ Transform:
   m_GameObject: {fileID: 3276687263870150059}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.199981, y: -2.46, z: 0.07999987}
+  m_LocalPosition: {x: -10.199981, y: -2.8, z: 0.07999987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 3.5
   customRepeatPosition: {x: 10.1, y: 0, z: 0}
-  EndPos: {x: -20.48, y: 0, z: 0}
+  EndPos: {x: -20.5, y: 0, z: 0}
   autoStart: 1
   ignoreRepeat: 0
 --- !u!1 &3418559815308321549
@@ -1568,7 +1568,7 @@ Transform:
   m_GameObject: {fileID: 5041738076724796070}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.46, z: 0}
+  m_LocalPosition: {x: 0, y: -2.8, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1643,7 +1643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 3.5
   customRepeatPosition: {x: 10.1, y: 0, z: 0}
-  EndPos: {x: -20.48, y: 0, z: 0}
+  EndPos: {x: -20.5, y: 0, z: 0}
   autoStart: 1
   ignoreRepeat: 0
 --- !u!1 &5093820237228359588
@@ -2919,7 +2919,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -4.61, z: 0}
-  m_LocalScale: {x: 64, y: 10, z: 1}
+  m_LocalScale: {x: 121.2, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2789632148067178981}
@@ -2993,7 +2993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 3.5
   customRepeatPosition: {x: 10.1, y: 0, z: 0}
-  EndPos: {x: -20.48, y: 0, z: 0}
+  EndPos: {x: -20.6, y: 0, z: 0}
   autoStart: 1
   ignoreRepeat: 0
 --- !u!1 &9092452352936781086

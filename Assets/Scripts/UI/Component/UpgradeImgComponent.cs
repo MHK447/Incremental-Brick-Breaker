@@ -48,7 +48,8 @@ public class UpgradeImgComponent : MonoBehaviour
                 int costIdx = Mathf.Clamp(level, 0, td.cost.Count - 1);
                 int currentCost = td.cost[costIdx];
 
-                UpgradeCountText.text = $"{level}/{td.increase_max_lv}";
+                UpgradeCountText.text = finddata.Level.Value == 0  ? 
+               $"{0}/{td.increase_max_lv}" : $"{finddata.Level.Value }/{td.increase_max_lv}";
                 UpgradeCostText.text = $"{currentCost}";
 
                 var upgradevalue = td.upgrade_value[level];

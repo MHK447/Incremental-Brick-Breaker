@@ -27,7 +27,7 @@ public class Weapon_Blade : Weapon_Base
     {
         base.Set(weaponData);
 
-        BladeImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_InGame, $"InGame_Blade_{weaponData.WeaponIdx}");
+        BladeImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_InGame, $"InGame_Blade_Parts_7_1");
         GearImg.sprite = AtlasManager.Instance.GetSprite(Atlas.Atlas_InGame, $"InGame_Gear_{weaponData.WeaponIdx}");
 
         Col.TriggerEnterAction = OnTriggerEnter2D;

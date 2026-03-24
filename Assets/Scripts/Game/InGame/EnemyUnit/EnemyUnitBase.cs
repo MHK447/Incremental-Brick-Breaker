@@ -234,6 +234,11 @@ public class EnemyUnitBase : MonoBehaviour
             ProjectUtility.SetActiveCheck(HpProgress.gameObject, true);
         }
 
+        GameRoot.Instance.EffectSystem.MultiPlay<ZombieBloodHit_Effect>(transform.position, x =>
+        {
+            x.SetAutoRemove(true, 2f);
+        });
+
         DamageColorEffect();
 
 

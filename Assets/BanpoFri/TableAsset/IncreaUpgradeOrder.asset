@@ -78,13 +78,13 @@ MonoBehaviour:
     _open_order: 05000000
     _increase_idx: 7
     _increase_max_lv: 1
-    _cost: 0300000001000000
-    _upgrade_value: 0100000001000000
+    _cost: 03000000
+    _upgrade_value: 01000000
   - _order: 2
     _open_order: 0100000003000000
     _increase_idx: 5
     _increase_max_lv: 1
-    _cost: 03000000
+    _cost: 01000000
     _upgrade_value: 01000000
   - _order: 3
     _open_order: 05000000

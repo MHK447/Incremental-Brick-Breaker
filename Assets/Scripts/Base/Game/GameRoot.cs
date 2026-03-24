@@ -360,6 +360,8 @@ public class GameRoot : Singleton<GameRoot>
 			GameRoot.instance.UserData.AddRecordCount(Config.RecordCountKeys.Init, 1);
 			SetNativeLanguage();
 
+			GameRoot.instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, 1, false);
+
 		}
 		else
 		{

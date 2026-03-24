@@ -101,7 +101,10 @@ public class PlayerUnit : MonoBehaviour
         InGamePlayerData.CurHppProperty.Value = InGamePlayerData.StartHpProperty.Value = baseHp;
         InGamePlayerData.CriticalChanceProperty.Value = 30;
         InGamePlayerData.CriticalDamageProperty.Value = 10;
-        InGamePlayerData.FallWeaponIdxProperty.Value = 101;
+        InGamePlayerData.FallWeaponIdxProperty.Value =
+            GameRoot.Instance.IncreaMentalSystem.IsBombUpgraded()
+                ? InGamePlayerData.FallWeaponIdx_Bomb
+                : InGamePlayerData.FallWeaponIdx_Default;
     }
 
     public void Damage(int damage, EnemyUnitBase attacker = null)

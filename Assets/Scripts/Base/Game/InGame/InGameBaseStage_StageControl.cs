@@ -288,6 +288,7 @@ public partial class InGameBaseStage : MonoBehaviour
                 && !EnemyBlockSpawner.IsDead)
             {
                 ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, true);
+                EnemyBlockSpawner.StartSpawning();
             }
 
             float remainDelay = WaveMoveDuration - showDelay;
@@ -336,6 +337,7 @@ public partial class InGameBaseStage : MonoBehaviour
                     EnemyUnitGroup.IsEnemyBlockSpawnerActive = true;
                     ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, false);
                     EnemyBlockSpawner.Set(td.block_spawn_check, td.block_spawn_hp);
+                    EnemyBlockSpawner.SetSpawnData(td.unit_idx, td.unit_dmg, td.unit_hp, td.unit_count);
                 }
 
 
@@ -439,7 +441,7 @@ public partial class InGameBaseStage : MonoBehaviour
             return;
 
         persistentBlockSpawnerWaveKey = key;
-        StartEnemyBlockSpawner(td.block_spawn_check, td.block_spawn_hp);
+        StartEnemyBlockSpawner(td.block_spawn_check, td.block_spawn_hp, td.unit_idx, td.unit_dmg, td.unit_hp, td.unit_count);
     }
 
     private void ClearPersistentBlockSpawnerState()
@@ -587,11 +589,16 @@ public partial class InGameBaseStage : MonoBehaviour
         return Vector3.zero;
     }
 
-    public void StartEnemyBlockSpawner(int spawnidx, int hp)
+    public void StartEnemyBlockSpawner(int spawnidx, int hp, System.Collections.Generic.List<int> enemyIdxList = null, System.Collections.Generic.List<int> enemyDmgList = null, System.Collections.Generic.List<int> enemyHpList = null, System.Collections.Generic.List<int> enemyCountList = null)
     {
         ProjectUtility.SetActiveCheck(EnemyBlockSpawner.gameObject, false);
 
         EnemyBlockSpawner.Set(spawnidx, hp);
+
+        if (enemyIdxList != null)
+        {
+            EnemyBlockSpawner.SetSpawnData(enemyIdxList, enemyDmgList, enemyHpList, enemyCountList);
+        }
 
         if (EnemyUnitGroup != null)
         {

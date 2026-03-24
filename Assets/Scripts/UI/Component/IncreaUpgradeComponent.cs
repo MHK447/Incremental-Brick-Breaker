@@ -139,6 +139,7 @@ public class IncreaUpgradeComponent : MonoBehaviour, IPointerEnterHandler, IPoin
 
             GameRoot.Instance.UserData.SetReward((int)Config.RewardType.Currency, (int)Config.CurrencyID.Money, -UpgradeCost);
             GameRoot.Instance.IncreaMentalSystem.IncreaseLevelUp(td.order);
+            GameRoot.Instance.UserData.Save(true);
             UnLock();
             UnlockAction?.Invoke(UpgradeOrder);
 

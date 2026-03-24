@@ -90,6 +90,11 @@ public class WeaponFallControler : MonoBehaviour
 
     public void FallAddBullet(int weaponidx, Vector3 pos)
     {
+        if (GameRoot.Instance.IncreaMentalSystem.IsBombUpgraded())
+        {
+            weaponidx = InGamePlayerData.FallWeaponIdx_Bomb;
+        }
+
         var td = Tables.Instance.GetTable<WeaponInfo>().GetData(weaponidx);
 
         if (td == null)

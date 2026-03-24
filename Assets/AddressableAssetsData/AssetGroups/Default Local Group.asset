@@ -210,6 +210,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52a5383d1d7ce4741ac4058be701e038
+    m_Address: FallWeaponBomb
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 52d2b40cad9d3431aa64f8746e5bd2de
     m_Address: Tutorial_7
     m_ReadOnly: 0
@@ -297,6 +302,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8bfc54e5c5d154efab2be94457883d58
     m_Address: Effect/LuckyEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cf411fd3cbb46dfb1ed8b0cf8065d0d
+    m_Address: Effect/ZombieBloodHit_Effect
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

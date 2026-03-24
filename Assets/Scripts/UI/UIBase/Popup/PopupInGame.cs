@@ -44,6 +44,9 @@ public class PopupInGame : UIBase
     [SerializeField]
     private IncreaBtnGroupComponent InCreaBtnGroupComponent;
 
+    [SerializeField]
+    private GameObject ArrowObj;
+
 
     public IncreaBtnGroupComponent GetInCreaBtnGroupComponent { get { return InCreaBtnGroupComponent; } }
 
@@ -90,6 +93,18 @@ public class PopupInGame : UIBase
         ProjectUtility.SetActiveCheck(UpgradeImgComponent.gameObject, false);
 
         ProjectUtility.SetActiveCheck(StageAreaRoot.gameObject, GameRoot.Instance.IncreaMentalSystem.IsUnlocked(IncreaMentalType.TruckUnlock));
+
+        var finddata = GameRoot.Instance.IncreaMentalSystem.FindData(2);
+        if (finddata != null)
+        {
+            finddata.Level
+                .Subscribe(level => ProjectUtility.SetActiveCheck(ArrowObj, level == 0))
+                .AddTo(disposables);
+        }
+        else
+        {
+            ProjectUtility.SetActiveCheck(ArrowObj, false);
+        }
     }
 
     public void SetHpProgress(int hp)
